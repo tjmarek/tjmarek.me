@@ -1,1 +1,344 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TJ Marek | Web Design</title>
+    <style>
+        /* ========== RESET + BASE ========== */
+        *,
+        *::before,
+        *::after { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        /* Fixed: Ensure body handles the full height for GitHub Pages */
+        html, body { 
+            width: 100%; 
+            height: 100%; 
+            overflow: hidden; 
+            background: #FBFCFD; 
+            cursor: pointer; 
+            font-family: 'Poppins', system-ui, -apple-system, sans-serif;
+        }
 
+        /* ========== PARTICLE CANVAS ========== */
+        .particles{
+            position: fixed; inset: 0 0 auto 0; height: 100vh;
+            z-index: 1; overflow: hidden;
+            contain: strict; will-change: transform; backface-visibility: hidden;
+            pointer-events: none;
+        }
+
+        /* ========== ANIMATIONS ========== */
+        @keyframes float{ 0%,100%{transform:translateX(-50%) translateY(0)} 50%{transform:translateX(-50%) translateY(-4px)} }
+        @keyframes fab-float{ 0%,100%{transform:translateY(0)} 50%{transform:translateY(6px)} }
+        @keyframes fall{
+            0%{transform:translateY(0) translateX(0) rotate(0deg); opacity:0}
+            10%,90%{opacity:1}
+            100%{transform:translateY(45vw) translateX(var(--drift-x)) rotate(var(--rotation-end,0deg)); opacity:0}
+        }
+        @keyframes trailFade{ 0%{opacity:.9; transform:scaleY(1) scaleX(1) rotate(var(--angle,0deg))} 100%{opacity:0; transform:scaleY(.2) scaleX(.2) rotate(var(--angle,0deg))} }
+        @keyframes fadeInLeft { from { opacity:0; transform:translateX(-12px);} to { opacity:1; transform:translateX(0);} }
+
+        @media (prefers-reduced-motion: reduce){
+            * { animation-duration: 0.001ms !important; animation-iteration-count: 1 !important; transition-duration: 0.001ms !important; }
+        }
+
+        /* ========== TJ PHOTO ========== */
+        .tj-photo-container {
+            position: fixed; bottom: -20px; left: 50%; transform: translateX(-50%);
+            z-index: 3; animation: float 6s ease-in-out infinite; opacity: 1;
+        }
+        .tj-photo-container img {
+            width: 250px; height: auto; display: block;
+            filter: drop-shadow(0 0 11px rgba(243,169,4,0.21));
+            animation: subtle-glow 6s ease-in-out infinite;
+            transition: transform 0.4s ease, filter 0.4s ease;
+            will-change: filter, transform;
+        }
+        @keyframes subtle-glow{
+            0%, 100% { filter: drop-shadow(0 0 11px rgba(243,169,4,0.21)); }
+            50%      { filter: drop-shadow(0 0 17px rgba(243,169,4,0.28)); }
+        }
+        @media (max-width: 768px){ .tj-photo-container img { width: 160px; } }
+
+        /* Mouse trail */
+        .cursor-trail{
+            position:fixed; pointer-events:none; width:3px; height:14px; background:rgba(243,169,4,0.1);
+            border-radius:50%; z-index:4; opacity:.9; transform:rotate(var(--angle,0deg)); animation:trailFade .6s forwards;
+        }
+
+        /* ========== HERO OVERLAY ========== */
+        @font-face{
+            font-family:'Poppins';
+            font-style:normal;
+            font-weight:400 900;
+            font-display:swap;
+            src:local('Poppins'),
+                url('https://fonts.gstatic.com/s/poppins/v20/pxiByp8kv8JHgFVrLGT9Z1JlEA.woff2') format('woff2');
+        }
+        :root{
+            --tj-deep:#0B1B2B;
+            --tj-muted:#6B7580;
+            --tj-gold:#F3A904;
+            --tj-orange:#E48A00;
+            --tj-white:#FFFFFF;
+        }
+
+        .tj-hero{
+            position:fixed; inset:0; z-index:5;
+            display:flex; flex-direction:column;
+            align-items:center; justify-content:flex-start;
+            pointer-events:none;
+        }
+        .tj-hero__stack{
+            pointer-events:auto;
+            width:min(92vw,960px);
+            margin-inline:auto;
+            padding-top:9%;
+            text-align:center;
+        }
+
+        .tj-hero__overline{
+            font-size:clamp(12px,1.3vw,16px);
+            line-height:1.2;
+            letter-spacing:2px;
+            text-transform:uppercase;
+            color:var(--tj-deep);
+            font-weight: 100;
+            margin-bottom:35px;
+            opacity:0;
+            animation:fadeInLeft 420ms ease both;
+            animation-delay:0s;
+        }
+
+        .tj-hero__h1{
+            color:var(--tj-deep);
+            font-weight:900;
+            font-size:clamp(44px,7.8vw,96px);
+            line-height:1.05;
+            margin-bottom:8px;
+            opacity:0;
+            animation:fadeInLeft 420ms ease both;
+            animation-delay:.08s;
+        }
+
+        .tj-hero__h2{
+            color:var(--tj-deep);
+            font-weight:800;
+            font-size:clamp(28px,5vw,54px);
+            line-height:1.12;
+            margin-bottom:clamp(14px,2vh,18px);
+            opacity:0;
+            animation:fadeInLeft 420ms ease both;
+            animation-delay:.16s;
+        }
+
+        .tj-hero__body{
+            color:var(--tj-muted);
+            font-weight:500;
+            font-size:clamp(16px,2vw,20px);
+            line-height:1.55;
+            margin-inline:auto;
+            max-width:52ch;
+            margin-bottom:clamp(18px,2.6vh,22px);
+            opacity:0;
+            animation:fadeInLeft 420ms ease both;
+            animation-delay:.24s;
+        }
+
+        .tj-hero__cta-row{
+            display:inline-flex;
+            gap:clamp(10px,1.6vw,16px);
+            flex-wrap:nowrap;
+            align-items:center;
+            justify-content:center;
+            white-space:nowrap;
+            opacity:0;
+            animation:fadeInLeft 420ms ease both;
+            animation-delay:.32s;
+        }
+
+        .tj-hero__cta{
+            display:inline-block;
+            background:var(--tj-gold);
+            color:#0A0A0A;
+            font-weight:800;
+            font-size:clamp(15px,1.9vw,18px);
+            line-height:1;
+            padding:clamp(12px,1.6vw,16px) clamp(22px,2.6vw,26px);
+            border-radius:999px;
+            text-decoration:none;
+            border:0;
+            box-shadow:0 8px 22px rgba(243,169,4,.22),0 2px 6px rgba(0,0,0,.06);
+            transition:transform .16s ease,box-shadow .16s ease,background-color .16s ease,filter .16s ease;
+        }
+        .tj-hero__cta:hover{
+            background:var(--tj-orange);
+            transform:translateY(-1px);
+        }
+
+        .tj-hero__cta--ghost{
+            background:var(--tj-white);
+            color:var(--tj-gold);
+            border:2px solid var(--tj-gold);
+            box-shadow:0 8px 22px rgba(0,0,0,.06);
+        }
+
+        /* Mobile Adjustments */
+        @media(max-width:768px){
+            .tj-hero__stack{padding-top:15%!important;}
+            .tj-hero__overline{padding-top: 8%;}
+            .tj-hero__h1{font-size:clamp(44px,11vw,64px);}
+        }
+
+        .tj-fab{
+            position: fixed; bottom: 105px;
+            color: var(--tj-deep);
+            font: 800 14px/1 'Poppins', sans-serif;
+            padding: 8px 10px;
+            cursor: pointer; z-index: 4;
+            text-decoration: underline;
+            text-decoration-color: var(--tj-gold);
+            text-decoration-thickness: 2px;
+            text-underline-offset: 4px;
+            opacity: 0; 
+            animation: fab-float 6s ease-in-out infinite, fadeInLeft 420ms ease both;
+            animation-delay: 0s, 0.40s;
+        }
+        .tj-fab--left  { left: clamp(20px, 5vw, 100px); } /* Adjusted for better visibility */
+        .tj-fab--right { right: clamp(20px, 5vw, 100px); }
+
+        .tj-fab__menu{
+            position: absolute;
+            background: var(--tj-white);
+            border: 2px solid var(--tj-gold);
+            border-radius: 12px;
+            padding: 6px;
+            box-shadow: 0 10px 26px rgba(0,0,0,.16);
+            opacity: 0;
+            transform: scale(.9);
+            transition: all .2s ease;
+            pointer-events: none;
+            min-width: 150px;
+        }
+        .tj-fab.open .tj-fab__menu { opacity:1; transform: scale(1); pointer-events: auto; }
+        
+        .tj-letter{ display: inline-block; white-space: pre; transition: transform .18s ease; }
+        .tj-letter:hover{ transform: translateY(-3px); }
+        
+        /* Tooltip items */
+        .tj-fab__item {
+            display: block;
+            padding: 8px;
+            color: var(--tj-deep);
+            text-decoration: none;
+            font-size: 13px;
+        }
+        .tj-icon { width: 18px; vertical-align: middle; margin-right: 5px; fill: currentColor; }
+    </style>
+</head>
+<body>
+
+<div class="particles" id="particles" aria-hidden="true"></div>
+
+<div class="tj-photo-container" id="tj-photo-fixed">
+  <picture>
+    <source media="(max-width: 768px)" srcset="https://woocommerce-1364451-5958603.cloudwaysapps.com/wp-content/uploads/2025/10/Untitled-design-4-1.webp">
+    <img src="https://woocommerce-1364451-5958603.cloudwaysapps.com/wp-content/uploads/2025/10/Untitled-design-4-2.webp" alt="TJ Marek Web Designer Photo">
+  </picture>
+</div>
+
+<section class="tj-hero">
+  <div class="tj-hero__stack">
+    <div class="tj-hero__overline">TJ Marek | Web Design</div>
+    <h1 class="tj-hero__h1">Hi, I’m TJ.</h1>
+    <h2 class="tj-hero__h2">I make websites.</h2>
+    <p class="tj-hero__body">
+      Austin-based web designer, helping small businesses stand out online.
+      Crafting clean, custom, conversion-driven websites.
+    </p>
+    <div class="tj-hero__cta-row">
+      <a class="tj-hero__cta" href="#contact">Get Started</a>
+      <a class="tj-hero__cta tj-hero__cta--ghost" href="#portal">Client Portal</a>
+    </div>
+  </div>
+</section>
+
+<div class="tj-fab tj-fab--left" id="fab-lookbook">
+  Recent Work
+  <div class="tj-fab__menu">
+    <a class="tj-fab__item" href="#">Project 1</a>
+    <a class="tj-fab__item" href="#">Project 2</a>
+    <a class="tj-fab__item" href="#">View all →</a>
+  </div>
+</div>
+
+<div class="tj-fab tj-fab--right" id="fab-contact">
+  Contact
+  <div class="tj-fab__menu">
+    <a class="tj-fab__item" href="mailto:hello@example.com">Email</a>
+    <a class="tj-fab__item" href="#">LinkedIn</a>
+  </div>
+</div>
+
+<script>
+    // PARTICLE LOGIC
+    const particles = document.getElementById("particles");
+    const colors = ["#F3A904", "#EDF2F7", "#e0e4e6", "#e4e5e0", "#f0f1f2"];
+    const shapes = ["circle", "square", "triangle", "hexagon"];
+
+    function createShapeElement(shape, color, size){
+      const div = document.createElement("div");
+      div.style.position = "absolute";
+      div.style.width = size + "px";
+      div.style.height = size + "px";
+      div.style.backgroundColor = color;
+      if (shape === "circle") div.style.borderRadius = "50%";
+      return div;
+    }
+
+    function getParticles(){
+      particles.innerHTML = "";
+      const w = window.innerWidth;
+      const h = window.innerHeight;
+      for (let i = 0; i < 30; i++){
+        const div = createShapeElement("circle", colors[Math.floor(Math.random()*colors.length)], Math.random()*10+5);
+        div.style.left = Math.random()*w + "px";
+        div.style.top = Math.random()*h + "px";
+        div.style.opacity = Math.random();
+        particles.appendChild(div);
+      }
+    }
+
+    // TOGGLE MENUS
+    function setupFab(id) {
+        const el = document.getElementById(id);
+        el.addEventListener('click', (e) => {
+            e.stopPropagation();
+            el.classList.toggle('open');
+        });
+    }
+    
+    setupFab('fab-lookbook');
+    setupFab('fab-contact');
+    window.onclick = () => {
+        document.querySelectorAll('.tj-fab').forEach(f => f.classList.remove('open'));
+    };
+
+    // LETTER WRAPPING
+    function wrapLetters(selector) {
+        const el = document.querySelector(selector);
+        if (!el) return;
+        const text = el.innerText;
+        el.innerHTML = text.split('').map(char => `<span class="tj-letter">${char}</span>`).join('');
+    }
+
+    window.onload = () => {
+        getParticles();
+        wrapLetters('.tj-hero__h1');
+        wrapLetters('.tj-hero__h2');
+    };
+</script>
+
+</body>
+</html>
