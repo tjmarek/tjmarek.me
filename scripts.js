@@ -1,14 +1,11 @@
-// COLORS & SHAPES FOR PARTICLES
+// PARTICLE CONFIG
 const particlesContainer = document.getElementById("particles");
 const colors = ["#F3A904", "#EDF2F7", "#e0e4e6", "#e4e5e0", "#f0f1f2"];
 const shapes = ["circle", "square", "triangle", "hexagon"];
+const prefersReducedMotion =
+  window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
-// Guard for environments without documentElement (SSR, etc.)
-const prefersReducedMotion = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-
-/**
- * Create a single shape element
- */
+/* Create a shape element */
 function createShapeElement(shape, color, size) {
   const div = document.createElement("div");
   div.style.position = "absolute";
@@ -36,7 +33,8 @@ function createShapeElement(shape, color, size) {
       div.style.boxShadow = "none";
       break;
     case "hexagon":
-      div.style.clipPath = "polygon(25% 6.7%, 75% 6.7%, 100% 50%, 75% 93.3%, 25% 93.3%, 0% 50%)";
+      div.style.clipPath =
+        "polygon(25% 6.7%, 75% 6.7%, 100% 50%, 75% 93.3%, 25% 93.3%, 0% 50%)";
       break;
     default:
       break;
@@ -45,15 +43,13 @@ function createShapeElement(shape, color, size) {
   return div;
 }
 
-/**
- * Seed initial background particles
- */
+/* Seed particles */
 function initBackgroundParticles() {
   if (!particlesContainer || prefersReducedMotion) return;
 
   const docWidth = document.documentElement.clientWidth;
   const baseCount = docWidth / 35;
-  const count = Math.max(18, Math.min(baseCount, 80)); // clamp for perf
+  const count = Math.max(18, Math.min(baseCount, 80));
 
   particlesContainer.innerHTML = "";
   const w = window.innerWidth;
@@ -78,9 +74,7 @@ function initBackgroundParticles() {
   }
 }
 
-/**
- * Spawn single particle on click
- */
+/* Spawn particle on click */
 function spawnOnClick(e) {
   if (!particlesContainer || prefersReducedMotion) return;
 
@@ -99,9 +93,7 @@ function spawnOnClick(e) {
   setTimeout(() => div.remove(), 6000);
 }
 
-/**
- * Mouse trail effect
- */
+/* Mouse trail */
 function handleMouseMove(e) {
   if (prefersReducedMotion) return;
 
@@ -114,9 +106,7 @@ function handleMouseMove(e) {
   setTimeout(() => trail.remove(), 600);
 }
 
-/**
- * Bottom nav toggle
- */
+/* Bottom nav toggle */
 function setupHeroNavToggle() {
   const trigger = document.querySelector(".hero-nav-trigger");
   const nav = document.querySelector(".hero-nav");
@@ -126,9 +116,12 @@ function setupHeroNavToggle() {
     nav.classList.toggle("hero-nav--visible");
   };
 
-  trigger.addEventListener("click", toggleNav);
+  trigger.addEventListener("click", (e) => {
+    e.stopPropagation();
+    toggleNav();
+  });
 
-  // Also open nav on hover for desktop
+  // Hover open on desktop
   let hoverTimeout;
   trigger.addEventListener("mouseenter", () => {
     if (window.matchMedia("(pointer: fine)").matches) {
@@ -141,7 +134,7 @@ function setupHeroNavToggle() {
     if (window.matchMedia("(pointer: fine)").matches) {
       hoverTimeout = setTimeout(() => {
         nav.classList.remove("hero-nav--visible");
-      }, 400);
+      }, 350);
     }
   });
 
@@ -156,15 +149,12 @@ function setupHeroNavToggle() {
   });
 }
 
-/**
- * Init on DOM ready
- */
+/* INIT */
 document.addEventListener("DOMContentLoaded", () => {
-  // Seed particles after a tiny delay to avoid blocking first paint
   if (!prefersReducedMotion) {
     window.setTimeout(() => {
       initBackgroundParticles();
-    }, 150);
+    }, 120);
   }
 
   document.addEventListener("click", spawnOnClick, { passive: true });
@@ -175,6 +165,9 @@ document.addEventListener("DOMContentLoaded", () => {
     clearTimeout(resizeTimer);
     resizeTimer = setTimeout(initBackgroundParticles, 150);
   });
+
+  setupHeroNavToggle();
+});
 
   setupHeroNavToggle();
 });
