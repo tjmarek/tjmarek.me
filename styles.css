@@ -37,8 +37,7 @@ html, body {
 ================================================ */
 .skip-link {
   position: fixed;
-  top: -60px;
-  left: 20px;
+  top: -60px; left: 20px;
   z-index: 9999;
   background: var(--gold);
   color: var(--slate);
@@ -51,62 +50,16 @@ html, body {
 .skip-link:focus { top: 16px; }
 
 /* ================================================
-   BACKGROUND ORBS
+   NOISE TEXTURE (very subtle)
 ================================================ */
 .noise-overlay {
   position: fixed;
   inset: 0;
   z-index: 0;
   pointer-events: none;
-  opacity: 0.035;
+  opacity: 0.03;
   background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
   background-size: 180px 180px;
-}
-
-.orb {
-  position: fixed;
-  border-radius: 50%;
-  pointer-events: none;
-  z-index: 0;
-}
-
-/* Gold orb — top right, clearly visible */
-.orb-1 {
-  width: 600px;
-  height: 600px;
-  top: -220px;
-  right: -180px;
-  background: radial-gradient(circle at center,
-    rgba(242, 164, 59, 0.28) 0%,
-    rgba(242, 164, 59, 0.10) 40%,
-    transparent 70%
-  );
-  filter: blur(40px);
-  animation: orbDrift1 16s ease-in-out infinite;
-}
-
-/* Slate orb — bottom left, clearly visible */
-.orb-2 {
-  width: 500px;
-  height: 500px;
-  bottom: calc(var(--status-h) + var(--skills-h) - 60px);
-  left: -160px;
-  background: radial-gradient(circle at center,
-    rgba(54, 69, 79, 0.18) 0%,
-    rgba(54, 69, 79, 0.06) 45%,
-    transparent 70%
-  );
-  filter: blur(40px);
-  animation: orbDrift2 20s ease-in-out infinite;
-}
-
-@keyframes orbDrift1 {
-  0%,100% { transform: translate(0, 0) scale(1);       }
-  50%      { transform: translate(-30px, 40px) scale(1.04); }
-}
-@keyframes orbDrift2 {
-  0%,100% { transform: translate(0, 0) scale(1);       }
-  50%      { transform: translate(40px, -30px) scale(1.06); }
 }
 
 /* ================================================
@@ -195,35 +148,49 @@ html, body {
 .hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
 
 /* ================================================
-   MAIN
+   MAIN — flex column, hero unit centered vertically
 ================================================ */
-main {
+.main-content {
   flex: 1;
   display: flex;
   flex-direction: column;
+  justify-content: center;   /* vertically centers the hero unit */
   min-height: 0;
+  gap: 0;
 }
 
 /* ================================================
-   HERO TOP — eyebrow + name
+   HERO UNIT
+   - Centered horizontally as a block
+   - Contains name-block (fit-content) + hero-lower
+   - Both children share the same center axis
 ================================================ */
-.hero-top {
+.hero-unit {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  gap: 0;
-  flex-shrink: 0;
-  padding-bottom: 0;
-  opacity: 0;
-  animation: fadeUp 0.65s var(--ease) 0.1s forwards;
+  align-items: center;   /* centers children horizontally */
+  width: 100%;
+}
+
+/* ================================================
+   NAME BLOCK
+   - width shrinks to fit the text
+   - eyebrow left-aligns with the "T" in TJ MAREK
+================================================ */
+.name-block {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: flex-start;  /* eyebrow hugs left edge of name */
+  /* do NOT set width here — let it be the natural width of the H1 */
 }
 
 .hero-eyebrow {
   display: flex;
   align-items: center;
   gap: 10px;
-  align-self: flex-start;
-  margin-bottom: 6px;
+  margin-bottom: 4px;
+  opacity: 0;
+  animation: fadeUp 0.6s var(--ease) 0.1s forwards;
 }
 .eyebrow-line {
   display: block;
@@ -243,12 +210,13 @@ main {
 /* Hero Name */
 .hero-name {
   font-family: var(--font-head);
-  font-size: clamp(4.5rem, 11vw, 9rem);
-  line-height: 0.9;
+  font-size: clamp(4rem, 10.5vw, 8.5rem);
+  line-height: 0.92;
   color: var(--slate);
-  text-align: center;
   letter-spacing: -0.01em;
-  width: 100%;
+  white-space: nowrap;
+  opacity: 0;
+  animation: fadeUp 0.65s var(--ease) 0.2s forwards;
 }
 .name-letter {
   display: inline-block;
@@ -265,36 +233,37 @@ main {
 }
 
 /* ================================================
-   HERO BOTTOM — photo + content
+   HERO LOWER
+   - Same center as name-block
+   - Two columns: photo left, content right
 ================================================ */
-.hero-bottom {
-  flex: 1;
+.hero-lower {
   display: grid;
   grid-template-columns: auto 1fr;
-  gap: clamp(16px, 3vw, 48px);
   align-items: end;
-  min-height: 0;
-  position: relative;
+  /* match the visual width of the name above */
+  width: 100%;
+  max-width: 960px;   /* cap so it doesn't stretch on ultra-wide */
+  gap: clamp(16px, 2.5vw, 40px);
 }
 
 /* Photo column */
 .hero-photo-col {
   display: flex;
   align-items: flex-end;
-  justify-content: flex-start;
-  height: 100%;
   opacity: 0;
-  animation: fadeIn 0.8s var(--ease) 0.4s forwards;
+  animation: fadeIn 0.8s var(--ease) 0.45s forwards;
 }
 
 .hero-photo {
   display: block;
-  width: clamp(160px, 22vw, 300px);
+  width: clamp(150px, 18vw, 280px);
   height: auto;
   object-fit: contain;
   object-position: bottom center;
-  margin-top: clamp(-60px, -6vw, -100px); /* overlaps up into name */
-  filter: drop-shadow(0 -6px 24px rgba(54,69,79,0.12));
+  /* negative top margin = photo overlaps up into the name */
+  margin-top: clamp(-50px, -6vw, -100px);
+  filter: drop-shadow(0 -4px 20px rgba(54,69,79,0.10));
   user-select: none;
   pointer-events: none;
 }
@@ -303,25 +272,24 @@ main {
 .hero-content-col {
   display: flex;
   flex-direction: column;
-  gap: clamp(10px, 1.5vh, 18px);
-  justify-content: center;
-  padding-bottom: clamp(8px, 1.5vh, 20px);
+  gap: clamp(10px, 1.4vh, 16px);
+  padding-bottom: clamp(6px, 1vh, 14px);
   opacity: 0;
   animation: fadeUp 0.65s var(--ease) 0.5s forwards;
 }
 
 .hero-headline {
   font-family: var(--font-head);
-  font-size: clamp(1.4rem, 2.4vw, 2.2rem);
+  font-size: clamp(1.3rem, 2.2vw, 2rem);
   line-height: 1.1;
   color: var(--slate);
 }
 
 .hero-subtext {
-  font-size: clamp(0.82rem, 1vw, 0.96rem);
+  font-size: clamp(0.82rem, 1vw, 0.94rem);
   line-height: 1.75;
   color: var(--slate-light);
-  max-width: 52ch;
+  max-width: 50ch;
 }
 
 /* CTAs */
@@ -352,11 +320,10 @@ main {
 }
 .btn::before {
   content: '';
-  position: absolute;
-  inset: 0;
+  position: absolute; inset: 0;
   background: rgba(255,255,255,0.14);
   transform: translateX(-110%);
-  transition: transform 0.38s var(--ease);
+  transition: transform 0.36s var(--ease);
 }
 .btn:hover::before { transform: translateX(0); }
 
@@ -370,7 +337,7 @@ main {
   background: var(--gold-dark);
   border-color: var(--gold-dark);
   transform: translateY(-2px);
-  box-shadow: 0 8px 26px rgba(242,164,59,0.38);
+  box-shadow: 0 8px 24px rgba(242,164,59,0.38);
 }
 .btn-arrow {
   display: inline-block;
@@ -391,7 +358,7 @@ main {
 
 /* Sub-link */
 .hero-sub-link {
-  font-size: 0.76rem;
+  font-size: 0.75rem;
   color: var(--slate-xlight);
   text-decoration: none;
   letter-spacing: 0.06em;
@@ -414,44 +381,40 @@ main {
 .stat-row {
   display: flex;
   align-items: center;
-  gap: clamp(14px, 2.5vw, 32px);
+  gap: clamp(14px, 2.5vw, 30px);
 }
 .stat-item {
   display: flex;
   flex-direction: column;
-  gap: 3px;
+  gap: 2px;
 }
 .stat-number-wrap {
   display: flex;
   align-items: baseline;
   gap: 5px;
 }
-.stat-icon {
-  font-size: 0.82rem;
-  line-height: 1;
-}
+.stat-icon { font-size: 0.8rem; line-height: 1; }
 .stat-num {
   font-family: var(--font-head);
-  font-size: clamp(1.5rem, 2.2vw, 2rem);
+  font-size: clamp(1.5rem, 2vw, 2rem);
   line-height: 1;
   color: var(--slate);
 }
 .stat-suffix {
   font-family: var(--font-head);
-  font-size: clamp(0.9rem, 1.3vw, 1.2rem);
+  font-size: clamp(0.9rem, 1.2vw, 1.2rem);
   color: var(--gold);
   line-height: 1;
 }
 .stat-label {
-  font-size: 0.65rem;
+  font-size: 0.63rem;
   letter-spacing: 0.1em;
   text-transform: uppercase;
   color: var(--slate-xlight);
   white-space: nowrap;
 }
 .stat-divider {
-  width: 1px;
-  height: 34px;
+  width: 1px; height: 32px;
   background: rgba(54,69,79,0.12);
   flex-shrink: 0;
 }
@@ -465,7 +428,7 @@ main {
   height: var(--skills-h);
   border-top: 1px solid rgba(54,69,79,0.1);
   opacity: 0;
-  animation: fadeIn 0.6s var(--ease) 0.9s forwards;
+  animation: fadeIn 0.6s var(--ease) 0.85s forwards;
 }
 .skill-chip {
   flex: 1;
@@ -482,7 +445,7 @@ main {
 .skill-chip:hover { background: rgba(242,164,59,0.06); }
 .skill-chip-label {
   font-family: var(--font-head);
-  font-size: clamp(0.72rem, 1vw, 0.9rem);
+  font-size: clamp(0.7rem, 1vw, 0.88rem);
   letter-spacing: 0.08em;
   text-transform: uppercase;
   color: var(--slate);
@@ -490,7 +453,7 @@ main {
 }
 .skill-chip:hover .skill-chip-label { color: var(--gold); }
 .skill-chip-sub {
-  font-size: 0.62rem;
+  font-size: 0.6rem;
   letter-spacing: 0.08em;
   text-transform: uppercase;
   color: var(--slate-xlight);
@@ -501,8 +464,7 @@ main {
 ================================================ */
 .status-bar {
   position: fixed;
-  inset-inline: 0;
-  bottom: 0;
+  inset-inline: 0; bottom: 0;
   z-index: 50;
   height: var(--status-h);
   display: flex;
@@ -558,8 +520,7 @@ main {
    MOBILE MENU
 ================================================ */
 .mobile-menu {
-  position: fixed;
-  inset: 0;
+  position: fixed; inset: 0;
   background: var(--slate);
   z-index: 200;
   display: flex;
@@ -617,10 +578,10 @@ main {
 }
 
 /* ================================================
-   SHARED ANIMATIONS
+   ANIMATIONS
 ================================================ */
 @keyframes fadeUp {
-  from { opacity: 0; transform: translateY(20px); }
+  from { opacity: 0; transform: translateY(18px); }
   to   { opacity: 1; transform: translateY(0);    }
 }
 @keyframes fadeIn {
@@ -629,15 +590,14 @@ main {
 }
 
 /* ================================================
-   RESPONSIVE — TABLET ≤ 960px
+   RESPONSIVE — TABLET ≤ 900px
 ================================================ */
-@media (max-width: 960px) {
-  .hero-bottom {
-    grid-template-columns: auto 1fr;
-    gap: 24px;
+@media (max-width: 900px) {
+  .hero-lower {
+    max-width: 100%;
   }
   .hero-photo {
-    width: clamp(140px, 20vw, 240px);
+    width: clamp(130px, 18vw, 220px);
   }
 }
 
@@ -645,44 +605,45 @@ main {
    RESPONSIVE — MOBILE ≤ 680px
 ================================================ */
 @media (max-width: 680px) {
-  .nav-links   { display: none; }
-  .hamburger   { display: flex; }
+  .nav-links { display: none; }
+  .hamburger { display: flex; }
 
-  .page-shell  { padding-inline: 18px; }
+  .page-shell { padding-inline: 18px; }
 
+  /* Name wraps and stays centered */
   .hero-name {
-    font-size: clamp(3.4rem, 13vw, 5.5rem);
+    font-size: clamp(3rem, 13vw, 5rem);
+    white-space: normal;
+    text-align: center;
   }
 
-  /* Stack photo above content on mobile */
-  .hero-bottom {
+  /* Stack: photo above content */
+  .hero-lower {
     grid-template-columns: 1fr;
     grid-template-rows: auto auto;
-    align-items: start;
-    gap: 0;
+    align-items: center;
   }
 
   .hero-photo-col {
     justify-content: center;
   }
   .hero-photo {
-    width: clamp(140px, 48vw, 220px);
-    margin-top: clamp(-30px, -5vw, -50px);
+    width: clamp(120px, 44vw, 200px);
+    margin-top: clamp(-24px, -4vw, -44px);
     margin-inline: auto;
   }
 
   .hero-content-col {
-    gap: 12px;
-    padding-bottom: 6px;
     align-items: center;
     text-align: center;
+    gap: 10px;
   }
   .hero-subtext  { max-width: 100%; }
   .hero-ctas     { justify-content: center; }
-  .stat-row      { justify-content: center; gap: 12px; }
+  .stat-row      { justify-content: center; gap: 10px; }
   .stat-label    { font-size: 0.58rem; }
 
-  /* Skills: horizontal scroll */
+  /* Skills scroll */
   .skills-row {
     height: auto;
     overflow-x: auto;
@@ -692,10 +653,10 @@ main {
   .skills-row::-webkit-scrollbar { display: none; }
   .skill-chip {
     flex: 0 0 auto;
-    padding: 14px 22px;
+    padding: 14px 20px;
   }
 
-  /* Status bar stacks */
+  /* Status stacks */
   .status-bar {
     height: auto;
     flex-direction: column;
@@ -714,8 +675,7 @@ main {
     animation-delay:    0.001ms !important;
     transition-duration: 0.001ms !important;
   }
-  .hero-top,
-  .hero-photo-col,
-  .hero-content-col,
+  .hero-eyebrow, .hero-name,
+  .hero-photo-col, .hero-content-col,
   .skills-row { opacity: 1; transform: none; }
 }
