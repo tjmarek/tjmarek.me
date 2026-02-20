@@ -3,7 +3,7 @@
   --primary: #F2A905;
   --secondary: #36454f;
   --font-header: 'Anton', sans-serif;
-  --font-body: 'Garet', sans-serif;
+  --font-body: 'Poppins', sans-serif;
 }
 
 * {
@@ -20,7 +20,8 @@ html, body {
   overflow: hidden;
 }
 
-header.header {
+/* HEADER */
+.header {
   position: absolute;
   top: 0;
   left: 0;
@@ -39,9 +40,9 @@ header.header {
 }
 
 .nav ul {
-  list-style: none;
   display: flex;
   gap: 1.75rem;
+  list-style: none;
 }
 
 .nav a {
@@ -68,30 +69,28 @@ header.header {
   color: #fff;
 }
 
-/* Hero Section */
+/* HERO SECTION */
 .hero {
   height: 100vh;
-  width: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
+  text-align: center;
   position: relative;
   overflow: hidden;
-  text-align: center;
+  padding: 2rem;
 }
 
 .hero-content {
   z-index: 2;
-  max-width: 700px;
-  padding: 2rem;
+  max-width: 720px;
 }
 
 .hero-title {
   font-family: var(--font-header);
-  font-size: 3rem;
+  font-size: 3.2rem;
   line-height: 1.1;
   text-transform: uppercase;
-  letter-spacing: 1px;
 }
 
 .accent {
@@ -99,15 +98,16 @@ header.header {
 }
 
 .highlight {
-  font-family: var(--font-body);
   display: block;
+  font-family: var(--font-body);
   font-size: 1rem;
   letter-spacing: 0.1em;
-  margin-top: 0.5rem;
+  margin-top: 0.6rem;
+  color: var(--secondary);
 }
 
 .hero-subtitle {
-  margin: 1.5rem 0;
+  margin: 1.7rem 0;
   font-size: 1.1rem;
   color: #555;
 }
@@ -140,6 +140,7 @@ header.header {
 .btn-secondary {
   border: 2px solid var(--secondary);
   color: var(--secondary);
+  background: transparent;
 }
 
 .btn-secondary:hover {
@@ -147,7 +148,7 @@ header.header {
   color: #fff;
 }
 
-/* Background animation */
+/* BACKGROUND EFFECT */
 .background-animation {
   position: absolute;
   inset: 0;
@@ -158,22 +159,19 @@ header.header {
 }
 
 @keyframes subtleMove {
-  0% {
-    transform: translateY(-10px) scale(1.02);
-  }
-  100% {
-    transform: translateY(10px) scale(1.05);
-  }
+  0% { transform: translateY(-10px) scale(1.02); }
+  100% { transform: translateY(10px) scale(1.05); }
 }
 
+/* RESPONSIVE */
 @media (max-width: 768px) {
   .hero-title {
-    font-size: 2rem;
+    font-size: 2.2rem;
   }
   .nav ul {
     gap: 1rem;
   }
-  header.header {
+  .header {
     padding: 1rem 1.5rem;
   }
 }
