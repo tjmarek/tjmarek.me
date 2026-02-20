@@ -1,113 +1,73 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <!-- Basic Meta -->
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>TJ Marek | Growth Marketing & Web Design</title>
-  <meta name="description" content="TJ Marek is a growth-focused digital marketer and web designer specializing in full-funnel strategy, PPC, SEO, CRO, and technically-sound, fast web experiences.">
-
-  <!-- Open Graph -->
-  <meta property="og:title" content="TJ Marek | Growth Marketing & Web Design">
-  <meta property="og:description" content="Full-funnel marketer focused on performance, clean UX, and technically sound web experiences.">
-  <meta property="og:type" content="website">
-  <meta property="og:url" content="https://example.com/">
-  <meta property="og:image" content="https://example.com/assets/hero-placeholder.jpg">
-
-  <!-- Favicon -->
-  <link rel="icon" href="assets/favicon.ico" type="image/x-icon">
-
-  <!-- Font (swap later if you want a different one) -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-
-  <!-- Styles -->
-  <link rel="stylesheet" href="styles.css">
-
-  <!-- Structured Data -->
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "Person",
-    "name": "TJ Marek",
-    "jobTitle": "Senior Growth Marketer",
-    "url": "https://example.com/",
-    "sameAs": [
-      "https://www.linkedin.com/in/YOUR-LINKEDIN-SLUG",
-      "mailto:YOUR-EMAIL@example.com"
-    ]
-  }
-  </script>
-</head>
-<body>
-  <!-- Particle Background -->
-  <div class="particles" id="particles" aria-hidden="true"></div>
-
-  <!-- Top Left Logo -->
-  <a href="index.html" class="site-logo" aria-label="Home">
-    <span class="site-logo__mark">TM</span>
-  </a>
-
-  <!-- Top Right Social / Contact -->
-  <nav class="top-links" aria-label="External links">
-    <a href="https://www.linkedin.com/in/YOUR-LINKEDIN-SLUG" class="top-links__item" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
-      <span class="icon icon--linkedin" aria-hidden="true"></span>
-    </a>
-    <a href="mailto:YOUR-EMAIL@example.com" class="top-links__item" aria-label="Email">
-      <span class="icon icon--email" aria-hidden="true"></span>
-    </a>
-  </nav>
-
-  <!-- Hero -->
-  <header class="hero" role="banner">
-    <div class="hero__inner">
-      <p class="hero__overline">Growth Marketing &amp; Web Design</p>
-
-      <h1 class="hero__name" aria-label="TJ Marek">
-        <span class="hero__letter">T</span><span class="hero__letter">J</span>
-        <span class="hero__letter hero__letter--space">&nbsp;</span>
-        <span class="hero__letter">M</span><span class="hero__letter">A</span><span class="hero__letter">R</span><span class="hero__letter">E</span><span class="hero__letter">K</span>
-      </h1>
-
-      <div class="hero__body">
-        <p class="hero__tagline hero__tagline--left">
-          Full-funnel marketer focused on performance, clean UX,
+<section class="skills-bar" aria-label="Core skills">
+  <div class="skills-bar__inner">
+    <article class="skill-tile">
+      <button class="skill-tile__header" type="button">
+        <span class="skill-tile__label">PPC</span>
+      </button>
+      <div class="skill-tile__panel">
+        <p class="skill-tile__description">
+          Structured, data-led campaigns that drive efficient pipeline instead of vanity clicks.
         </p>
-
-        <div class="hero__image-wrapper">
-          <!-- TODO: replace with your real image path -->
-          <img
-            src="assets/hero-placeholder.jpg"
-            alt="Portrait of TJ Marek"
-            class="hero__image"
-            loading="lazy"
-          >
-        </div>
-
-        <p class="hero__tagline hero__tagline--right">
-          and technically sound web experiences.
-        </p>
+        <a href="#ppc-case-study" class="skill-tile__cta">
+          View PPC case study &rarr;
+        </a>
       </div>
-    </div>
+    </article>
 
-    <!-- Bottom nav trigger -->
-    <button class="hero-nav-trigger" aria-label="Open navigation">
-      <span class="hero-nav-trigger__dot"></span>
-    </button>
+    <article class="skill-tile">
+      <button class="skill-tile__header" type="button">
+        <span class="skill-tile__label">CRO</span>
+      </button>
+      <div class="skill-tile__panel">
+        <p class="skill-tile__description">
+          Experiment-led UX and offer testing to unlock conversion gains without guesswork.
+        </p>
+        <a href="#cro-case-study" class="skill-tile__cta">
+          View CRO case study &rarr;
+        </a>
+      </div>
+    </article>
 
-    <!-- Bottom nav -->
-    <nav class="hero-nav" aria-label="Main navigation">
-      <ul class="hero-nav__list">
-        <li class="hero-nav__item"><a href="about.html">About</a></li>
-        <li class="hero-nav__item"><a href="case-studies.html">Case Studies</a></li>
-        <li class="hero-nav__item"><a href="portfolio.html">Portfolio</a></li>
-        <li class="hero-nav__item"><a href="contact.html">Contact</a></li>
-      </ul>
-    </nav>
-  </header>
+    <article class="skill-tile">
+      <button class="skill-tile__header" type="button">
+        <span class="skill-tile__label">Web Design</span>
+      </button>
+      <div class="skill-tile__panel">
+        <p class="skill-tile__description">
+          Fast, focused interfaces that look sharp and move users toward the next meaningful step.
+        </p>
+        <a href="#web-design-case-study" class="skill-tile__cta">
+          View Web Design work &rarr;
+        </a>
+      </div>
+    </article>
 
-  <!-- Scripts -->
-  <script src="scripts.js"></script>
-</body>
-</html>
+    <article class="skill-tile">
+      <button class="skill-tile__header" type="button">
+        <span class="skill-tile__label">Attribution</span>
+      </button>
+      <div class="skill-tile__panel">
+        <p class="skill-tile__description">
+          Clear tracking, clean data, and reporting that ties spend to revenue and real decisions.
+        </p>
+        <a href="#attribution-case-study" class="skill-tile__cta">
+          View Attribution example &rarr;
+        </a>
+      </div>
+    </article>
+
+    <article class="skill-tile">
+      <button class="skill-tile__header" type="button">
+        <span class="skill-tile__label">SEO</span>
+      </button>
+      <div class="skill-tile__panel">
+        <p class="skill-tile__description">
+          Technical and strategic SEO that compounds over time, not just rankings for their own sake.
+        </p>
+        <a href="#seo-case-study" class="skill-tile__cta">
+          View SEO case study &rarr;
+        </a>
+      </div>
+    </article>
+  </div>
+</section>
