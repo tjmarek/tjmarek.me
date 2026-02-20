@@ -193,7 +193,7 @@ html, body {
 /* Name */
 .hero-name {
   font-family: var(--font-head);
-  font-size: clamp(6.2rem, 25vw, 18rem); 
+  font-size: clamp(5.2rem, 18vw, 14rem); 
   line-height: 0.86;                    
   letter-spacing: -0.018em;
   color: var(--slate);
