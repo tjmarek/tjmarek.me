@@ -3,57 +3,235 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Digital marketing portfolio of [Your Name] — expert in PPC, CRO, SEO, and Web Design." />
-  <meta property="og:title" content="[Your Name] | Digital Marketing Portfolio" />
-  <meta property="og:description" content="Building high-converting, data-driven marketing systems that grow revenue." />
+  <meta name="description" content="Full-funnel digital marketing strategist specializing in PPC, CRO, SEO, web design, and attribution tracking. Available for senior marketing roles." />
+  <meta name="keywords" content="digital marketing portfolio, PPC specialist, CRO, SEO, web design, full funnel marketing" />
+  <meta name="author" content="[Your Name]" />
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="[Your Name] — Full-Funnel Digital Marketing Strategist" />
+  <meta property="og:description" content="I build full-funnel digital marketing systems that drive measurable growth — PPC, CRO, SEO, web design & attribution." />
   <meta property="og:type" content="website" />
-  <meta property="og:url" content="https://yourusername.github.io/reponame/" />
-  <meta name="theme-color" content="#F2A905" />
-  <title>[Your Name] | Digital Marketing Portfolio</title>
+  <meta property="og:url" content="https://yoursite.com" />
+  <meta property="og:image" content="/assets/og-image.jpg" />
 
-  <!-- Load Fonts -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Anton&family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="[Your Name] — Full-Funnel Digital Marketing Strategist" />
+  <meta name="twitter:description" content="PPC · CRO · SEO · Web Design · Attribution" />
 
-  <!-- Stylesheet -->
-  <link rel="stylesheet" href="./styles.css" />
+  <title>[Your Name] — Full-Funnel Digital Marketing Strategist</title>
+
+  <!-- Canonical -->
+  <link rel="canonical" href="https://yoursite.com/" />
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Anton&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Garet:wght@400;700&display=swap" rel="stylesheet" />
+
+  <!-- Fallback for Garet (not on Google Fonts — using direct or self-hosted) -->
+  <!-- If Garet isn't resolving, swap to 'DM Sans' or 'Plus Jakarta Sans' as fallback -->
+
+  <link rel="stylesheet" href="styles.css" />
+
+  <!-- Structured Data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "[Your Name]",
+    "jobTitle": "Full-Funnel Digital Marketing Strategist",
+    "url": "https://yoursite.com",
+    "sameAs": [
+      "https://linkedin.com/in/yourprofile",
+      "https://github.com/yourgithub"
+    ],
+    "knowsAbout": ["PPC", "SEO", "CRO", "Web Design", "Marketing Attribution", "Google Ads", "Meta Ads"]
+  }
+  </script>
 </head>
+
 <body>
 
-  <header class="header">
-    <div class="logo">[YourName]</div>
-    <nav class="nav">
-      <ul>
-        <li><a href="#impact">My Impact</a></li>
-        <li><a href="#cases">Case Studies</a></li>
-        <li><a href="#design">Web Design</a></li>
-        <li><a href="#contact">Contact</a></li>
-        <li><a href="#about">About</a></li>
-        <li><a href="cv.pdf" target="_blank" class="btn-cta">Download CV</a></li>
-      </ul>
-    </nav>
-  </header>
+  <!-- Noise texture overlay -->
+  <div class="noise-overlay" aria-hidden="true"></div>
 
-  <main class="hero">
-    <div class="hero-content">
-      <h1 class="hero-title">
-        Data-Driven Growth <span class="accent">Designer.</span><br>
-        <span class="highlight">PPC • CRO • SEO • Web</span>
-      </h1>
-      <p class="hero-subtitle">
-        I build full-funnel marketing systems that connect awareness to revenue — bridging creative and analytics to drive measurable growth.
-      </p>
+  <!-- Animated background grid -->
+  <div class="bg-grid" aria-hidden="true"></div>
 
-      <div class="hero-buttons">
-        <a href="#impact" class="btn-primary">See My Work</a>
-        <a href="#contact" class="btn-secondary">Let’s Talk</a>
+  <!-- Floating accent orbs -->
+  <div class="orb orb-1" aria-hidden="true"></div>
+  <div class="orb orb-2" aria-hidden="true"></div>
+
+  <div class="hero-wrapper">
+
+    <!-- ===== NAV ===== -->
+    <nav class="nav" role="navigation" aria-label="Main navigation">
+      <div class="nav-logo">
+        <span class="logo-bracket">[</span>
+        <span class="logo-name">YN</span>
+        <span class="logo-bracket">]</span>
       </div>
+
+      <ul class="nav-links" role="list">
+        <li><a href="index.html" class="nav-link active" aria-current="page">Home</a></li>
+        <li><a href="impact.html" class="nav-link">My Impact</a></li>
+        <li><a href="case-studies.html" class="nav-link">Case Studies</a></li>
+        <li><a href="web-design.html" class="nav-link">Web Design</a></li>
+        <li><a href="about.html" class="nav-link">About</a></li>
+        <li><a href="contact.html" class="nav-link">Contact</a></li>
+        <li>
+          <a href="/assets/cv.pdf" class="nav-link nav-cv" download aria-label="Download CV PDF">
+            CV <span class="cv-icon">↓</span>
+          </a>
+        </li>
+      </ul>
+
+      <!-- Mobile hamburger -->
+      <button class="hamburger" id="hamburger" aria-label="Toggle mobile menu" aria-expanded="false" aria-controls="mobile-menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </nav>
+
+    <!-- Mobile menu overlay -->
+    <div class="mobile-menu" id="mobile-menu" role="dialog" aria-modal="true" aria-label="Mobile navigation" hidden>
+      <ul class="mobile-nav-links" role="list">
+        <li><a href="index.html" class="mobile-nav-link">Home</a></li>
+        <li><a href="impact.html" class="mobile-nav-link">My Impact</a></li>
+        <li><a href="case-studies.html" class="mobile-nav-link">Case Studies</a></li>
+        <li><a href="web-design.html" class="mobile-nav-link">Web Design</a></li>
+        <li><a href="about.html" class="mobile-nav-link">About</a></li>
+        <li><a href="contact.html" class="mobile-nav-link">Contact</a></li>
+        <li><a href="/assets/cv.pdf" class="mobile-nav-link" download>Download CV ↓</a></li>
+      </ul>
     </div>
 
-    <div class="background-animation"></div>
-  </main>
+    <!-- ===== HERO CONTENT ===== -->
+    <main class="hero-content" id="main-content">
 
-  <script src="./scripts.js"></script>
+      <!-- Left column -->
+      <div class="hero-left">
+
+        <div class="hero-eyebrow">
+          <span class="eyebrow-line"></span>
+          <span class="eyebrow-text">Full-Funnel Digital Marketing</span>
+        </div>
+
+        <h1 class="hero-headline">
+          <span class="headline-line line-1">I Build</span>
+          <span class="headline-line line-2 highlight-wrap">
+            Systems
+            <svg class="underline-svg" viewBox="0 0 300 18" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <path d="M2 14 Q75 4 150 10 Q225 16 298 6" stroke="#F2A905" stroke-width="4" stroke-linecap="round" fill="none"/>
+            </svg>
+          </span>
+          <span class="headline-line line-3">That Convert.</span>
+        </h1>
+
+        <p class="hero-subtext">
+          PPC · CRO · SEO · Web Design · Attribution —
+          <br />5+ years turning clicks into clients for specialty contractors.
+        </p>
+
+        <div class="hero-ctas">
+          <a href="impact.html" class="btn btn-primary">
+            See My Impact
+            <span class="btn-arrow">→</span>
+          </a>
+          <a href="case-studies.html" class="btn btn-ghost">
+            Case Studies
+          </a>
+        </div>
+
+        <!-- Stat ticker -->
+        <div class="stat-row" aria-label="Key performance highlights">
+          <div class="stat-item">
+            <span class="stat-num" data-target="400">0</span><span class="stat-suffix">%</span>
+            <span class="stat-label">Organic Traffic Growth</span>
+          </div>
+          <div class="stat-divider" aria-hidden="true"></div>
+          <div class="stat-item">
+            <span class="stat-num" data-target="5">0</span><span class="stat-suffix">+</span>
+            <span class="stat-label">Years Experience</span>
+          </div>
+          <div class="stat-divider" aria-hidden="true"></div>
+          <div class="stat-item">
+            <span class="stat-num" data-target="3">0</span><span class="stat-suffix">x</span>
+            <span class="stat-label">Avg. ROAS Improvement</span>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Right column -->
+      <div class="hero-right" aria-hidden="true">
+
+        <!-- Floating skill cards -->
+        <div class="skill-orbit">
+
+          <div class="center-badge">
+            <div class="center-badge-inner">
+              <span class="center-badge-icon">◈</span>
+              <span class="center-badge-text">Full<br/>Funnel</span>
+            </div>
+          </div>
+
+          <div class="skill-card skill-card-1">
+            <span class="skill-icon">⚡</span>
+            <span class="skill-name">PPC</span>
+            <span class="skill-sub">Google · Meta</span>
+          </div>
+
+          <div class="skill-card skill-card-2">
+            <span class="skill-icon">📈</span>
+            <span class="skill-name">SEO</span>
+            <span class="skill-sub">Technical · Content</span>
+          </div>
+
+          <div class="skill-card skill-card-3">
+            <span class="skill-icon">🎯</span>
+            <span class="skill-name">CRO</span>
+            <span class="skill-sub">Test · Iterate</span>
+          </div>
+
+          <div class="skill-card skill-card-4">
+            <span class="skill-icon">🔍</span>
+            <span class="skill-name">Tracking</span>
+            <span class="skill-sub">GA4 · GTM</span>
+          </div>
+
+          <div class="skill-card skill-card-5">
+            <span class="skill-icon">🖥️</span>
+            <span class="skill-name">Web Design</span>
+            <span class="skill-sub">HTML · CSS · JS</span>
+          </div>
+
+        </div>
+
+      </div>
+
+    </main>
+
+    <!-- ===== FOOTER BAR ===== -->
+    <footer class="hero-footer" role="contentinfo">
+      <div class="footer-left">
+        <span>Available for opportunities</span>
+        <span class="availability-dot" aria-label="Currently available"></span>
+      </div>
+      <div class="footer-right">
+        <a href="https://linkedin.com/in/yourprofile" class="footer-social" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn profile">LinkedIn</a>
+        <span class="footer-sep" aria-hidden="true">/</span>
+        <a href="https://github.com/yourgithub" class="footer-social" target="_blank" rel="noopener noreferrer" aria-label="GitHub profile">GitHub</a>
+        <span class="footer-sep" aria-hidden="true">/</span>
+        <a href="contact.html" class="footer-social">Let's Talk</a>
+      </div>
+    </footer>
+
+  </div><!-- end hero-wrapper -->
+
+  <script src="scripts.js"></script>
 </body>
 </html>
