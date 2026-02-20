@@ -15,18 +15,19 @@ body {
   min-height: 100vh;
   margin: 0;
   font-family: "Inter", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-  background-color: #f5f6f7;
+  background-color: #f4f5f6;
   color: #2e3a45;
+  overflow: hidden; /* single page, no scroll */
 }
 
 /* TOKENS */
 :root {
-  --color-bg: #f5f6f7;
+  --color-bg: #f4f5f6;
   --color-surface: #ffffff;
   --color-text-main: #2e3a45;
   --color-name: #313f4b;
   --color-accent: #f3a904;
-  --color-border: #dde1e5;
+  --color-border: #e1e3e6;
 }
 
 /* PARTICLES LAYER */
@@ -76,10 +77,18 @@ body {
   }
 }
 
-/* BRAND MARK (TOP LEFT) */
+/* PAGE GRID: hero on top, skills bar at bottom */
+.page {
+  position: relative;
+  display: grid;
+  grid-template-rows: 1fr auto;
+  height: 100vh;
+}
+
+/* BRAND MARK (top-left) */
 .brand-mark {
   position: fixed;
-  top: 1.5rem;
+  top: 1.4rem;
   left: 2rem;
   z-index: 5;
   text-decoration: none;
@@ -89,20 +98,20 @@ body {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 44px;
-  height: 44px;
-  border-radius: 16px;
+  width: 40px;
+  height: 40px;
+  border-radius: 14px;
   background-color: var(--color-accent);
   color: #ffffff;
   font-family: "Space Grotesk", system-ui, sans-serif;
   font-weight: 700;
-  font-size: 1.25rem;
+  font-size: 1.15rem;
 }
 
-/* TOP NAV */
+/* MAIN NAV (top-right) */
 .main-nav {
   position: fixed;
-  top: 1.75rem;
+  top: 1.7rem;
   right: 2.5rem;
   z-index: 5;
 }
@@ -116,7 +125,7 @@ body {
 .main-nav__list a {
   font-family: "Inter", system-ui, sans-serif;
   font-size: 0.95rem;
-  color: #4c555d;
+  color: #4e5660;
   text-decoration: none;
   position: relative;
 }
@@ -125,10 +134,10 @@ body {
   content: "";
   position: absolute;
   left: 0;
-  bottom: -0.15rem;
+  bottom: -0.16rem;
   width: 0;
   height: 1px;
-  background-color: var(--color-text-main);
+  background-color: #4e5660;
   transition: width 0.18s ease-out;
 }
 
@@ -140,29 +149,29 @@ body {
 /* HERO */
 .hero {
   position: relative;
-  padding: 6rem 2rem 3rem;
   z-index: 1;
+  padding: 4.5rem 3.5rem 0;
 }
 
 .hero__inner {
-  max-width: 1100px;
+  max-width: 1120px;
   margin: 0 auto;
 }
 
 .hero__overline {
   font-family: "Inter", system-ui, sans-serif;
-  font-size: 1.1rem;
-  color: #4c555d;
-  margin-bottom: 1.25rem;
+  font-size: 1.05rem;
+  color: #4e5660;
+  margin-bottom: 1.5rem;
 }
 
 .hero__name {
   font-family: "Space Grotesk", system-ui, sans-serif;
-  font-size: clamp(4.5rem, 11vw, 6.5rem);
-  letter-spacing: 0.1em;
+  font-size: clamp(5rem, 12vw, 7rem);
+  letter-spacing: 0.16em;
   text-transform: uppercase;
   color: var(--color-name);
-  margin-bottom: 1.75rem;
+  margin-bottom: 1.3rem;
 }
 
 .hero__letter {
@@ -172,24 +181,28 @@ body {
 }
 
 .hero__letter--space {
-  width: 0.4em;
+  width: 0.5em;
 }
 
 .hero__letter:hover {
   color: var(--color-accent);
 }
 
-/* HERO CONTENT */
-.hero__content {
+/* HERO ROW: image + copy */
+.hero__row {
+  position: relative;
   display: grid;
-  grid-template-columns: minmax(0, 1.1fr) minmax(0, 1.2fr);
-  align-items: center;
-  column-gap: 3rem;
+  grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+  align-items: flex-start;
+  column-gap: 3.5rem;
 }
 
+/* Portrait overlaps downwards */
 .hero__image-wrapper {
   position: relative;
   max-width: 260px;
+  margin-top: 0.5rem;
+  transform: translateY(35px);
 }
 
 .hero__image {
@@ -198,15 +211,15 @@ body {
   filter: grayscale(100%);
 }
 
-/* SUBHEAD + CTAS */
+/* Copy column */
 .hero__copy {
-  align-self: flex-end;
+  align-self: center;
 }
 
 .hero__subhead {
   font-size: 1rem;
   line-height: 1.7;
-  color: #4c555d;
+  color: #4e5660;
   margin-bottom: 1.75rem;
 }
 
@@ -220,7 +233,7 @@ body {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  padding: 0.85rem 1.75rem;
+  padding: 0.85rem 1.8rem;
   border-radius: 3px;
   font-family: "Inter", system-ui, sans-serif;
   font-size: 0.95rem;
@@ -251,33 +264,34 @@ body {
   border-color: var(--color-text-main);
 }
 
-/* SKILLS BAR */
+/* SKILLS BAR (bottom strip) */
 .skills-bar {
-  margin-top: 3rem;
   border-top: 1px solid var(--color-border);
-  background-color: #f2f3f5;
+  background-color: #f0f1f3;
 }
 
 .skills-bar__inner {
   display: grid;
   grid-template-columns: repeat(5, minmax(0, 1fr));
-  max-width: 1100px;
+  max-width: 1120px;
   margin: 0 auto;
   border-left: 1px solid var(--color-border);
   border-right: 1px solid var(--color-border);
+  height: 120px;
 }
 
 .skill-tile {
   position: relative;
   border-right: 1px solid var(--color-border);
   overflow: hidden;
-  background-color: #f2f3f5;
+  background-color: #f0f1f3;
 }
 
 /* header row */
 .skill-tile__header {
   width: 100%;
-  padding: 1.4rem 1.5rem;
+  height: 100%;
+  padding: 0;
   border: none;
   background: transparent;
   cursor: pointer;
@@ -288,10 +302,10 @@ body {
 
 .skill-tile__label {
   font-family: "Inter", system-ui, sans-serif;
-  font-size: 0.95rem;
-  letter-spacing: 0.14em;
+  font-size: 0.96rem;
+  letter-spacing: 0.18em;
   text-transform: uppercase;
-  color: #4c555d;
+  color: #4e5660;
 }
 
 /* slide-up panel */
@@ -300,10 +314,10 @@ body {
   left: 0;
   right: 0;
   bottom: -110%;
-  padding: 1.25rem 1.5rem 1.5rem;
+  padding: 1.1rem 1.25rem 1.3rem;
   background-color: var(--color-surface);
   border-top: 1px solid var(--color-border);
-  box-shadow: 0 -16px 40px rgba(0, 0, 0, 0.12);
+  box-shadow: 0 -18px 40px rgba(0, 0, 0, 0.12);
   transform: translateY(100%);
   opacity: 0;
   transition: transform 0.2s ease-out, opacity 0.2s ease-out;
@@ -312,8 +326,8 @@ body {
 .skill-tile__description {
   font-size: 0.9rem;
   line-height: 1.5;
-  color: #4c555d;
-  margin-bottom: 0.65rem;
+  color: #4e5660;
+  margin-bottom: 0.6rem;
 }
 
 .skill-tile__cta {
@@ -342,26 +356,36 @@ body {
 
 /* RESPONSIVE */
 @media (max-width: 900px) {
-  .hero {
-    padding: 5rem 1.5rem 2.5rem;
+  body {
+    overflow: auto; /* allow scroll on small devices */
   }
 
-  .hero__content {
+  .page {
+    display: block;
+    height: auto;
+  }
+
+  .hero {
+    padding: 4.5rem 1.5rem 2rem;
+  }
+
+  .hero__inner {
+    max-width: 100%;
+  }
+
+  .hero__row {
     grid-template-columns: 1fr;
     row-gap: 1.5rem;
   }
 
   .hero__image-wrapper {
     max-width: 220px;
-    margin: 0 auto;
-  }
-
-  .hero__copy {
-    text-align: left;
+    transform: translateY(0);
   }
 
   .skills-bar__inner {
     grid-template-columns: 1fr;
+    height: auto;
     border-left: none;
     border-right: none;
   }
@@ -371,11 +395,6 @@ body {
     border-bottom: 1px solid var(--color-border);
   }
 
-  .skill-tile__header {
-    justify-content: flex-start;
-    padding-inline: 1.25rem;
-  }
-
   .skill-tile__panel {
     position: relative;
     transform: translateY(0%);
@@ -383,10 +402,6 @@ body {
     bottom: auto;
     box-shadow: none;
     border-top: none;
-  }
-
-  .skill-tile:hover .skill-tile__panel {
-    /* hover ignored on touch devices, JS will toggle .skill-tile--open */
   }
 }
 
