@@ -193,9 +193,9 @@ html, body {
 /* Name */
 .hero-name {
   font-family: var(--font-head);
-  font-size: clamp(4.8rem, 13.8vw, 10.8rem);
-  line-height: 0.88;
-  letter-spacing: -0.015em;
+  font-size: clamp(5.4rem, 15vw, 12rem); 
+  line-height: 0.86;                    
+  letter-spacing: -0.018em;
   color: var(--slate);
 }
 .name-letter { display: inline-block; }
