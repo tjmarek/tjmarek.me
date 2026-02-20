@@ -2,23 +2,43 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="TJ Marek — Full-funnel digital marketing strategist specializing in PPC, CRO, SEO, web design, and attribution. Available for senior marketing roles." />
+  <meta name="author" content="TJ Marek" />
+  <meta property="og:title" content="TJ Marek — Full-Funnel Digital Marketing" />
+  <meta property="og:description" content="PPC, CRO, SEO, and web design wired into one measurable funnel." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://tjmarek.github.io/tjmarek.me/" />
+  <meta name="twitter:card" content="summary_large_image" />
 
   <title>TJ Marek — Full-Funnel Digital Marketing</title>
-  <meta name="description" content="Full-funnel digital marketer specializing in PPC, CRO, SEO, web design, and attribution tracking for specialty contractors." />
-
   <link rel="canonical" href="https://tjmarek.github.io/tjmarek.me/" />
 
   <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <!-- Anton only; Garet is self-hosted in CSS as @font-face -->
   <link href="https://fonts.googleapis.com/css2?family=Anton&display=swap" rel="stylesheet" />
 
   <link rel="stylesheet" href="styles.css" />
+
+  <!-- Structured Data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "TJ Marek",
+    "jobTitle": "Full-Funnel Digital Marketing Strategist",
+    "url": "https://tjmarek.github.io/tjmarek.me/",
+    "sameAs": [
+      "https://linkedin.com/in/yourprofile"
+    ],
+    "knowsAbout": ["PPC", "SEO", "CRO", "Web Design", "Marketing Attribution", "Google Ads", "Meta Ads", "GA4", "GTM"]
+  }
+  </script>
 </head>
 <body>
-  <!-- Skip link for a11y -->
+
+  <!-- Skip to content -->
   <a href="#main-content" class="skip-link">Skip to main content</a>
 
   <!-- Background layers -->
@@ -27,145 +47,155 @@
   <div class="orb orb-1" aria-hidden="true"></div>
   <div class="orb orb-2" aria-hidden="true"></div>
 
-  <div class="hero-wrapper">
-    <!-- NAV -->
-    <nav class="nav" aria-label="Main navigation">
-      <div class="nav-logo">[<span>TJM</span>]</div>
+  <!-- ===================== MOBILE MENU ===================== -->
+  <div class="mobile-menu" id="mobile-menu" role="dialog" aria-modal="true" aria-label="Navigation menu" hidden>
+    <button class="mobile-close" id="mobile-close" aria-label="Close menu">
+      <svg width="28" height="28" viewBox="0 0 28 28" fill="none" aria-hidden="true">
+        <line x1="4" y1="4" x2="24" y2="24" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>
+        <line x1="24" y1="4" x2="4" y2="24" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>
+      </svg>
+    </button>
+    <ul class="mobile-nav-links" role="list">
+      <li><a href="index.html" class="mobile-nav-link">Home</a></li>
+      <li><a href="impact.html" class="mobile-nav-link">My Impact</a></li>
+      <li><a href="case-studies.html" class="mobile-nav-link">Case Studies</a></li>
+      <li><a href="web-design.html" class="mobile-nav-link">Web Design</a></li>
+      <li><a href="about.html" class="mobile-nav-link">About</a></li>
+      <li><a href="contact.html" class="mobile-nav-link">Contact</a></li>
+      <li><a href="assets/cv.pdf" class="mobile-nav-link mobile-nav-cv" download>Download CV ↓</a></li>
+    </ul>
+  </div>
 
-      <ul class="nav-links">
-        <li><a href="index.html" class="nav-link active">Home</a></li>
+  <!-- ===================== WRAPPER ===================== -->
+  <div class="hero-wrapper">
+
+    <!-- NAV -->
+    <nav class="nav" role="navigation" aria-label="Main navigation">
+      <div class="nav-logo" aria-label="TJ Marek home">
+        <span class="logo-bracket">[</span><span class="logo-initials">TJM</span><span class="logo-bracket">]</span>
+      </div>
+      <ul class="nav-links" role="list">
+        <li><a href="about.html" class="nav-link">About</a></li>
         <li><a href="impact.html" class="nav-link">My Impact</a></li>
         <li><a href="case-studies.html" class="nav-link">Case Studies</a></li>
-        <li><a href="web-design.html" class="nav-link">Web Design</a></li>
-        <li><a href="about.html" class="nav-link">About</a></li>
         <li><a href="contact.html" class="nav-link">Contact</a></li>
-        <li><a href="assets/cv.pdf" class="nav-link nav-cv" download>CV ↓</a></li>
       </ul>
-
-      <button class="hamburger" id="hamburger" aria-label="Toggle navigation" aria-expanded="false">
+      <button class="hamburger" id="hamburger" aria-label="Open navigation" aria-expanded="false" aria-controls="mobile-menu">
         <span></span><span></span><span></span>
       </button>
     </nav>
 
-    <!-- MOBILE MENU -->
-    <div class="mobile-menu" id="mobile-menu" hidden>
-      <ul class="mobile-nav-links">
-        <li><a href="index.html" class="mobile-nav-link">Home</a></li>
-        <li><a href="impact.html" class="mobile-nav-link">My Impact</a></li>
-        <li><a href="case-studies.html" class="mobile-nav-link">Case Studies</a></li>
-        <li><a href="web-design.html" class="mobile-nav-link">Web Design</a></li>
-        <li><a href="about.html" class="mobile-nav-link">About</a></li>
-        <li><a href="contact.html" class="mobile-nav-link">Contact</a></li>
-        <li><a href="assets/cv.pdf" class="mobile-nav-link" download>Download CV</a></li>
-      </ul>
-    </div>
+    <!-- ===================== HERO ===================== -->
+    <main class="hero-content" id="main-content" aria-label="Hero section">
 
-    <!-- HERO -->
-    <main class="hero-content" id="main-content">
-      <section class="hero-left" aria-label="Intro">
+      <!-- LEFT: Name + Photo -->
+      <div class="hero-left">
         <div class="hero-eyebrow">
-          <span class="eyebrow-line"></span>
-          <span class="eyebrow-text">Full-funnel digital marketing</span>
+          <span class="eyebrow-line" aria-hidden="true"></span>
+          <span class="eyebrow-text">Full-Funnel Digital Marketing</span>
         </div>
 
-        <h1 class="hero-headline">
-          <span class="headline-line line-1">I Build</span>
-          <span class="headline-line line-2 highlight-wrap">
-            Systems
-            <svg class="underline-svg" viewBox="0 0 300 18" aria-hidden="true">
-              <path d="M2 14 Q75 4 150 10 Q225 16 298 6" />
-            </svg>
-          </span>
-          <span class="headline-line line-3">That Convert.</span>
+        <h1 class="hero-name" aria-label="TJ Marek">
+          <span class="name-letter">T</span><span class="name-letter">J</span><span class="name-space"> </span><span class="name-letter">M</span><span class="name-letter">A</span><span class="name-letter">R</span><span class="name-letter">E</span><span class="name-letter">K</span>
         </h1>
 
+        <div class="hero-photo-wrap" aria-hidden="true">
+          <img
+            src="assets/tj-marek.png"
+            alt="TJ Marek"
+            class="hero-photo"
+            loading="eager"
+            width="380"
+            height="480"
+          />
+        </div>
+      </div>
+
+      <!-- RIGHT: Message + CTAs + Stats -->
+      <div class="hero-right">
+        <h2 class="hero-headline">I build systems that convert.</h2>
+
         <p class="hero-subtext">
-          PPC · CRO · SEO · Web Design · Attribution.<br />
-          5+ years driving predictable revenue for a specialty contractor and limestone supplier.
+          PPC, CRO, SEO, and web design, all meticulously crafted into a measurable funnel that delivers reliable and predictable results.
         </p>
 
         <div class="hero-ctas">
           <a href="impact.html" class="btn btn-primary">
-            See my impact <span class="btn-arrow">→</span>
+            My Impact <span class="btn-arrow" aria-hidden="true">→</span>
           </a>
-          <a href="case-studies.html" class="btn btn-ghost">Case studies</a>
+          <a href="contact.html" class="btn btn-ghost">Contact</a>
         </div>
 
-        <div class="stat-row">
-          <div class="stat-item">
-            <span class="stat-num" data-target="400">0</span><span class="stat-suffix">%</span>
-            <span class="stat-label">Organic traffic growth</span>
-          </div>
-          <div class="stat-divider"></div>
-          <div class="stat-item">
-            <span class="stat-num" data-target="5">0</span><span class="stat-suffix">+</span>
-            <span class="stat-label">Years experience</span>
-          </div>
-          <div class="stat-divider"></div>
-          <div class="stat-item">
-            <span class="stat-num" data-target="3">0</span><span class="stat-suffix">x</span>
-            <span class="stat-label">Avg ROAS lift</span>
-          </div>
+        <div class="hero-cta-sub">
+          <a href="case-studies.html" class="hero-cta-link">Browse case studies →</a>
         </div>
-      </section>
 
-      <section class="hero-right" aria-hidden="true">
-        <div class="skill-orbit">
-          <div class="center-badge">
-            <div class="center-badge-inner">
-              <span class="center-badge-icon">◈</span>
-              <span class="center-badge-text">Full<br />Funnel</span>
+        <!-- Stats -->
+        <div class="stat-row" aria-label="Key achievements">
+          <div class="stat-item">
+            <div class="stat-number-wrap">
+              <span class="stat-icon" aria-hidden="true">📈</span>
+              <span class="stat-num" data-target="400">0</span><span class="stat-suffix">%</span>
             </div>
+            <span class="stat-label">Organic Traffic Growth</span>
           </div>
-
-          <div class="skill-card skill-card-1">
-            <span class="skill-icon">⚡</span>
-            <span class="skill-name">PPC</span>
-            <span class="skill-sub">Google · Meta</span>
+          <div class="stat-divider" aria-hidden="true"></div>
+          <div class="stat-item">
+            <div class="stat-number-wrap">
+              <span class="stat-icon" aria-hidden="true">⚡</span>
+              <span class="stat-num" data-target="5">0</span><span class="stat-suffix">+</span>
+            </div>
+            <span class="stat-label">Years Experience</span>
           </div>
-
-          <div class="skill-card skill-card-2">
-            <span class="skill-icon">📈</span>
-            <span class="skill-name">SEO</span>
-            <span class="skill-sub">Technical · Content</span>
-          </div>
-
-          <div class="skill-card skill-card-3">
-            <span class="skill-icon">🎯</span>
-            <span class="skill-name">CRO</span>
-            <span class="skill-sub">Experiment · Iterate</span>
-          </div>
-
-          <div class="skill-card skill-card-4">
-            <span class="skill-icon">🔍</span>
-            <span class="skill-name">Tracking</span>
-            <span class="skill-sub">GA4 · GTM</span>
-          </div>
-
-          <div class="skill-card skill-card-5">
-            <span class="skill-icon">🖥️</span>
-            <span class="skill-name">Web Design</span>
-            <span class="skill-sub">HTML · CSS · JS</span>
+          <div class="stat-divider" aria-hidden="true"></div>
+          <div class="stat-item">
+            <div class="stat-number-wrap">
+              <span class="stat-icon" aria-hidden="true">🎯</span>
+              <span class="stat-num" data-target="3">0</span><span class="stat-suffix">x</span>
+            </div>
+            <span class="stat-label">Avg. ROAS Lift</span>
           </div>
         </div>
-      </section>
+      </div>
+
     </main>
 
-    <!-- FOOTER BAR -->
-    <footer class="hero-footer">
-      <div class="footer-left">
-        <span>Available for opportunities</span>
-        <span class="availability-dot"></span>
-      </div>
-      <div class="footer-right">
-        <a href="https://www.linkedin.com" target="_blank" rel="noopener" class="footer-social">LinkedIn</a>
-        <span class="footer-sep">/</span>
-        <a href="https://github.com" target="_blank" rel="noopener" class="footer-social">GitHub</a>
-        <span class="footer-sep">/</span>
-        <a href="contact.html" class="footer-social">Let’s talk</a>
-      </div>
-    </footer>
-  </div>
+    <!-- ===================== SKILLS ROW ===================== -->
+    <div class="skills-row" role="list" aria-label="Core skills">
+      <a href="impact.html#ppc" class="skill-chip" role="listitem">
+        <span class="skill-chip-label">PPC</span>
+        <span class="skill-chip-sub">3x ROAS Focus</span>
+      </a>
+      <a href="impact.html#cro" class="skill-chip" role="listitem">
+        <span class="skill-chip-label">CRO</span>
+        <span class="skill-chip-sub">Test &gt; Opinions</span>
+      </a>
+      <a href="web-design.html" class="skill-chip" role="listitem">
+        <span class="skill-chip-label">Web Design</span>
+        <span class="skill-chip-sub">Built to Convert</span>
+      </a>
+      <a href="impact.html#seo" class="skill-chip" role="listitem">
+        <span class="skill-chip-label">SEO</span>
+        <span class="skill-chip-sub">+400% Traffic</span>
+      </a>
+    </div>
+
+  </div><!-- end hero-wrapper -->
+
+  <!-- ===================== STATUS BAR ===================== -->
+  <footer class="status-bar" role="contentinfo" aria-label="Availability and contact">
+    <div class="status-left">
+      <span class="status-dot" aria-label="Currently available"></span>
+      <span class="status-text">Open to new opportunities</span>
+    </div>
+    <div class="status-right">
+      <a href="mailto:tj@yourdomain.com" class="status-link" aria-label="Email TJ Marek">Email</a>
+      <span class="status-sep" aria-hidden="true">/</span>
+      <a href="https://linkedin.com/in/yourprofile" target="_blank" rel="noopener noreferrer" class="status-link" aria-label="LinkedIn profile">LinkedIn</a>
+      <span class="status-sep" aria-hidden="true">/</span>
+      <a href="assets/cv.pdf" class="status-link" download aria-label="Download CV">Download CV</a>
+    </div>
+  </footer>
 
   <script src="scripts.js"></script>
 </body>
