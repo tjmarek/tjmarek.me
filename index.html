@@ -21,31 +21,17 @@
   <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=Inter:wght@400;500&display=swap" rel="stylesheet">
 
   <link rel="stylesheet" href="styles.css">
-
-  <!-- Structured Data -->
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "Person",
-    "name": "TJ Marek",
-    "jobTitle": "Full Funnel Digital Marketer",
-    "url": "https://YOUR-USERNAME.github.io/YOUR-REPO/",
-    "sameAs": [
-      "https://www.linkedin.com/in/YOUR-LINKEDIN-SLUG",
-      "mailto:YOUR-EMAIL@example.com"
-    ]
-  }
-  </script>
 </head>
 <body>
-  <!-- Particle background -->
+  <!-- Background particles -->
   <div class="particles" id="particles" aria-hidden="true"></div>
 
-  <!-- Corner chrome -->
+  <!-- Top-left logo -->
   <a class="brand-mark" href="index.html" aria-label="Home">
     <span class="brand-mark__logo">T</span>
   </a>
 
+  <!-- Top-right nav -->
   <nav class="main-nav" aria-label="Primary">
     <ul class="main-nav__list">
       <li><a href="about.html">About Me</a></li>
@@ -54,8 +40,8 @@
     </ul>
   </nav>
 
-  <!-- Hero -->
-  <main>
+  <main class="page">
+    <!-- HERO AREA (upper ~70% of viewport) -->
     <section class="hero" aria-labelledby="hero-title">
       <div class="hero__inner">
         <p class="hero__overline">Full Funnel Digital Marketing</p>
@@ -66,7 +52,7 @@
           <span class="hero__letter">M</span><span class="hero__letter">A</span><span class="hero__letter">R</span><span class="hero__letter">E</span><span class="hero__letter">K</span>
         </h1>
 
-        <div class="hero__content">
+        <div class="hero__row">
           <div class="hero__image-wrapper">
             <img
               src="assets/TJ-MAREK.jpg"
@@ -89,7 +75,7 @@
       </div>
     </section>
 
-    <!-- Skills bar -->
+    <!-- SKILLS STRIP (bottom ~30% of viewport) -->
     <section class="skills-bar" aria-label="Core skills">
       <div class="skills-bar__inner">
         <article class="skill-tile">
