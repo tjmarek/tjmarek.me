@@ -39,7 +39,6 @@ const $$ = (s, ctx = document) => Array.from(ctx.querySelectorAll(s));
     if (e.key === 'Escape' && burger.classList.contains('open')) close();
   });
 
-  // simple focus trap
   menu.addEventListener('keydown', e => {
     if (e.key !== 'Tab') return;
     const focusables = $$('a, button', menu);
