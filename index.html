@@ -1,156 +1,55 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>TJ Marek | Full Funnel Digital Marketing</title>
-  <meta name="description" content="TJ Marek is a full-funnel digital marketer and web designer focused on performance, clean UX, and technically sound web experiences.">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Data-driven digital marketing portfolio of a full-funnel strategist specializing in PPC, CRO, SEO, and attribution tracking." />
+    <meta name="author" content="Your Name" />
+    <title>Your Name | Full-Funnel Marketing Portfolio</title>
 
-  <!-- Open Graph -->
-  <meta property="og:title" content="TJ Marek | Full Funnel Digital Marketing">
-  <meta property="og:description" content="Full-funnel digital marketing, PPC, CRO, Web Design, Attribution, and SEO.">
-  <meta property="og:type" content="website">
-  <meta property="og:url" content="https://YOUR-USERNAME.github.io/YOUR-REPO/">
-  <meta property="og:image" content="https://YOUR-USERNAME.github.io/YOUR-REPO/assets/TJ-MAREK.jpg">
+    <!-- Open Graph for SEO -->
+    <meta property="og:title" content="Full-Funnel Marketing Portfolio" />
+    <meta property="og:description" content="Performance-driven marketer & strategist specializing in PPC, CRO, SEO, and attribution." />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://yourdomain.com" />
+    <meta property="og:image" content="/assets/og-preview.jpg" />
 
-  <link rel="icon" href="assets/favicon.ico" type="image/x-icon">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Anton:wght@700&family=Garet:wght@400;500;700&display=swap" rel="stylesheet" />
 
-  <!-- Fonts -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=Inter:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css" />
+    <script defer src="scripts.js"></script>
+  </head>
 
-  <link rel="stylesheet" href="styles.css">
-</head>
-<body>
-  <!-- Background particles -->
-  <div class="particles" id="particles" aria-hidden="true"></div>
+  <body>
+    <header class="navbar">
+      <h1 class="logo">Your<span>Brand</span></h1>
+      <nav>
+        <ul class="nav-links">
+          <li><a href="#impact">My Impact</a></li>
+          <li><a href="#case-studies">Case Studies</a></li>
+          <li><a href="#web-design">Web Design</a></li>
+          <li><a href="#about">About</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </nav>
+      <a href="/cv.pdf" class="cta">Download CV</a>
+      <button class="menu-toggle" aria-label="Open Menu">☰</button>
+    </header>
 
-  <!-- Top-left logo -->
-  <a class="brand-mark" href="index.html" aria-label="Home">
-    <span class="brand-mark__logo">T</span>
-  </a>
-
-  <!-- Top-right nav -->
-  <nav class="main-nav" aria-label="Primary">
-    <ul class="main-nav__list">
-      <li><a href="about.html">About Me</a></li>
-      <li><a href="case-studies.html">Case Studies</a></li>
-      <li><a href="cv.html">CV</a></li>
-    </ul>
-  </nav>
-
-  <main class="page">
-    <!-- HERO AREA (upper ~70% of viewport) -->
-    <section class="hero" aria-labelledby="hero-title">
-      <div class="hero__inner">
-        <p class="hero__overline">Full Funnel Digital Marketing</p>
-
-        <h1 class="hero__name" id="hero-title" aria-label="TJ Marek">
-          <span class="hero__letter">T</span><span class="hero__letter">J</span>
-          <span class="hero__letter hero__letter--space">&nbsp;</span>
-          <span class="hero__letter">M</span><span class="hero__letter">A</span><span class="hero__letter">R</span><span class="hero__letter">E</span><span class="hero__letter">K</span>
-        </h1>
-
-        <div class="hero__row">
-          <div class="hero__image-wrapper">
-            <img
-              src="assets/TJ-MAREK.jpg"
-              alt="Portrait of TJ Marek"
-              class="hero__image"
-              loading="lazy"
-            >
-          </div>
-
-          <div class="hero__copy">
-            <p class="hero__subhead">
-              I design and run full-funnel programs that connect paid media, CRO, and analytics into measurable revenue.
-            </p>
-            <div class="hero__actions">
-              <a href="#impact" class="btn btn--primary">My Impact</a>
-              <a href="contact.html" class="btn btn--ghost">Contact</a>
-            </div>
-          </div>
+    <section class="hero">
+      <div class="hero-content">
+        <h2 class="tagline">Building measurable growth <br />from click to retention.</h2>
+        <p class="intro-text">
+          I’m a <strong>Full-Funnel Digital Marketing Strategist</strong> blending PPC, SEO, and CRO to drive measurable growth. 
+          Currently helping brands turn data into advantage.
+        </p>
+        <div class="cta-buttons">
+          <a href="#impact" class="btn primary-btn">See My Impact</a>
+          <a href="#case-studies" class="btn secondary-btn">View Case Studies</a>
         </div>
       </div>
+      <div class="hero-bg"></div>
     </section>
-
-    <!-- SKILLS STRIP (bottom ~30% of viewport) -->
-    <section class="skills-bar" aria-label="Core skills">
-      <div class="skills-bar__inner">
-        <article class="skill-tile">
-          <button class="skill-tile__header" type="button">
-            <span class="skill-tile__label">PPC</span>
-          </button>
-          <div class="skill-tile__panel">
-            <p class="skill-tile__description">
-              Structured, data-led campaigns that drive efficient pipeline instead of vanity clicks.
-            </p>
-            <a href="#ppc-case-study" class="skill-tile__cta">
-              View PPC case study &rarr;
-            </a>
-          </div>
-        </article>
-
-        <article class="skill-tile">
-          <button class="skill-tile__header" type="button">
-            <span class="skill-tile__label">CRO</span>
-          </button>
-          <div class="skill-tile__panel">
-            <p class="skill-tile__description">
-              Experiment-led UX and offer testing to unlock conversion gains without guesswork.
-            </p>
-            <a href="#cro-case-study" class="skill-tile__cta">
-              View CRO case study &rarr;
-            </a>
-          </div>
-        </article>
-
-        <article class="skill-tile">
-          <button class="skill-tile__header" type="button">
-            <span class="skill-tile__label">Web Design</span>
-          </button>
-          <div class="skill-tile__panel">
-            <p class="skill-tile__description">
-              Fast, focused interfaces that look sharp and move users toward the next meaningful step.
-            </p>
-            <a href="#web-design-case-study" class="skill-tile__cta">
-              View Web Design work &rarr;
-            </a>
-          </div>
-        </article>
-
-        <article class="skill-tile">
-          <button class="skill-tile__header" type="button">
-            <span class="skill-tile__label">Attribution</span>
-          </button>
-          <div class="skill-tile__panel">
-            <p class="skill-tile__description">
-              Clear tracking, clean data, and reporting that ties spend to revenue and real decisions.
-            </p>
-            <a href="#attribution-case-study" class="skill-tile__cta">
-              View Attribution example &rarr;
-            </a>
-          </div>
-        </article>
-
-        <article class="skill-tile">
-          <button class="skill-tile__header" type="button">
-            <span class="skill-tile__label">SEO</span>
-          </button>
-          <div class="skill-tile__panel">
-            <p class="skill-tile__description">
-              Technical and strategic SEO that compounds over time, not just rankings for their own sake.
-            </p>
-            <a href="#seo-case-study" class="skill-tile__cta">
-              View SEO case study &rarr;
-            </a>
-          </div>
-        </article>
-      </div>
-    </section>
-  </main>
-
-  <script src="scripts.js"></script>
-</body>
+  </body>
 </html>
