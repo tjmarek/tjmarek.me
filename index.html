@@ -57,7 +57,7 @@
     <!-- NAV -->
     <nav class="nav" role="navigation" aria-label="Main navigation">
       <a href="index.html" class="nav-logo" aria-label="TJ Marek home">
-        <!-- If you have a logo file, swap this span for an <img src="assets/logo-tjm.svg" alt="TJ Marek logo" /> -->
+        <!-- Swap this span for your real logo image if you have it -->
         <span class="nav-logo-mark">T</span>
       </a>
       <ul class="nav-links" role="list">
@@ -74,10 +74,10 @@
     <!-- MAIN -->
     <main id="main-content" class="main-content">
 
-      <!-- HERO GRID (matches mockup) -->
-      <section class="hero-grid" aria-label="Intro">
+      <!-- HERO (anchored above skills row) -->
+      <section class="hero-inner" aria-label="Intro">
 
-        <!-- Eyebrow + Name (row 1, spanning both columns) -->
+        <!-- Heading block (single column, centered) -->
         <div class="hero-heading">
           <div class="hero-eyebrow">
             <span class="eyebrow-line" aria-hidden="true"></span>
@@ -95,57 +95,62 @@
           </h1>
         </div>
 
-        <!-- Left column: text + CTAs + stats -->
-        <div class="hero-left">
-          <p class="hero-subtext">
-            PPC, CRO, SEO, and web design, all meticulously crafted into a measurable funnel that delivers reliable and predictable results.
-          </p>
+        <!-- Lower 2-column block -->
+        <div class="hero-lower">
 
-          <div class="hero-ctas">
-            <a href="impact.html"  class="btn btn-primary">My Impact</a>
-            <a href="contact.html" class="btn btn-ghost">Contact</a>
+          <!-- Left: text, CTAs, stats -->
+          <div class="hero-left">
+            <p class="hero-subtext">
+              PPC, CRO, SEO, and web design, all meticulously crafted into a measurable funnel that delivers reliable and predictable results.
+            </p>
+
+            <div class="hero-ctas">
+              <a href="impact.html"  class="btn btn-primary">My Impact</a>
+              <a href="contact.html" class="btn btn-ghost">Contact</a>
+            </div>
+
+            <a href="case-studies.html" class="hero-sub-link">Browse case studies →</a>
+
+            <div class="stat-row" aria-label="Key achievements">
+              <div class="stat-item">
+                <div class="stat-number-wrap">
+                  <span class="stat-icon" aria-hidden="true">📈</span>
+                  <span class="stat-num" data-target="400">0</span><span class="stat-suffix">%</span>
+                </div>
+                <span class="stat-label">Organic Traffic Growth</span>
+              </div>
+              <div class="stat-divider" aria-hidden="true"></div>
+              <div class="stat-item">
+                <div class="stat-number-wrap">
+                  <span class="stat-icon" aria-hidden="true">⚡</span>
+                  <span class="stat-num" data-target="5">0</span><span class="stat-suffix">+</span>
+                </div>
+                <span class="stat-label">Years Experience</span>
+              </div>
+              <div class="stat-divider" aria-hidden="true"></div>
+              <div class="stat-item">
+                <div class="stat-number-wrap">
+                  <span class="stat-icon" aria-hidden="true">🎯</span>
+                  <span class="stat-num" data-target="3">0</span><span class="stat-suffix">x</span>
+                </div>
+                <span class="stat-label">Avg. ROAS Lift</span>
+              </div>
+            </div>
           </div>
 
-          <a href="case-studies.html" class="hero-sub-link">Browse case studies →</a>
-
-          <div class="stat-row" aria-label="Key achievements">
-            <div class="stat-item">
-              <div class="stat-number-wrap">
-                <span class="stat-icon" aria-hidden="true">📈</span>
-                <span class="stat-num" data-target="400">0</span><span class="stat-suffix">%</span>
-              </div>
-              <span class="stat-label">Organic Traffic Growth</span>
-            </div>
-            <div class="stat-divider" aria-hidden="true"></div>
-            <div class="stat-item">
-              <div class="stat-number-wrap">
-                <span class="stat-icon" aria-hidden="true">⚡</span>
-                <span class="stat-num" data-target="5">0</span><span class="stat-suffix">+</span>
-              </div>
-              <span class="stat-label">Years Experience</span>
-            </div>
-            <div class="stat-divider" aria-hidden="true"></div>
-            <div class="stat-item">
-              <div class="stat-number-wrap">
-                <span class="stat-icon" aria-hidden="true">🎯</span>
-                <span class="stat-num" data-target="3">0</span><span class="stat-suffix">x</span>
-              </div>
-              <span class="stat-label">Avg. ROAS Lift</span>
-            </div>
+          <!-- Right: photo -->
+          <div class="hero-right" aria-hidden="true">
+            <img
+              src="assets/tj-marek.webp"
+              alt="TJ Marek"
+              class="hero-photo"
+              loading="eager"
+              width="360"
+              height="500"
+            />
           </div>
-        </div>
 
-        <!-- Right column: photo -->
-        <div class="hero-right" aria-hidden="true">
-          <img
-            src="assets/tj-marek.webp"
-            alt="TJ Marek"
-            class="hero-photo"
-            loading="eager"
-            width="360"
-            height="500"
-          />
-        </div>
+        </div><!-- /.hero-lower -->
 
       </section>
 
