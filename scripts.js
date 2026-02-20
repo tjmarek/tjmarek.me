@@ -1,10 +1,10 @@
 document.addEventListener("DOMContentLoaded", () => {
-  const hero = document.querySelector('.background-animation');
-  let mouseX = 0, mouseY = 0;
+  const heroBg = document.querySelector('.background-animation');
+  if (!heroBg) return;
 
   document.addEventListener('mousemove', (e) => {
-    mouseX = (e.clientX / window.innerWidth - 0.5) * 10;
-    mouseY = (e.clientY / window.innerHeight - 0.5) * 10;
-    hero.style.transform = `translate(${mouseX}px, ${mouseY}px) scale(1.03)`;
+    const x = (e.clientX / window.innerWidth - 0.5) * 10;
+    const y = (e.clientY / window.innerHeight - 0.5) * 10;
+    heroBg.style.transform = `translate(${x}px, ${y}px) scale(1.04)`;
   });
 });
