@@ -1,8 +1,5 @@
 'use strict';
 
-/* --------------------------------------------------
-   Helpers
--------------------------------------------------- */
 const $ = (s, ctx = document) => ctx.querySelector(s);
 const $$ = (s, ctx = document) => Array.from(ctx.querySelectorAll(s));
 
@@ -21,7 +18,7 @@ const $$ = (s, ctx = document) => Array.from(ctx.querySelectorAll(s));
     burger.setAttribute('aria-label', 'Close navigation');
     burger.classList.add('open');
     document.body.style.overflow = 'hidden';
-    closeBtn && closeBtn.focus();
+    setTimeout(() => closeBtn && closeBtn.focus(), 50);
   };
 
   const close = () => {
@@ -37,9 +34,7 @@ const $$ = (s, ctx = document) => Array.from(ctx.querySelectorAll(s));
     burger.classList.contains('open') ? close() : open()
   );
   closeBtn && closeBtn.addEventListener('click', close);
-
   $$('.mobile-nav-link', menu).forEach(l => l.addEventListener('click', close));
-
   document.addEventListener('keydown', e => {
     if (e.key === 'Escape' && burger.classList.contains('open')) close();
   });
@@ -47,7 +42,7 @@ const $$ = (s, ctx = document) => Array.from(ctx.querySelectorAll(s));
   // Focus trap
   menu.addEventListener('keydown', e => {
     if (e.key !== 'Tab') return;
-    const els = $$('a, button', menu).filter(el => !el.hidden);
+    const els = $$('a, button', menu);
     if (!els.length) return;
     const first = els[0], last = els[els.length - 1];
     if (e.shiftKey && document.activeElement === first) {
@@ -65,31 +60,27 @@ const $$ = (s, ctx = document) => Array.from(ctx.querySelectorAll(s));
   const counters = $$('.stat-num');
   if (!counters.length) return;
 
-  function easeOut(t) {
-    return 1 - Math.pow(1 - t, 3);
-  }
+  const easeOut = t => 1 - Math.pow(1 - t, 3);
 
-  function run(el) {
+  const run = el => {
     const target   = parseInt(el.dataset.target, 10);
     const duration = 1400;
     const start    = performance.now();
     const step = now => {
       const p = Math.min((now - start) / duration, 1);
       el.textContent = Math.floor(easeOut(p) * target);
-      if (p < 1) requestAnimationFrame(step);
-      else el.textContent = target;
+      p < 1 ? requestAnimationFrame(step) : (el.textContent = target);
     };
     requestAnimationFrame(step);
-  }
+  };
 
-  // Start after entry animations settle
   window.addEventListener('load', () => {
-    counters.forEach((c, i) => setTimeout(() => run(c), 900 + i * 180));
+    counters.forEach((c, i) => setTimeout(() => run(c), 800 + i * 200));
   });
 })();
 
 /* --------------------------------------------------
-   3. ACTIVE NAV LINK
+   3. ACTIVE NAV
 -------------------------------------------------- */
 (function activeNav() {
   const page = window.location.pathname.split('/').pop() || 'index.html';
@@ -103,64 +94,50 @@ const $$ = (s, ctx = document) => Array.from(ctx.querySelectorAll(s));
 })();
 
 /* --------------------------------------------------
-   4. CUSTOM CURSOR (desktop pointer only)
+   4. CUSTOM CURSOR
 -------------------------------------------------- */
 (function customCursor() {
   if (window.matchMedia('(pointer: coarse)').matches) return;
 
-  // Inject styles
   const style = document.createElement('style');
   style.textContent = `
     *, a, button { cursor: none !important; }
     .c-ring {
-      position: fixed;
-      width: 34px;
-      height: 34px;
-      border: 2px solid rgba(242,164,59,0.55);
-      border-radius: 50%;
-      pointer-events: none;
-      z-index: 9999;
-      transform: translate(-50%, -50%);
-      transition: width .25s ease, height .25s ease,
-                  border-color .25s ease, background .25s ease;
+      position: fixed; width: 32px; height: 32px;
+      border: 2px solid rgba(242,164,59,0.5);
+      border-radius: 50%; pointer-events: none;
+      z-index: 9999; transform: translate(-50%,-50%);
+      transition: width .22s ease, height .22s ease,
+                  border-color .22s ease, background .22s ease;
       will-change: left, top;
     }
     .c-dot {
-      position: fixed;
-      width: 5px;
-      height: 5px;
-      background: var(--gold, #F2A43B);
-      border-radius: 50%;
-      pointer-events: none;
-      z-index: 9999;
-      transform: translate(-50%, -50%);
+      position: fixed; width: 5px; height: 5px;
+      background: #F2A43B; border-radius: 50%;
+      pointer-events: none; z-index: 9999;
+      transform: translate(-50%,-50%);
       will-change: left, top;
     }
     .c-ring.hovered {
-      width: 52px;
-      height: 52px;
-      border-color: var(--gold, #F2A43B);
+      width: 50px; height: 50px;
+      border-color: #F2A43B;
       background: rgba(242,164,59,0.07);
     }
     .c-ring.pressed {
-      width: 24px;
-      height: 24px;
-      background: rgba(242,164,59,0.2);
+      width: 22px; height: 22px;
+      background: rgba(242,164,59,0.22);
     }
   `;
   document.head.appendChild(style);
 
-  const ring = document.createElement('div');
-  ring.className = 'c-ring';
+  const ring = Object.assign(document.createElement('div'), { className: 'c-ring' });
+  const dot  = Object.assign(document.createElement('div'), { className: 'c-dot' });
   ring.setAttribute('aria-hidden', 'true');
-
-  const dot = document.createElement('div');
-  dot.className = 'c-dot';
   dot.setAttribute('aria-hidden', 'true');
-
   document.body.append(ring, dot);
 
   let mx = 0, my = 0, rx = 0, ry = 0;
+  const lerp = (a, b, t) => a + (b - a) * t;
 
   document.addEventListener('mousemove', e => {
     mx = e.clientX; my = e.clientY;
@@ -168,15 +145,13 @@ const $$ = (s, ctx = document) => Array.from(ctx.querySelectorAll(s));
     dot.style.top  = my + 'px';
   });
 
-  const lerp = (a, b, t) => a + (b - a) * t;
-  const tick = () => {
+  (function tick() {
     rx = lerp(rx, mx, 0.12);
     ry = lerp(ry, my, 0.12);
     ring.style.left = rx + 'px';
     ring.style.top  = ry + 'px';
     requestAnimationFrame(tick);
-  };
-  requestAnimationFrame(tick);
+  })();
 
   $$('a, button, .skill-chip, .name-letter').forEach(el => {
     el.addEventListener('mouseenter', () => ring.classList.add('hovered'));
@@ -194,16 +169,14 @@ const $$ = (s, ctx = document) => Array.from(ctx.querySelectorAll(s));
 })();
 
 /* --------------------------------------------------
-   5. REDUCED MOTION — ensure elements visible
+   5. REDUCED MOTION SAFEGUARD
 -------------------------------------------------- */
 (function reducedMotion() {
   if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-  $$('.hero-eyebrow, .hero-name, .hero-photo-wrap, .hero-right, .skills-row').forEach(el => {
+  $$('.hero-top, .hero-photo-col, .hero-content-col, .skills-row').forEach(el => {
     el.style.opacity  = '1';
     el.style.transform = 'none';
     el.style.animation = 'none';
   });
-  $$('.stat-num').forEach(el => {
-    el.textContent = el.dataset.target;
-  });
+  $$('.stat-num').forEach(el => { el.textContent = el.dataset.target; });
 })();
