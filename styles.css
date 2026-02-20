@@ -8,7 +8,7 @@
   --white:        #ffffff;
   --status-h:     46px;
   --nav-h:        70px;
-  --skills-h:     72px;
+  --skills-h:     76px;
   --font-head:    'Anton', system-ui, sans-serif;
   --font-body:    'Garet', 'DM Sans', system-ui, sans-serif;
   --ease:         cubic-bezier(0.4, 0, 0.2, 1);
@@ -144,83 +144,86 @@ html, body {
   flex: 1;
   display: flex;
   flex-direction: column;
-  justify-content: flex-start;
-  gap: 24px;
+  justify-content: flex-end; /* hero sits on top of skills row */
 }
 
-/* HERO GRID */
-.hero-grid {
-  flex: 1;
-  display: grid;
-  grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr);
-  grid-template-rows: auto auto;
-  column-gap: clamp(32px, 4vw, 60px);
-  align-items: center;
-  justify-content: center;
+/* HERO INNER */
+.hero-inner {
+  width: 100%;
   max-width: 1100px;
-  margin: 40px auto 0;
-}
-
-/* Heading block (row 1, spanning both columns) */
-.hero-heading {
-  grid-column: 1 / -1;
+  margin: 0 auto;
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
+  align-items: center;
+  padding-top: 6px; /* small offset from nav */
+}
+
+/* Heading */
+.hero-heading {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  margin-bottom: 18px;
 }
 
 /* Eyebrow */
 .hero-eyebrow {
+  width: 100%;
+  max-width: 720px;
   display: flex;
   align-items: center;
+  justify-content: center;
   gap: 10px;
-  margin-bottom: 10px;
+  margin-bottom: 8px;
 }
 .eyebrow-line {
-  width: 40px; height: 2px;
+  width: 40px;
+  height: 2px;
   background: var(--gold);
   border-radius: 2px;
 }
 .eyebrow-text {
   font-size: 0.9rem;
   letter-spacing: 0.06em;
-  text-transform: none;
   color: var(--slate-light);
 }
 
 /* Name */
 .hero-name {
   font-family: var(--font-head);
-  font-size: clamp(4.5rem, 13.5vw, 10.5rem);
-  line-height: 0.9;
+  font-size: clamp(4.8rem, 13.8vw, 10.8rem);
+  line-height: 0.88;
   letter-spacing: -0.015em;
   color: var(--slate);
 }
-.name-letter {
-  display: inline-block;
-}
-.name-space {
-  display: inline-block;
-  width: 0.25em;
+.name-letter { display: inline-block; }
+.name-space  { display: inline-block; width: 0.25em; }
+
+/* HERO LOWER: 2-column grid */
+.hero-lower {
+  width: 100%;
+  max-width: 1100px;
+  display: grid;
+  grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr);
+  column-gap: clamp(32px, 4vw, 60px);
+  align-items: flex-end;
 }
 
-/* Left column (content) */
+/* Left column */
 .hero-left {
-  grid-row: 2;
-  grid-column: 1;
   display: flex;
   flex-direction: column;
   gap: 14px;
-  align-self: start;
+  align-self: center;
 }
-
 .hero-subtext {
   font-size: 0.9rem;
   line-height: 1.7;
   color: var(--slate-light);
   max-width: 52ch;
 }
-
 .hero-ctas {
   display: flex;
   gap: 12px;
@@ -294,7 +297,7 @@ html, body {
 .stat-row {
   display: flex;
   align-items: center;
-  gap: clamp(16px, 3vw, 40px);
+  gap: clamp(14px, 2.6vw, 30px);
   margin-top: 4px;
 }
 .stat-item {
@@ -329,20 +332,18 @@ html, body {
   background: rgba(54,69,79,0.12);
 }
 
-/* Right column (photo) */
+/* Right column */
 .hero-right {
-  grid-row: 2;
-  grid-column: 2;
   display: flex;
   align-items: flex-end;
   justify-content: flex-end;
 }
 .hero-photo {
-  width: clamp(220px, 30vw, 360px);
+  width: clamp(230px, 30vw, 360px);
   height: auto;
   object-fit: contain;
   object-position: bottom right;
-  margin-top: clamp(-80px, -10vw, -140px); /* rise into the name */
+  margin-top: clamp(-90px, -11vw, -150px);
   filter: drop-shadow(0 -6px 24px rgba(54,69,79,0.18));
   user-select: none;
   pointer-events: none;
@@ -372,7 +373,7 @@ html, body {
   font-family: var(--font-head);
   font-size: 0.82rem;
   letter-spacing: 0.08em;
-  text-transform: none; /* mixed case like mockup */
+  text-transform: none;
 }
 .skill-chip-sub {
   font-size: 0.64rem;
@@ -395,7 +396,6 @@ html, body {
   -webkit-backdrop-filter: blur(10px);
   border-top: 1px solid rgba(54,69,79,0.1);
 }
-
 .status-left {
   display: flex;
   align-items: center;
@@ -499,9 +499,8 @@ html, body {
 
 /* Responsive */
 @media (max-width: 960px) {
-  .hero-grid {
-    grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr);
-    margin-top: 24px;
+  .hero-inner {
+    align-items: flex-start;
   }
 }
 
@@ -513,25 +512,22 @@ html, body {
     padding-inline: 20px;
   }
 
-  .hero-grid {
-    grid-template-columns: 1fr;
-    grid-template-rows: auto auto auto;
-    row-gap: 20px;
-    margin-top: 16px;
+  .hero-inner {
+    align-items: flex-start;
+    padding-top: 0;
   }
 
   .hero-heading {
     align-items: flex-start;
+    text-align: left;
   }
 
-  .hero-left {
-    grid-row: 2;
-    grid-column: 1;
+  .hero-lower {
+    grid-template-columns: 1fr;
+    row-gap: 20px;
   }
 
   .hero-right {
-    grid-row: 3;
-    grid-column: 1;
     justify-content: center;
   }
 
