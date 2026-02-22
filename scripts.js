@@ -3,7 +3,7 @@
 const $  = (s, ctx = document) => ctx.querySelector(s);
 const $$ = (s, ctx = document) => Array.from(ctx.querySelectorAll(s));
 
-/* Mobile menu */
+/* ─── Mobile Menu ─────────────────────────────────── */
 (function mobileMenu() {
   const burger   = $('#hamburger');
   const menu     = $('#mobile-menu');
@@ -14,16 +14,13 @@ const $$ = (s, ctx = document) => Array.from(ctx.querySelectorAll(s));
     menu.hidden = false;
     burger.classList.add('open');
     burger.setAttribute('aria-expanded', 'true');
-    burger.setAttribute('aria-label', 'Close navigation');
     document.body.style.overflow = 'hidden';
-    setTimeout(() => closeBtn && closeBtn.focus(), 40);
+    setTimeout(() => closeBtn?.focus(), 40);
   };
-
   const close = () => {
     menu.hidden = true;
     burger.classList.remove('open');
     burger.setAttribute('aria-expanded', 'false');
-    burger.setAttribute('aria-label', 'Open navigation');
     document.body.style.overflow = '';
     burger.focus();
   };
@@ -31,20 +28,18 @@ const $$ = (s, ctx = document) => Array.from(ctx.querySelectorAll(s));
   burger.addEventListener('click', () =>
     burger.classList.contains('open') ? close() : open()
   );
-  closeBtn && closeBtn.addEventListener('click', close);
-  $$('.mobile-nav-link', menu).forEach(link =>
-    link.addEventListener('click', close)
-  );
+  closeBtn?.addEventListener('click', close);
+  $$('.mobile-nav-link', menu).forEach(l => l.addEventListener('click', close));
   document.addEventListener('keydown', e => {
     if (e.key === 'Escape' && burger.classList.contains('open')) close();
   });
 
+  // focus trap
   menu.addEventListener('keydown', e => {
     if (e.key !== 'Tab') return;
-    const focusables = $$('a, button', menu);
-    if (!focusables.length) return;
-    const first = focusables[0];
-    const last  = focusables[focusables.length - 1];
+    const els   = $$('a, button', menu);
+    const first = els[0];
+    const last  = els[els.length - 1];
     if (e.shiftKey && document.activeElement === first) {
       e.preventDefault(); last.focus();
     } else if (!e.shiftKey && document.activeElement === last) {
@@ -53,33 +48,32 @@ const $$ = (s, ctx = document) => Array.from(ctx.querySelectorAll(s));
   });
 })();
 
-/* Stat counters */
+/* ─── Stat Counters ───────────────────────────────── */
 (function statCounters() {
   const counters = $$('.stat-num');
   if (!counters.length) return;
 
   const easeOut = t => 1 - Math.pow(1 - t, 3);
 
-  const animate = el => {
-    const target   = parseInt(el.dataset.target, 10);
-    const duration = 1400;
-    const start    = performance.now();
-
-    const step = now => {
-      const p = Math.min((now - start) / duration, 1);
+  const run = el => {
+    const target = parseInt(el.dataset.target, 10);
+    const dur    = 1400;
+    const start  = performance.now();
+    const tick   = now => {
+      const p = Math.min((now - start) / dur, 1);
       el.textContent = Math.floor(easeOut(p) * target);
-      if (p < 1) requestAnimationFrame(step);
+      if (p < 1) requestAnimationFrame(tick);
       else el.textContent = target;
     };
-    requestAnimationFrame(step);
+    requestAnimationFrame(tick);
   };
 
-  window.addEventListener('load', () => {
-    counters.forEach((c, i) => setTimeout(() => animate(c), 600 + i * 150));
-  });
+  window.addEventListener('load', () =>
+    counters.forEach((c, i) => setTimeout(() => run(c), 700 + i * 150))
+  );
 })();
 
-/* Active nav */
+/* ─── Active Nav ──────────────────────────────────── */
 (function activeNav() {
   const page = window.location.pathname.split('/').pop() || 'index.html';
   $$('.nav-link').forEach(link => {
@@ -91,8 +85,8 @@ const $$ = (s, ctx = document) => Array.from(ctx.querySelectorAll(s));
   });
 })();
 
-/* Reduced motion safeguard */
+/* ─── Reduced Motion Safeguard ────────────────────── */
 (function reducedMotion() {
   if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-  $$('.stat-num').forEach(el => el.textContent = el.dataset.target);
+  $$('.stat-num').forEach(el => { el.textContent = el.dataset.target; });
 })();
