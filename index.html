@@ -1,197 +1,566 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="TJ Marek — full-funnel digital marketing strategist specializing in PPC, CRO, SEO, and web design." />
-  <meta name="author" content="TJ Marek" />
-  <title>TJ Marek — Full-Funnel Digital Marketing</title>
+:root {
+  --bg:           #F5F5F5;
+  --gold:         #F2A43B;
+  --gold-dark:    #d4880f;
+  --slate:        #36454f;
+  --slate-light:  #4a5f6b;
+  --slate-xlight: #7a8f9a;
+  --white:        #ffffff;
+  --status-h:     46px;
+  --nav-h:        70px;
+  --skills-h:     76px;
+  --font-head:    'Anton', system-ui, sans-serif;
+  --font-body:    'Garet', 'DM Sans', system-ui, sans-serif;
+  --ease:         cubic-bezier(0.4, 0, 0.2, 1);
+  --t:            0.26s;
+}
 
-  <link rel="canonical" href="https://tjmarek.github.io/tjmarek.me/" />
+/* Reset */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Anton&display=swap" rel="stylesheet" />
+html, body {
+  height: 100%;
+  overflow: hidden;
+  background: var(--bg);
+  color: var(--slate);
+  font-family: var(--font-body);
+  -webkit-font-smoothing: antialiased;
+}
 
-  <link rel="stylesheet" href="styles.css" />
+/* Skip link */
+.skip-link {
+  position: fixed;
+  top: -60px; left: 20px;
+  z-index: 9999;
+  background: var(--gold);
+  color: var(--slate);
+  padding: 10px 20px;
+  border-radius: 4px;
+  font-weight: 700;
+  text-decoration: none;
+  transition: top .2s ease;
+}
+.skip-link:focus { top: 16px; }
 
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "Person",
-    "name": "TJ Marek",
-    "jobTitle": "Full-Funnel Digital Marketing Strategist",
-    "url": "https://tjmarek.github.io/tjmarek.me/",
-    "sameAs": ["https://linkedin.com/in/yourprofile"],
-    "knowsAbout": ["PPC","SEO","CRO","Web Design","Marketing Attribution","Google Ads","Meta Ads","GA4","GTM"]
+/* Noise */
+.noise-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  opacity: 0.03;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-size: 180px 180px;
+}
+
+/* Page shell */
+.page-shell {
+  position: relative;
+  z-index: 2;
+  height: calc(100vh - var(--status-h));
+  display: flex;
+  flex-direction: column;
+  padding-inline: clamp(32px, 9vw, 140px);
+  overflow: hidden;
+}
+
+/* NAV */
+.nav {
+  height: var(--nav-h);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-shrink: 0;
+}
+
+.nav-logo {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  border-radius: 999px;
+  background: var(--gold);
+  text-decoration: none;
+}
+.nav-logo-mark {
+  font-family: var(--font-head);
+  font-size: 1.4rem;
+  color: var(--bg);
+}
+
+.nav-links {
+  list-style: none;
+  display: flex;
+  gap: clamp(24px, 3.4vw, 52px);
+}
+.nav-link {
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  text-decoration: none;
+  color: var(--slate-xlight);
+  position: relative;
+  transition: color var(--t) var(--ease);
+}
+.nav-link::after {
+  content: '';
+  position: absolute;
+  bottom: -4px; left: 0;
+  width: 0; height: 2px;
+  background: var(--gold);
+  border-radius: 2px;
+  transition: width var(--t) var(--ease);
+}
+.nav-link:hover,
+.nav-link.active { color: var(--slate); }
+.nav-link:hover::after,
+.nav-link.active::after { width: 100%; }
+
+/* Hamburger */
+.hamburger {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 6px;
+}
+.hamburger span {
+  display: block;
+  width: 24px; height: 2px;
+  background: var(--slate);
+  border-radius: 2px;
+  transition: transform var(--t) var(--ease), opacity var(--t);
+}
+.hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+.hamburger.open span:nth-child(2) { opacity: 0; transform: scaleX(0); }
+.hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+/* MAIN */
+.main-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end; /* hero sits on top of skills row */
+}
+
+/* HERO INNER */
+.hero-inner {
+  width: 100%;
+  max-width: 1100px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 6px; /* small offset from nav */
+}
+
+/* Heading */
+.hero-heading {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  margin-bottom: 18px;
+}
+
+/* Eyebrow */
+.hero-eyebrow {
+  width: 100%;
+  max-width: 720px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  margin-bottom: 8px;
+}
+.eyebrow-line {
+  width: 40px;
+  height: 2px;
+  background: var(--gold);
+  border-radius: 2px;
+}
+.eyebrow-text {
+  font-size: 0.9rem;
+  letter-spacing: 0.06em;
+  color: var(--slate-light);
+}
+
+/* Name */
+.hero-name {
+  font-family: var(--font-head);
+  font-size: clamp(4.8rem, 13.8vw, 10.8rem);
+  line-height: 0.88;
+  letter-spacing: -0.015em;
+  color: var(--slate);
+}
+.name-letter { display: inline-block; }
+.name-space  { display: inline-block; width: 0.25em; }
+
+/* HERO LOWER: 2-column grid */
+.hero-lower {
+  width: 100%;
+  max-width: 1100px;
+  display: grid;
+  grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr);
+  column-gap: clamp(32px, 4vw, 60px);
+  align-items: flex-end;
+}
+
+/* Left column */
+.hero-left {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  align-self: center;
+}
+.hero-subtext {
+  font-size: 0.9rem;
+  line-height: 1.7;
+  color: var(--slate-light);
+  max-width: 52ch;
+}
+.hero-ctas {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+/* Buttons */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 12px 26px;
+  border-radius: 4px;
+  font-size: 0.78rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  font-weight: 700;
+  text-decoration: none;
+  border: 2px solid transparent;
+  transition:
+    background var(--t) var(--ease),
+    border-color var(--t) var(--ease),
+    color var(--t) var(--ease),
+    transform var(--t) var(--ease),
+    box-shadow var(--t) var(--ease);
+}
+.btn-primary {
+  background: var(--gold);
+  border-color: var(--gold);
+  color: var(--slate);
+  box-shadow: 0 4px 16px rgba(242,164,59,0.28);
+}
+.btn-primary:hover {
+  background: var(--gold-dark);
+  border-color: var(--gold-dark);
+  transform: translateY(-1px);
+  box-shadow: 0 7px 22px rgba(242,164,59,0.38);
+}
+.btn-ghost {
+  background: transparent;
+  border-color: rgba(54,69,79,0.22);
+  color: var(--slate);
+}
+.btn-ghost:hover {
+  border-color: var(--slate);
+  background: rgba(54,69,79,0.03);
+  transform: translateY(-1px);
+}
+
+/* Sub link */
+.hero-sub-link {
+  font-size: 0.78rem;
+  color: var(--slate-xlight);
+  text-decoration: none;
+  letter-spacing: 0.06em;
+  position: relative;
+  display: inline-block;
+}
+.hero-sub-link::after {
+  content: '';
+  position: absolute;
+  bottom: -2px; left: 0;
+  width: 0; height: 1px;
+  background: var(--gold);
+  transition: width var(--t) var(--ease);
+}
+.hero-sub-link:hover { color: var(--slate); }
+.hero-sub-link:hover::after { width: 100%; }
+
+/* Stats */
+.stat-row {
+  display: flex;
+  align-items: center;
+  gap: clamp(14px, 2.6vw, 30px);
+  margin-top: 4px;
+}
+.stat-item {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+.stat-number-wrap {
+  display: flex;
+  align-items: baseline;
+  gap: 6px;
+}
+.stat-icon { font-size: 0.9rem; }
+.stat-num {
+  font-family: var(--font-head);
+  font-size: 1.7rem;
+}
+.stat-suffix {
+  font-family: var(--font-head);
+  font-size: 1.1rem;
+  color: var(--gold);
+}
+.stat-label {
+  font-size: 0.68rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--slate-xlight);
+  white-space: nowrap;
+}
+.stat-divider {
+  width: 1px; height: 34px;
+  background: rgba(54,69,79,0.12);
+}
+
+/* Right column */
+.hero-right {
+  display: flex;
+  align-items: flex-end;
+  justify-content: flex-end;
+}
+.hero-photo {
+  width: clamp(230px, 30vw, 360px);
+  height: auto;
+  object-fit: contain;
+  object-position: bottom right;
+  margin-top: clamp(-90px, -11vw, -150px);
+  filter: drop-shadow(0 -6px 24px rgba(54,69,79,0.18));
+  user-select: none;
+  pointer-events: none;
+}
+
+/* SKILLS ROW */
+.skills-row {
+  flex-shrink: 0;
+  display: flex;
+  height: var(--skills-h);
+  border-top: 1px solid rgba(54,69,79,0.1);
+}
+.skill-chip {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 3px;
+  text-decoration: none;
+  border-right: 1px solid rgba(54,69,79,0.1);
+  transition: background var(--t) var(--ease);
+}
+.skill-chip:last-child { border-right: none; }
+.skill-chip:hover { background: rgba(242,164,59,0.06); }
+.skill-chip-label {
+  font-family: var(--font-head);
+  font-size: 0.82rem;
+  letter-spacing: 0.08em;
+  text-transform: none;
+}
+.skill-chip-sub {
+  font-size: 0.64rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--slate-xlight);
+}
+
+/* STATUS BAR */
+.status-bar {
+  position: fixed;
+  inset-inline: 0; bottom: 0;
+  height: var(--status-h);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-inline: clamp(32px, 9vw, 140px);
+  background: rgba(245,245,245,0.96);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border-top: 1px solid rgba(54,69,79,0.1);
+}
+.status-left {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.status-dot {
+  width: 8px; height: 8px;
+  border-radius: 50%;
+  background: #22c55e;
+  animation: greenPulse 2.4s ease-in-out infinite;
+}
+.status-text {
+  font-size: 0.72rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--slate-xlight);
+}
+.status-right {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.status-link {
+  font-size: 0.72rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  font-weight: 700;
+  text-decoration: none;
+  color: var(--slate-xlight);
+  transition: color var(--t);
+}
+.status-link:hover { color: var(--gold); }
+.status-sep {
+  color: rgba(54,69,79,0.25);
+  font-size: 0.78rem;
+}
+
+/* MOBILE MENU */
+.mobile-menu {
+  position: fixed; inset: 0;
+  background: var(--slate);
+  z-index: 200;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transform: translateY(-10px);
+  transition: opacity 0.3s var(--ease), transform 0.3s var(--ease);
+  pointer-events: none;
+}
+.mobile-menu:not([hidden]) {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: all;
+}
+.mobile-menu[hidden] { display: flex !important; }
+
+.mobile-close {
+  position: absolute;
+  top: 26px; right: 26px;
+  background: none;
+  border: none;
+  color: rgba(245,245,245,0.7);
+  cursor: pointer;
+  padding: 6px;
+}
+.mobile-close:hover { color: var(--gold); }
+
+.mobile-nav-links {
+  list-style: none;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.mobile-nav-link {
+  font-family: var(--font-head);
+  font-size: clamp(2rem, 7vw, 3rem);
+  color: rgba(245,245,245,0.75);
+  text-decoration: none;
+  padding: 6px 32px;
+  letter-spacing: 0.04em;
+  transition: color var(--t);
+}
+.mobile-nav-link:hover { color: var(--gold); }
+.mobile-nav-cv {
+  font-size: clamp(0.9rem, 2.5vw, 1rem) !important;
+  color: var(--gold) !important;
+  border: 1px solid rgba(242,164,59,0.4);
+  border-radius: 4px;
+  padding: 10px 24px !important;
+  margin-top: 16px;
+}
+
+/* Animations */
+@keyframes greenPulse {
+  0%   { box-shadow: 0 0 0 0 rgba(34,197,94,0.6); }
+  50%  { box-shadow: 0 0 0 8px rgba(34,197,94,0); }
+  100% { box-shadow: 0 0 0 0 rgba(34,197,94,0.6); }
+}
+
+/* Responsive */
+@media (max-width: 960px) {
+  .hero-inner {
+    align-items: flex-start;
   }
-  </script>
-</head>
-<body>
+}
 
-  <a href="#main-content" class="skip-link">Skip to main content</a>
+@media (max-width: 720px) {
+  .nav-links { display: none; }
+  .hamburger { display: flex; }
 
-  <div class="noise-overlay" aria-hidden="true"></div>
+  .page-shell {
+    padding-inline: 20px;
+  }
 
-  <!-- Mobile Menu -->
-  <div class="mobile-menu" id="mobile-menu" role="dialog" aria-modal="true" aria-label="Navigation menu" hidden>
-    <button class="mobile-close" id="mobile-close" aria-label="Close menu">
-      <svg width="28" height="28" viewBox="0 0 28 28" fill="none" aria-hidden="true">
-        <line x1="4" y1="4" x2="24" y2="24" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>
-        <line x1="24" y1="4" x2="4" y2="24" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>
-      </svg>
-    </button>
-    <ul class="mobile-nav-links" role="list">
-      <li><a href="index.html"        class="mobile-nav-link">Home</a></li>
-      <li><a href="about.html"        class="mobile-nav-link">About</a></li>
-      <li><a href="impact.html"       class="mobile-nav-link">My Impact</a></li>
-      <li><a href="case-studies.html" class="mobile-nav-link">Case Studies</a></li>
-      <li><a href="contact.html"      class="mobile-nav-link">Contact</a></li>
-      <li><a href="assets/cv.pdf"     class="mobile-nav-link mobile-nav-cv" download>Download CV ↓</a></li>
-    </ul>
-  </div>
+  .hero-inner {
+    align-items: flex-start;
+    padding-top: 0;
+  }
 
-  <!-- Page Shell -->
-  <div class="page-shell">
+  .hero-heading {
+    align-items: flex-start;
+    text-align: left;
+  }
 
-    <!-- NAV -->
-    <nav class="nav" role="navigation" aria-label="Main navigation">
-      <a href="index.html" class="nav-logo" aria-label="TJ Marek home">
-        <!-- Swap this span for your real logo image if you have it -->
-        <span class="nav-logo-mark">T</span>
-      </a>
-      <ul class="nav-links" role="list">
-        <li><a href="about.html"        class="nav-link">About</a></li>
-        <li><a href="impact.html"       class="nav-link">My Impact</a></li>
-        <li><a href="case-studies.html" class="nav-link">Case Studies</a></li>
-        <li><a href="contact.html"      class="nav-link">Contact</a></li>
-      </ul>
-      <button class="hamburger" id="hamburger" aria-label="Open navigation" aria-expanded="false" aria-controls="mobile-menu">
-        <span></span><span></span><span></span>
-      </button>
-    </nav>
+  .hero-lower {
+    grid-template-columns: 1fr;
+    row-gap: 20px;
+  }
 
-    <!-- MAIN -->
-    <main id="main-content" class="main-content">
+  .hero-right {
+    justify-content: center;
+  }
 
-      <!-- HERO (anchored above skills row) -->
-      <section class="hero-inner" aria-label="Intro">
+  .hero-photo {
+    margin-top: -32px;
+    width: clamp(180px, 52vw, 260px);
+  }
 
-        <!-- Heading block (single column, centered) -->
-        <div class="hero-heading">
-          <div class="hero-eyebrow">
-            <span class="eyebrow-line" aria-hidden="true"></span>
-            <span class="eyebrow-text">Full-Funnel Digital Marketing</span>
-          </div>
-          <h1 class="hero-name" aria-label="TJ Marek">
-            <span class="name-letter">T</span><span
-            class="name-letter">J</span><span
-            class="name-space" aria-hidden="true"></span><span
-            class="name-letter">M</span><span
-            class="name-letter">A</span><span
-            class="name-letter">R</span><span
-            class="name-letter">E</span><span
-            class="name-letter">K</span>
-          </h1>
-        </div>
+  .skills-row {
+    height: auto;
+    overflow-x: auto;
+    scrollbar-width: none;
+  }
+  .skills-row::-webkit-scrollbar { display: none; }
+  .skill-chip {
+    flex: 0 0 auto;
+    padding-inline: 18px;
+  }
 
-        <!-- Lower 2-column block -->
-        <div class="hero-lower">
+  .status-bar {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 4px;
+    height: auto;
+    padding-block: 10px;
+  }
+}
 
-          <!-- Left: text, CTAs, stats -->
-          <div class="hero-left">
-            <p class="hero-subtext">
-              PPC, CRO, SEO, and web design, all meticulously crafted into a measurable funnel that delivers reliable and predictable results.
-            </p>
-
-            <div class="hero-ctas">
-              <a href="impact.html"  class="btn btn-primary">My Impact</a>
-              <a href="contact.html" class="btn btn-ghost">Contact</a>
-            </div>
-
-            <a href="case-studies.html" class="hero-sub-link">Browse case studies →</a>
-
-            <div class="stat-row" aria-label="Key achievements">
-              <div class="stat-item">
-                <div class="stat-number-wrap">
-                  <span class="stat-icon" aria-hidden="true">📈</span>
-                  <span class="stat-num" data-target="400">0</span><span class="stat-suffix">%</span>
-                </div>
-                <span class="stat-label">Organic Traffic Growth</span>
-              </div>
-              <div class="stat-divider" aria-hidden="true"></div>
-              <div class="stat-item">
-                <div class="stat-number-wrap">
-                  <span class="stat-icon" aria-hidden="true">⚡</span>
-                  <span class="stat-num" data-target="5">0</span><span class="stat-suffix">+</span>
-                </div>
-                <span class="stat-label">Years Experience</span>
-              </div>
-              <div class="stat-divider" aria-hidden="true"></div>
-              <div class="stat-item">
-                <div class="stat-number-wrap">
-                  <span class="stat-icon" aria-hidden="true">🎯</span>
-                  <span class="stat-num" data-target="3">0</span><span class="stat-suffix">x</span>
-                </div>
-                <span class="stat-label">Avg. ROAS Lift</span>
-              </div>
-            </div>
-          </div>
-
-          <!-- Right: photo -->
-          <div class="hero-right" aria-hidden="true">
-            <img
-              src="assets/tj-marek.webp"
-              alt="TJ Marek"
-              class="hero-photo"
-              loading="eager"
-              width="360"
-              height="500"
-            />
-          </div>
-
-        </div><!-- /.hero-lower -->
-
-      </section>
-
-      <!-- SKILLS ROW -->
-      <section class="skills-row" role="list" aria-label="Core skills">
-        <a href="impact.html#ppc"  class="skill-chip" role="listitem">
-          <span class="skill-chip-label">PPC</span>
-          <span class="skill-chip-sub">3x ROAS Focus</span>
-        </a>
-        <a href="impact.html#cro"  class="skill-chip" role="listitem">
-          <span class="skill-chip-label">CRO</span>
-          <span class="skill-chip-sub">Test &gt; Opinions</span>
-        </a>
-        <a href="web-design.html"  class="skill-chip" role="listitem">
-          <span class="skill-chip-label">Web Design</span>
-          <span class="skill-chip-sub">Built to Convert</span>
-        </a>
-        <a href="impact.html#seo"  class="skill-chip" role="listitem">
-          <span class="skill-chip-label">SEO</span>
-          <span class="skill-chip-sub">+400% Traffic</span>
-        </a>
-      </section>
-
-    </main>
-  </div>
-
-  <!-- STATUS BAR -->
-  <footer class="status-bar" role="contentinfo" aria-label="Availability and contact">
-    <div class="status-left">
-      <span class="status-dot" aria-hidden="true"></span>
-      <span class="status-text">Open to new opportunities</span>
-    </div>
-    <div class="status-right">
-      <a href="mailto:tj@yourdomain.com" class="status-link">Email</a>
-      <span class="status-sep" aria-hidden="true">/</span>
-      <a href="https://linkedin.com/in/yourprofile" target="_blank" rel="noopener noreferrer" class="status-link">LinkedIn</a>
-      <span class="status-sep" aria-hidden="true">/</span>
-      <a href="assets/cv.pdf" download class="status-link">CV Download</a>
-    </div>
-  </footer>
-
-  <script src="scripts.js"></script>
-</body>
-</html>
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.001ms !important;
+    animation-delay: 0.001ms !important;
+    transition-duration: 0.001ms !important;
+  }
+}
