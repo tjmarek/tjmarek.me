@@ -195,7 +195,7 @@ html, body {
   font-family: var(--font-head);
   font-size: clamp(4.2rem, 12vw, 14rem); 
   line-height: 0.86;                    
-  letter-spacing: -0.018em;
+  letter-spacing: 1em;
   color: var(--slate);
 }
 .name-letter { display: inline-block; }
