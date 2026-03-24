@@ -1024,7 +1024,7 @@ input, textarea, select {
 
 .stat-number {
   font-family: var(--font-display);
-  font-size: clamp(var(--text-3xl), 5vw, var(--text-5xl));
+  font-size: clamp(var(--text-2xl), 3.5vw, var(--text-3xl));
   font-weight: 800;
   color: var(--accent);
   letter-spacing: -0.03em;
