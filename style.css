@@ -2019,6 +2019,19 @@ input, textarea, select {
   color: rgba(200,208,213,0.35);
 }
 
+.site-footer {
+  padding-top: clamp(var(--space-12), 6vw, var(--space-20));
+}
+
+.site-footer::before {
+  content: '';
+  display: block;
+  height: 1px;
+  width: 60%;
+  margin: 0 auto clamp(var(--space-10), 5vw, var(--space-16));
+  background: linear-gradient(90deg, transparent, rgba(242,165,59,0.25), transparent);
+}
+
 /* ============================================================
    21. SCROLL ANIMATION UTILITIES
    ============================================================ */
