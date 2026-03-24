@@ -977,22 +977,22 @@
     }, { threshold: 0.10 });
     $$('.reveal').forEach(el => ro.observe(el));
 
-    /* ── Letter split ── */
-    $$('.split-hover').forEach(el => {
-      setTimeout(() => {
-        [...el.childNodes].forEach(node => {
-          if (node.nodeType === Node.TEXT_NODE && node.textContent.trim()) {
-            const wrap = document.createElement('span');
-            wrap.innerHTML = node.textContent.split('').map(ch =>
-              ch === ' '
-                ? '<span class="char" style="display:inline-block;width:.28em">&nbsp;</span>'
-                : `<span class="char">${ch}</span>`
-            ).join('');
-            node.replaceWith(wrap);
-          }
-        });
-      }, 400);
-    });
+    // /* ── Letter split ── */
+    // $$('.split-hover').forEach(el => {
+    //   setTimeout(() => {
+    //     [...el.childNodes].forEach(node => {
+    //       if (node.nodeType === Node.TEXT_NODE && node.textContent.trim()) {
+    //         const wrap = document.createElement('span');
+    //         wrap.innerHTML = node.textContent.split('').map(ch =>
+    //           ch === ' '
+    //             ? '<span class="char" style="display:inline-block;width:.28em">&nbsp;</span>'
+    //             : `<span class="char">${ch}</span>`
+    //         ).join('');
+    //         node.replaceWith(wrap);
+    //       }
+    //     });
+    //   }, 400);
+    // });
 
     /* ── Magnetic nav ── */
     $$('.mag-wrap').forEach(wrap => {
