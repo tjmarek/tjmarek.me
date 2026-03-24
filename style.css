@@ -695,8 +695,8 @@ input, textarea, select {
   padding-inline: clamp(var(--space-4), 4vw, var(--space-10));
   backdrop-filter: blur(12px) saturate(1.3);
   -webkit-backdrop-filter: blur(12px) saturate(1.3);
-  background: #E0DEDA;
-  border-top: 1px solid #D0CEC9;
+  background: #EEECE9;
+  border-top: 1px solid #E2E0DC;
   transition: background-color var(--dur-slow) var(--ease-out),
               border-color var(--dur-slow) var(--ease-out);
 }
