@@ -350,36 +350,52 @@
   /* ════════════════════════════════════════════
      10. SPLIT-TEXT HOVER — LETTER SHIMMER
   ════════════════════════════════════════════ */
-  const initSplitHover = () => {
-    if (isTouch() || prefersReducedMotion()) return;
+const initSplitHover = () => {
+  // Guard: never run on nav links, buttons, or before fonts load
+  if (isTouch() || prefersReducedMotion()) return;
 
-    $$('.split-hover').forEach(el => {
-      setTimeout(() => {
-        const processNode = (node) => {
-          if (node.nodeType === Node.TEXT_NODE) {
-            const text = node.textContent;
-            if (!text.trim()) return;
-            const frag = document.createDocumentFragment();
-            [...text].forEach(ch => {
-              const span = document.createElement('span');
-              span.className = 'char';
-              span.textContent = ch === ' ' ? '\u00A0' : ch;
-              if (ch === ' ') span.style.width = '0.28em';
-              frag.appendChild(span);
-            });
-            node.replaceWith(frag);
-          }
-        };
+  // Wait for fonts before touching any text nodes
+  const run = () => {
+    // ONLY target elements explicitly marked — never nav, header, or footer
+    const targets = $$('.split-hover:not(.site-nav .split-hover):not(header .split-hover)');
 
-        // Only process direct text children — don't touch spans already in place
-        [...el.childNodes].forEach(child => {
-          if (child.nodeType === Node.TEXT_NODE) processNode(child);
+    targets.forEach(el => {
+      // Skip if already processed
+      if (el.dataset.splitDone) return;
+      el.dataset.splitDone = 'true';
+
+      // Only process direct TEXT children — never recurse into spans/tags
+      [...el.childNodes].forEach(node => {
+        if (node.nodeType !== Node.TEXT_NODE) return;
+        const text = node.textContent;
+        if (!text.trim()) return;
+
+        const frag = document.createDocumentFragment();
+        [...text].forEach(ch => {
+          const span = document.createElement('span');
+          span.className   = 'char';
+          // Use non-breaking space for whitespace chars — prevents collapse
+          span.textContent = ch === ' ' ? '\u00A0' : ch;
+          if (ch === ' ') span.style.cssText = 'display:inline-block;width:0.3em;';
+          frag.appendChild(span);
         });
-      }, 600);
+        node.replaceWith(frag);
+      });
     });
   };
 
-
+  // Use document.fonts.ready — fires after ALL fonts have loaded
+  // This is the critical fix: font swap was triggering reflow mid-split
+  if (document.fonts && document.fonts.ready) {
+    document.fonts.ready.then(() => {
+      // Extra 100ms buffer for paint to settle
+      setTimeout(run, 100);
+    });
+  } else {
+    setTimeout(run, 500);
+  }
+};
+  
   /* ════════════════════════════════════════════
      11. MAGNETIC NAV LINKS
   ════════════════════════════════════════════ */
