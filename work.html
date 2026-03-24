@@ -1,270 +1,285 @@
 <!DOCTYPE html>
 <html lang="en" data-theme="light">
 <head>
+  <!-- Hi recruiter. Yes, I built this. No, I didn't use a template. -->
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Work & Case Studies — TJ Marek. Google Ads, web design, lead generation, and full-funnel marketing projects with real, measurable results." />
+  <meta name="description" content="TJ Marek's Work — Marketing case studies and web design projects. Google Ads, lead generation, CRO, and custom web builds." />
   <meta name="author" content="TJ Marek" />
   <meta property="og:title" content="Work — TJ Marek" />
-  <meta property="og:description" content="Real campaigns. Real results. Case studies from 4.5 years of full-funnel marketing and web design." />
+  <meta property="og:description" content="Real campaigns. Real results. Marketing and web design work by TJ Marek." />
   <meta property="og:url" content="https://tjmarek.me/work.html" />
   <meta property="og:type" content="website" />
   <title>Work — TJ Marek</title>
-  <link rel="icon" type="image/jpeg" href="logo.jpg" />
+  <link rel="icon" type="image/jpeg" href="assets/logo.png" />
   <link rel="stylesheet" href="style.css" />
   <style>
 
-    .work-page {
+    /* ── Work page hero ── */
+    .work-hero {
       padding-top: clamp(110px, 14vw, 160px);
-      padding-bottom: clamp(var(--space-16), 8vw, var(--space-32));
+      padding-bottom: clamp(var(--space-10), 5vw, var(--space-16));
+      position: relative;
+      overflow: hidden;
     }
 
-    /* ── Page header ── */
-    .work-page__header {
-      margin-bottom: var(--space-12);
+    .work-hero::before {
+      content: 'WORK';
+      position: absolute;
+      right: -20px;
+      top: 50%;
+      transform: translateY(-50%);
+      font-family: var(--font-display);
+      font-size: clamp(100px, 18vw, 260px);
+      font-weight: 800;
+      color: transparent;
+      -webkit-text-stroke: 1px var(--border);
+      letter-spacing: -0.05em;
+      line-height: 1;
+      pointer-events: none;
+      user-select: none;
+      z-index: 0;
     }
 
-    .work-page__meta {
+    .work-hero .container { position: relative; z-index: 2; }
+
+    .work-hero__grid {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: var(--space-8);
+      align-items: flex-end;
+    }
+
+    /* ── Currently strip ── */
+    .currently-strip {
+      padding-block: var(--space-4);
+      border-bottom: 1px solid var(--border);
+      margin-bottom: var(--space-2);
+    }
+
+    /* ── Filter + grid wrapper ── */
+    .work-main {
+      padding-block: clamp(var(--space-8), 5vw, var(--space-16));
+    }
+
+    /* Filter bar alignment */
+    .filter-row {
       display: flex;
       align-items: center;
       justify-content: space-between;
-      gap: var(--space-6);
       flex-wrap: wrap;
-      margin-bottom: var(--space-8);
+      gap: var(--space-4);
+      margin-bottom: var(--space-10);
     }
 
-    .work-page__count {
-      font-size: var(--text-sm);
-      color: var(--text-muted);
-      font-weight: 500;
-    }
-
-    .work-page__count strong {
-      color: var(--accent);
+    .work-count {
       font-family: var(--font-display);
-      font-weight: 700;
+      font-size: var(--text-sm);
+      font-weight: 600;
+      color: var(--text-muted);
+      letter-spacing: 0.04em;
+    }
+
+    .work-count span {
+      color: var(--accent);
+    }
+
+    /* ── Work grid ── */
+    .work-grid--full {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: var(--space-6);
+    }
+
+    /* Featured / hero card — spans 2 cols */
+    .work-card--featured {
+      grid-column: span 2;
+    }
+
+    .work-card--featured .work-card__thumb {
+      aspect-ratio: 16/8;
+    }
+
+    .work-card--featured .work-card__title {
+      font-size: var(--text-xl);
+    }
+
+    /* ── Placeholder thumb styles per category ── */
+    .thumb--marketing {
+      background: linear-gradient(135deg, #1A2329 0%, #2A3F4E 100%);
+    }
+
+    .thumb--marketing .work-card__thumb-placeholder {
+      color: var(--accent);
+      background: transparent;
+    }
+
+    .thumb--webdesign {
+      background: linear-gradient(135deg, #1D2D36 0%, #0F1923 100%);
+    }
+
+    .thumb--webdesign .work-card__thumb-placeholder {
+      color: rgba(242,165,59,0.70);
+      background: transparent;
+    }
+
+    /* Thumb inner grid overlay (marketing cards) */
+    .thumb-viz {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: flex-end;
+      padding: var(--space-5);
+      gap: var(--space-2);
+    }
+
+    .thumb-bar {
+      flex: 1;
+      border-radius: 4px 4px 0 0;
+      background: var(--accent);
+      opacity: 0.18;
+      transition: opacity var(--dur-base) var(--ease-out);
+    }
+
+    .work-card:hover .thumb-bar { opacity: 0.35; }
+
+    .thumb-bar:nth-child(1) { height: 40%; }
+    .thumb-bar:nth-child(2) { height: 65%; }
+    .thumb-bar:nth-child(3) { height: 85%; }
+    .thumb-bar:nth-child(4) { height: 55%; }
+    .thumb-bar:nth-child(5) { height: 95%; opacity: 0.30; }
+    .thumb-bar:nth-child(6) { height: 72%; }
+
+    /* Code-style thumb for web cards */
+    .thumb-code {
+      position: absolute;
+      inset: 0;
+      padding: var(--space-5);
+      font-family: 'Courier New', monospace;
+      font-size: clamp(9px, 1.2vw, 12px);
+      color: rgba(242,165,59,0.45);
+      line-height: 1.7;
+      overflow: hidden;
+      pointer-events: none;
+    }
+
+    /* ── Impact numbers inside card ── */
+    .card-impact {
+      display: flex;
+      gap: var(--space-4);
+      padding: var(--space-4) var(--space-6);
+      border-top: 1px solid var(--border);
+      background: var(--bg-secondary);
+    }
+
+    .card-impact__item {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .card-impact__num {
+      font-family: var(--font-display);
+      font-size: var(--text-lg);
+      font-weight: 800;
+      color: var(--accent-cool);
+      letter-spacing: -0.02em;
+      line-height: 1.1;
+    }
+
+    .card-impact__label {
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--text-muted);
     }
 
     /* ── Empty state ── */
     .empty-state {
+      grid-column: 1 / -1;
+      text-align: center;
+      padding: var(--space-16);
       display: none;
-      flex-direction: column;
-      align-items: center;
-      text-align: center;
-      padding: clamp(var(--space-16), 8vw, var(--space-24));
-      gap: var(--space-5);
     }
 
-    .empty-state.show { display: flex; }
-
-    .empty-state__icon {
-      font-size: 3rem;
-    }
-
-    .empty-state__title {
-      font-family: var(--font-display);
-      font-size: var(--text-xl);
-      font-weight: 700;
-      color: var(--text-dark);
-    }
-
-    .empty-state__desc {
-      font-size: var(--text-base);
-      color: var(--text-muted);
-      max-width: 320px;
-      line-height: 1.7;
-    }
-
-    /* ── Process section ── */
-    .process-section {
-      margin-top: clamp(var(--space-20), 8vw, var(--space-32));
-      padding-top: clamp(var(--space-16), 6vw, var(--space-24));
-      border-top: 1px solid var(--border);
-    }
-
-    .process-grid {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: var(--space-6);
-      margin-top: var(--space-12);
-      counter-reset: process-steps;
-    }
-
-    .process-step {
-      position: relative;
-      padding: var(--space-7);
-      background: var(--bg-card);
-      border: 1px solid var(--border);
-      border-radius: var(--radius-xl);
-      transition: border-color var(--dur-base) var(--ease-out),
-                  transform var(--dur-base) var(--ease-out);
-      counter-increment: process-steps;
-    }
-
-    .process-step:hover {
-      border-color: var(--accent);
-      transform: translateY(-4px);
-    }
-
-    /* Step number */
-    .process-step__num {
-      font-family: var(--font-display);
-      font-size: var(--text-xs);
-      font-weight: 700;
-      letter-spacing: 0.14em;
-      text-transform: uppercase;
-      color: var(--accent);
-      margin-bottom: var(--space-4);
-    }
-
-    .process-step__icon {
-      width: 44px;
-      height: 44px;
-      border-radius: var(--radius-md);
-      background: rgba(242,165,59,0.10);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: var(--accent);
-      margin-bottom: var(--space-5);
-    }
-
-    .process-step__icon svg { width: 22px; height: 22px; }
-
-    .process-step__title {
-      font-family: var(--font-display);
-      font-size: var(--text-base);
-      font-weight: 700;
-      color: var(--text-dark);
-      margin-bottom: var(--space-3);
-    }
-
-    .process-step__desc {
-      font-size: var(--text-sm);
-      color: var(--text-muted);
-      line-height: 1.7;
-    }
-
-    /* Connector line between steps */
-    .process-step:not(:last-child)::after {
-      content: '';
-      position: absolute;
-      top: 50%;
-      right: calc(-1 * var(--space-6) / 2 - 1px);
-      width: var(--space-6);
-      height: 1px;
-      background: var(--border);
-      pointer-events: none;
-    }
-
-    /* ── Testimonial / social proof band ── */
-    .proof-band {
-      margin-top: clamp(var(--space-16), 6vw, var(--space-24));
-      padding: clamp(var(--space-10), 5vw, var(--space-16));
-      background: var(--bg-secondary);
-      border: 1px solid var(--border);
-      border-radius: var(--radius-2xl);
-      display: grid;
-      grid-template-columns: 1fr 1fr 1fr;
-      gap: var(--space-8);
-      align-items: center;
-    }
-
-    .proof-item {
-      text-align: center;
-      padding: var(--space-4);
-    }
-
-    .proof-item:not(:last-child) {
-      border-right: 1px solid var(--border);
-    }
-
-    .proof-item__number {
-      font-family: var(--font-display);
-      font-size: clamp(var(--text-3xl), 3.5vw, var(--text-4xl));
-      font-weight: 800;
-      color: var(--accent);
-      letter-spacing: -0.03em;
-      display: block;
-      line-height: 1;
-      margin-bottom: var(--space-2);
-    }
-
-    .proof-item__label {
-      font-size: var(--text-sm);
-      color: var(--text-muted);
-      font-weight: 500;
-      line-height: 1.5;
-    }
+    .empty-state.show { display: block; }
 
     /* ── CTA band ── */
     .work-cta {
-      margin-top: clamp(var(--space-20), 8vw, var(--space-32));
-      padding: clamp(var(--space-12), 6vw, var(--space-20));
+      padding-block: clamp(var(--space-16), 7vw, var(--space-24));
       background: var(--footer-bg);
-      border-radius: var(--radius-2xl);
       text-align: center;
+      position: relative;
+      overflow: hidden;
     }
 
-    .work-cta__title {
-      font-family: var(--font-display);
-      font-size: clamp(var(--text-2xl), 3.5vw, var(--text-4xl));
-      font-weight: 800;
-      letter-spacing: -0.02em;
-      color: #EAE8E4;
-      margin-top: var(--space-4);
-      margin-bottom: var(--space-4);
-    }
-
-    .work-cta__body {
-      font-size: var(--text-md);
-      color: rgba(200,208,213,0.60);
-      line-height: 1.7;
-      max-width: 460px;
-      margin-inline: auto;
-      margin-bottom: var(--space-8);
+    .work-cta::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse at 50% 110%,
+        rgba(242,165,59,0.10) 0%, transparent 65%);
+      pointer-events: none;
     }
 
     /* ── Responsive ── */
-    @media (max-width: 1024px) {
-      .process-grid { grid-template-columns: repeat(2, 1fr); }
-      .process-step::after { display: none; }
+    @media (max-width: 1100px) {
+      .work-grid--full {
+        grid-template-columns: repeat(2, 1fr);
+      }
+      .work-card--featured {
+        grid-column: span 2;
+      }
     }
 
     @media (max-width: 768px) {
-      .proof-band { grid-template-columns: 1fr; }
-      .proof-item:not(:last-child) { border-right: none; border-bottom: 1px solid var(--border); padding-bottom: var(--space-6); }
-    }
-
-    @media (max-width: 640px) {
-      .process-grid { grid-template-columns: 1fr; }
+      .work-grid--full {
+        grid-template-columns: 1fr;
+      }
+      .work-card--featured {
+        grid-column: span 1;
+      }
+      .work-hero__grid {
+        grid-template-columns: 1fr;
+      }
     }
 
   </style>
 </head>
+
 <body>
 
   <div id="scroll-progress" aria-hidden="true"></div>
   <div class="page-transition" id="page-transition" aria-hidden="true"></div>
 
-  <!-- HEADER -->
+  <!-- ════════════════════════════════════════════
+       HEADER
+  ════════════════════════════════════════════ -->
   <header class="site-header" id="site-header">
     <div class="container">
       <div class="header-inner">
         <a href="index.html" class="site-logo" aria-label="TJ Marek — Home">
-          <img src="logo.jpg" alt="TJ Marek logo" class="site-logo__mark" />
+          <img src="assets/logo.png" alt="TJ Marek logo mark" class="site-logo__mark" />
           <span class="site-logo__name">TJ Marek</span>
         </a>
         <nav class="site-nav" aria-label="Primary navigation">
-          <div class="mag-wrap"><a href="index.html"   class="nav-link">Home</a></div>
-          <div class="mag-wrap"><a href="about.html"   class="nav-link">About</a></div>
-          <div class="mag-wrap"><a href="work.html"    class="nav-link active">Work</a></div>
+          <div class="mag-wrap"><a href="index.html" class="nav-link">Home</a></div>
+          <div class="mag-wrap"><a href="about.html" class="nav-link">About</a></div>
+          <div class="mag-wrap"><a href="work.html"  class="nav-link active">Work</a></div>
           <div class="mag-wrap"><a href="contact.html" class="nav-link nav-link--cta">Let's Talk</a></div>
         </nav>
         <div class="header-actions">
           <button class="theme-toggle" id="theme-toggle" aria-label="Toggle dark mode">
-            <svg class="icon-sun" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.8" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.36-6.36-.71.71M6.34 17.66l-.71.71M17.66 17.66l.71.71M6.34 6.34l-.71-.71M12 7a5 5 0 1 0 0 10A5 5 0 0 0 12 7z"/></svg>
-            <svg class="icon-moon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.8" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+            <svg class="icon-sun" xmlns="http://www.w3.org/2000/svg" fill="none"
+                 viewBox="0 0 24 24" stroke-width="1.8" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round"
+                d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.36-6.36-.71.71M6.34 17.66l-.71.71M17.66 17.66l.71.71M6.34 6.34l-.71-.71M12 7a5 5 0 1 0 0 10A5 5 0 0 0 12 7z"/>
+            </svg>
+            <svg class="icon-moon" xmlns="http://www.w3.org/2000/svg" fill="none"
+                 viewBox="0 0 24 24" stroke-width="1.8" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round"
+                d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+            </svg>
           </button>
           <button class="menu-toggle" id="menu-toggle" aria-label="Open menu" aria-expanded="false">
             <span></span><span></span><span></span>
@@ -275,336 +290,507 @@
   </header>
 
   <nav class="mobile-nav" id="mobile-nav" aria-label="Mobile navigation">
-    <a href="index.html"   class="nav-link">Home</a>
-    <a href="about.html"   class="nav-link">About</a>
-    <a href="work.html"    class="nav-link active">Work</a>
+    <a href="index.html" class="nav-link">Home</a>
+    <a href="about.html" class="nav-link">About</a>
+    <a href="work.html"  class="nav-link active">Work</a>
     <a href="contact.html" class="nav-link">Let's Talk</a>
   </nav>
 
   <main>
-    <div class="work-page">
+
+    <!-- ════════════════════════════════════════════
+         WORK HERO
+    ════════════════════════════════════════════ -->
+    <section class="work-hero" aria-label="Work introduction">
       <div class="container">
-
-        <!-- ══════════════════════════════════
-             PAGE HEADING
-        ══════════════════════════════════ -->
-        <div class="work-page__header">
-          <div class="reveal">
-            <span class="label">Case Studies</span>
+        <div class="work-hero__grid">
+          <div>
+            <span class="label reveal">Portfolio</span>
+            <h1 class="display-xl split-hover reveal"
+                style="margin-top: var(--space-4);"
+                aria-label="The work speaks.">
+              The work<br>
+              <span style="color: var(--accent);">speaks.</span>
+            </h1>
           </div>
-          <h1 class="display-xl reveal" style="margin-top:var(--space-4);max-width:700px;margin-bottom:var(--space-6);">
-            Real work.<br>
-            <span style="color:var(--accent);">Real numbers.</span>
-          </h1>
-          <p class="reveal reveal-delay-1" style="font-size:var(--text-md);color:var(--text-muted);max-width:540px;line-height:1.75;margin-bottom:var(--space-10);">
-            Every project below was scoped, built, and optimized by one person.
-            Click any card to see the challenge, the strategy, and the results.
-          </p>
-
-          <!-- Filter bar + count -->
-          <div class="work-page__meta reveal reveal-delay-2">
-            <div class="filter-bar" role="group" aria-label="Filter work by category">
-              <button class="filter-btn active" data-filter="all"       aria-pressed="true">All Work</button>
-              <button class="filter-btn"        data-filter="marketing" aria-pressed="false">Marketing</button>
-              <button class="filter-btn"        data-filter="webdesign" aria-pressed="false">Web Design</button>
-              <button class="filter-btn"        data-filter="seo"       aria-pressed="false">SEO</button>
-            </div>
-            <p class="work-page__count" aria-live="polite">
-              Showing <strong id="visible-count">6</strong> projects
+          <div class="reveal reveal-delay-2"
+               style="max-width: 360px; padding-bottom: var(--space-3);">
+            <p class="body-lg" style="color: var(--text-muted);">
+              4.5 years of campaigns, funnels, and builds —
+              every project measured, every result real.
             </p>
           </div>
         </div>
+      </div>
+    </section>
 
-        <!-- ══════════════════════════════════
-             WORK GRID
-        ══════════════════════════════════ -->
-        <div class="work-grid" id="work-grid" aria-label="Work case studies">
+    <!-- ════════════════════════════════════════════
+         CURRENTLY STRIP
+    ════════════════════════════════════════════ -->
+    <div class="currently-strip">
+      <div class="container">
+        <div class="currently-block reveal">
+          <span class="currently-dot" aria-hidden="true"></span>
+          <span>Currently: <strong>Digital Marketing Lead</strong>
+            &nbsp;·&nbsp; Austin, TX &nbsp;·&nbsp; Open to Full-Time Roles
+          </span>
+        </div>
+      </div>
+    </div>
 
-          <!-- 1 — Google Ads Lead Engine -->
-          <article class="work-card"
-            data-category="marketing"
-            data-title="Google Ads Lead Engine"
-            data-tag="Paid Search · CRO"
-            data-summary="Rebuilt a neglected Google Ads account from zero — new campaign architecture, copy, landing page, and conversion tracking. Turned wasted budget into a consistent, measurable lead pipeline."
-            data-challenge="The existing account was years of accumulated bad structure. Broad match keywords burning budget, zero negative keyword lists, no conversion tracking, and a homepage as the landing page."
-            data-strategy="Full account audit and rebuild — keyword sculpting, tight ad groups, new copy tested in 3-way rotation, a dedicated landing page built for the paid traffic, and GTM-based conversion tracking for every form submission and phone call."
-            data-result1="6.2x" data-label1="ROAS"
-            data-result2="47%"  data-label2="CPA Reduction"
-            data-result3="312%" data-label3="Lead Volume Lift"
-            tabindex="0" role="button" aria-label="Open Google Ads Lead Engine case study">
-            <div class="work-card__thumb">
-              <div class="work-card__thumb-placeholder">Ads</div>
+    <!-- ════════════════════════════════════════════
+         FILTER + WORK GRID
+    ════════════════════════════════════════════ -->
+    <section class="work-main" aria-label="Work portfolio">
+      <div class="container">
+
+        <div class="filter-row">
+          <!-- Filter bar -->
+          <div class="filter-bar" role="group" aria-label="Filter work by category">
+            <button class="filter-btn active" data-filter="all"   aria-pressed="true">All</button>
+            <button class="filter-btn"        data-filter="marketing" aria-pressed="false">Marketing</button>
+            <button class="filter-btn"        data-filter="webdesign" aria-pressed="false">Web Design</button>
+          </div>
+          <!-- Live count -->
+          <div class="work-count" aria-live="polite" aria-atomic="true">
+            Showing <span id="visible-count">6</span> projects
+          </div>
+        </div>
+
+        <!-- ── WORK GRID ── -->
+        <div class="work-grid--full" id="work-grid" aria-label="Project cards">
+
+          <!-- ══ CARD 1 — Marketing Featured ══ -->
+          <article class="work-card work-card--featured reveal"
+                   data-category="marketing"
+                   data-title="Google Ads Lead Engine"
+                   data-tag="Paid Search · CRO"
+                   data-summary="Rebuilt a neglected Google Ads account from zero — new campaign architecture, copy, landing page, and conversion tracking. Turned wasted budget into a consistent, measurable lead pipeline."
+                   data-challenge="The existing account was years of accumulated bad structure. Broad match keywords burning budget, zero negative keyword lists, no conversion tracking, and a homepage as the landing page. Cost per lead was unsustainable and climbing."
+                   data-strategy="Full account audit and rebuild — keyword sculpting, tight ad groups, new copy tested in 3-way rotation, a dedicated landing page built specifically for the paid traffic (not the homepage), and GTM-based conversion tracking for every form submission and phone call."
+                   data-result1="6.2x" data-label1="ROAS"
+                   data-result2="47%" data-label2="CPA Reduction"
+                   data-result3="312%" data-label3="Lead Volume Lift"
+                   tabindex="0" role="button"
+                   aria-label="Open Google Ads Lead Engine case study">
+            <div class="work-card__thumb thumb--marketing">
+              <div class="thumb-viz" aria-hidden="true">
+                <div class="thumb-bar"></div>
+                <div class="thumb-bar"></div>
+                <div class="thumb-bar"></div>
+                <div class="thumb-bar"></div>
+                <div class="thumb-bar"></div>
+                <div class="thumb-bar"></div>
+              </div>
               <span class="work-card__tag">Marketing</span>
             </div>
             <div class="work-card__body">
               <div class="work-card__meta">
-                <span class="work-card__channel">Google Ads · GTM · CRO</span>
-                <span class="work-card__stat">6.2x ROAS</span>
+                <span class="work-card__channel">Google Ads · GTM · Landing Page</span>
+                <span class="work-card__stat">↑ 312% Leads</span>
               </div>
               <h2 class="work-card__title">Google Ads Lead Engine</h2>
-              <p class="work-card__desc">Rebuilt an underperforming account from scratch. New structure, copy, tracking, and landing page. Turned wasted spend into a consistent lead pipeline.</p>
+              <p class="work-card__desc">
+                Full account rebuild — architecture, copy, tracking, and a
+                dedicated landing page. Turned an underperforming campaign into
+                the company's primary revenue driver.
+              </p>
+            </div>
+            <div class="card-impact">
+              <div class="card-impact__item">
+                <span class="card-impact__num">6.2x</span>
+                <span class="card-impact__label">ROAS</span>
+              </div>
+              <div class="card-impact__item">
+                <span class="card-impact__num">47%</span>
+                <span class="card-impact__label">Lower CPA</span>
+              </div>
+              <div class="card-impact__item">
+                <span class="card-impact__num">312%</span>
+                <span class="card-impact__label">More Leads</span>
+              </div>
             </div>
             <div class="work-card__footer">
-              <span class="work-card__cta">View Case Study <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg></span>
+              <span class="work-card__cta">
+                View Case Study
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                     stroke-width="2" stroke="currentColor" aria-hidden="true">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
+                </svg>
+              </span>
             </div>
           </article>
 
-          <!-- 2 — Contractor Website Redesign -->
-          <article class="work-card"
-            data-category="webdesign"
-            data-title="Specialty Contractor Web Redesign"
-            data-tag="Web Design · Development"
-            data-summary="Full website redesign for a specialty contracting company — designed from scratch, built from scratch. Mobile-first, fast, and built around one goal: converting visitors into leads."
-            data-challenge="The existing site was slow, visually outdated, and not converting. Mobile experience was broken. Visitors coming from paid ads were landing on a page that undermined the campaign's credibility."
-            data-strategy="Clean visual redesign from wireframes up, mobile-first HTML/CSS/JS build with zero page builder dependencies, service page restructure with clear CTAs, structured data markup, and Core Web Vitals optimization."
-            data-result1="91"   data-label1="Lighthouse Score"
-            data-result2="58%"  data-label2="Bounce Rate Drop"
-            data-result3="2.4x" data-label3="Form Conversion Lift"
-            tabindex="0" role="button" aria-label="Open Contractor Web Redesign case study">
-            <div class="work-card__thumb" style="background:linear-gradient(135deg,#1D2D36 0%,#0F1923 100%);">
-              <div class="work-card__thumb-placeholder">Web</div>
+          <!-- ══ CARD 2 — Web Design ══ -->
+          <article class="work-card reveal reveal-delay-1"
+                   data-category="webdesign"
+                   data-title="Specialty Contractor Website Redesign"
+                   data-tag="Web Design · Development"
+                   data-summary="Full website redesign for a specialty contracting company — designed from scratch, built from scratch. Mobile-first, fast, and built around one goal: converting visitors into leads."
+                   data-challenge="The existing site was slow, visually outdated, and not converting. Mobile experience was broken. Visitors coming from paid ads were landing on a page that undermined the campaign's credibility before a single word was read."
+                   data-strategy="Clean visual redesign starting from wireframes, mobile-first HTML/CSS/JS build with zero page builder dependencies, service page restructure with clear CTAs at every scroll milestone, structured data markup, and Core Web Vitals optimization throughout."
+                   data-result1="91" data-label1="Lighthouse Score"
+                   data-result2="58%" data-label2="Bounce Rate Drop"
+                   data-result3="2.4x" data-label3="Form Conversion Lift"
+                   tabindex="0" role="button"
+                   aria-label="Open Specialty Contractor Website Redesign case study">
+            <div class="work-card__thumb thumb--webdesign">
+              <div class="thumb-code" aria-hidden="true">
+                &lt;section class="hero"&gt;<br>
+                &nbsp;&nbsp;&lt;h1&gt;Built to convert.&lt;/h1&gt;<br>
+                &nbsp;&nbsp;&lt;p&gt;No templates.&lt;/p&gt;<br>
+                &lt;/section&gt;<br><br>
+                .hero &#123;<br>
+                &nbsp;&nbsp;background: #F5F4F1;<br>
+                &nbsp;&nbsp;font: Syne Extra;<br>
+                &#125;
+              </div>
               <span class="work-card__tag">Web Design</span>
             </div>
             <div class="work-card__body">
               <div class="work-card__meta">
-                <span class="work-card__channel">HTML · CSS · JS</span>
+                <span class="work-card__channel">HTML · CSS · JS · No Templates</span>
                 <span class="work-card__stat">91 Lighthouse</span>
               </div>
               <h2 class="work-card__title">Contractor Website Redesign</h2>
-              <p class="work-card__desc">Full redesign built from scratch — mobile-first, hand-coded, optimized for performance and conversion. Bounce rate dropped 58% within 30 days of launch.</p>
+              <p class="work-card__desc">
+                Built from wireframe to deployed. Mobile-first, hand-coded,
+                and optimized for both performance and conversion.
+                Bounce rate dropped 58% within 30 days.
+              </p>
+            </div>
+            <div class="card-impact">
+              <div class="card-impact__item">
+                <span class="card-impact__num">91</span>
+                <span class="card-impact__label">Lighthouse</span>
+              </div>
+              <div class="card-impact__item">
+                <span class="card-impact__num">58%</span>
+                <span class="card-impact__label">Bounce Drop</span>
+              </div>
+              <div class="card-impact__item">
+                <span class="card-impact__num">2.4x</span>
+                <span class="card-impact__label">Conversions</span>
+              </div>
             </div>
             <div class="work-card__footer">
-              <span class="work-card__cta">View Case Study <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg></span>
+              <span class="work-card__cta">
+                View Case Study
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                     stroke-width="2" stroke="currentColor" aria-hidden="true">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
+                </svg>
+              </span>
             </div>
           </article>
 
-          <!-- 3 — Full-Funnel Lead System -->
-          <article class="work-card"
-            data-category="marketing"
-            data-title="Full-Funnel Lead System"
-            data-tag="Lead Gen · Automation"
-            data-summary="Designed and built a complete lead generation and nurture system from the ground up — from top-of-funnel awareness to booked appointments. Every stage tracked, every drop-off identified and fixed."
-            data-challenge="Leads were coming in but going nowhere. No consistent nurture process, no lead scoring, no visibility into where the funnel was leaking."
-            data-strategy="Full customer journey mapping, automated email sequences for each funnel stage, lead scoring implementation, CRM integration for full pipeline visibility, and stage-specific content for TOFU, MOFU, and BOFU."
-            data-result1="3,400+" data-label1="Total Leads"
-            data-result2="38%"    data-label2="Lead-to-Appt Rate"
-            data-result3="4.5yr"  data-label3="Sustained ROI"
-            tabindex="0" role="button" aria-label="Open Full-Funnel Lead System case study">
-            <div class="work-card__thumb" style="background:linear-gradient(135deg,#1A2D1F 0%,#0F1923 100%);">
-              <div class="work-card__thumb-placeholder">Funnel</div>
+          <!-- ══ CARD 3 — Marketing ══ -->
+          <article class="work-card reveal"
+                   data-category="marketing"
+                   data-title="Full-Funnel Lead Generation System"
+                   data-tag="Lead Gen · Automation"
+                   data-summary="Designed and built a complete lead generation and nurture system from the ground up — from top-of-funnel awareness to booked appointments. Every stage tracked, every drop-off identified and fixed."
+                   data-challenge="Leads were coming in but going nowhere. No consistent nurture process, no lead scoring, no visibility into where the funnel was leaking. A lot of revenue was being left on the table between first contact and booked job."
+                   data-strategy="Full customer journey mapping, automated email sequences for each funnel stage, lead scoring implementation, CRM integration for full pipeline visibility, and stage-specific content created for TOFU, MOFU, and BOFU. Results tracked against baseline from day one."
+                   data-result1="3,400+" data-label1="Total Leads"
+                   data-result2="38%" data-label2="Lead-to-Appt Rate"
+                   data-result3="4.5yr" data-label3="Sustained ROI"
+                   tabindex="0" role="button"
+                   aria-label="Open Full-Funnel Lead Generation System case study">
+            <div class="work-card__thumb thumb--marketing">
+              <div class="thumb-viz" aria-hidden="true">
+                <div class="thumb-bar" style="height:30%"></div>
+                <div class="thumb-bar" style="height:55%"></div>
+                <div class="thumb-bar" style="height:75%"></div>
+                <div class="thumb-bar" style="height:90%"></div>
+                <div class="thumb-bar" style="height:98%;opacity:.35"></div>
+                <div class="thumb-bar" style="height:80%"></div>
+              </div>
               <span class="work-card__tag">Marketing</span>
             </div>
             <div class="work-card__body">
               <div class="work-card__meta">
-                <span class="work-card__channel">Email · CRM · Automation</span>
+                <span class="work-card__channel">Email · CRM · Automation · Strategy</span>
                 <span class="work-card__stat">3,400+ Leads</span>
               </div>
               <h2 class="work-card__title">Full-Funnel Lead System</h2>
-              <p class="work-card__desc">A complete lead pipeline built and maintained over 4.5 years. From awareness to appointment. Thousands of leads, consistent ROI, zero guesswork.</p>
+              <p class="work-card__desc">
+                A complete lead pipeline built and maintained over 4.5 years —
+                from awareness to appointment. Thousands of leads. Consistent ROI.
+                Zero guesswork.
+              </p>
+            </div>
+            <div class="card-impact">
+              <div class="card-impact__item">
+                <span class="card-impact__num">3.4K+</span>
+                <span class="card-impact__label">Leads</span>
+              </div>
+              <div class="card-impact__item">
+                <span class="card-impact__num">38%</span>
+                <span class="card-impact__label">Lead→Appt</span>
+              </div>
+              <div class="card-impact__item">
+                <span class="card-impact__num">4.5yr</span>
+                <span class="card-impact__label">ROI Sustained</span>
+              </div>
             </div>
             <div class="work-card__footer">
-              <span class="work-card__cta">View Case Study <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg></span>
+              <span class="work-card__cta">
+                View Case Study
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                     stroke-width="2" stroke="currentColor" aria-hidden="true">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
+                </svg>
+              </span>
             </div>
           </article>
 
-          <!-- 4 — Local SEO Overhaul -->
-          <article class="work-card"
-            data-category="seo"
-            data-title="Local SEO Overhaul"
-            data-tag="SEO · Content"
-            data-summary="End-to-end local SEO project — technical audit, on-page optimization, Google Business Profile overhaul, and a structured content strategy targeting high-intent local keywords."
-            data-challenge="Zero organic visibility for core service keywords. No structured data, missing meta information, thin content on service pages, and an unclaimed/unoptimized Google Business Profile."
-            data-strategy="Technical SEO audit and cleanup, schema markup implementation across all service pages, GBP optimization with consistent NAP, keyword-targeted service page rewrites, and a local citation building campaign."
-            data-result1="#1"   data-label1="Local Pack Ranking"
-            data-result2="218%" data-label2="Organic Traffic Lift"
-            data-result3="4.8★" data-label3="GBP Rating"
-            tabindex="0" role="button" aria-label="Open Local SEO Overhaul case study">
-            <div class="work-card__thumb" style="background:linear-gradient(135deg,#1D1A2D 0%,#0F1923 100%);">
-              <div class="work-card__thumb-placeholder">SEO</div>
-              <span class="work-card__tag">SEO</span>
+          <!-- ══ CARD 4 — Marketing ══ -->
+          <article class="work-card reveal reveal-delay-1"
+                   data-category="marketing"
+                   data-title="Local SEO Domination"
+                   data-tag="SEO · Local Search"
+                   data-summary="Took a company with minimal online presence and built it into the top local search result for its highest-value service terms. Organic traffic became a reliable, cost-free lead source alongside paid campaigns."
+                   data-challenge="The company was invisible in local search. Competitors were ranking for every relevant term. Google Business Profile was incomplete. The site had zero structured data, thin service pages, and no local citation strategy."
+                   data-strategy="Complete GBP optimization with consistent photo uploads and review response strategy, service page rewrites with local keyword targeting, structured data markup (LocalBusiness schema), citation building across 40+ directories, and a content strategy targeting high-intent local queries."
+                   data-result1="↑186%" data-label1="Organic Traffic"
+                   data-result2="#1" data-label2="Local Pack Ranking"
+                   data-result3="420+" data-label3="GBP Reviews"
+                   tabindex="0" role="button"
+                   aria-label="Open Local SEO case study">
+            <div class="work-card__thumb thumb--marketing">
+              <div class="thumb-viz" aria-hidden="true">
+                <div class="thumb-bar" style="height:20%"></div>
+                <div class="thumb-bar" style="height:35%"></div>
+                <div class="thumb-bar" style="height:50%"></div>
+                <div class="thumb-bar" style="height:68%"></div>
+                <div class="thumb-bar" style="height:82%"></div>
+                <div class="thumb-bar" style="height:97%;opacity:.35"></div>
+              </div>
+              <span class="work-card__tag">Marketing</span>
             </div>
             <div class="work-card__body">
               <div class="work-card__meta">
-                <span class="work-card__channel">On-Page · GBP · Schema</span>
-                <span class="work-card__stat">#1 Local Pack</span>
+                <span class="work-card__channel">SEO · GBP · Local Search · Schema</span>
+                <span class="work-card__stat">↑ 186% Organic</span>
               </div>
-              <h2 class="work-card__title">Local SEO Overhaul</h2>
-              <p class="work-card__desc">Technical audit, content rewrite, schema markup, and GBP optimization. Went from invisible to ranking #1 in the local pack for target keywords.</p>
+              <h2 class="work-card__title">Local SEO — #1 Ranking</h2>
+              <p class="work-card__desc">
+                Turned a near-invisible local presence into the top-ranking result
+                for the company's most valuable search terms. Organic leads now
+                run parallel to paid — for free.
+              </p>
+            </div>
+            <div class="card-impact">
+              <div class="card-impact__item">
+                <span class="card-impact__num">186%</span>
+                <span class="card-impact__label">Organic Growth</span>
+              </div>
+              <div class="card-impact__item">
+                <span class="card-impact__num">#1</span>
+                <span class="card-impact__label">Local Pack</span>
+              </div>
+              <div class="card-impact__item">
+                <span class="card-impact__num">420+</span>
+                <span class="card-impact__label">Reviews</span>
+              </div>
             </div>
             <div class="work-card__footer">
-              <span class="work-card__cta">View Case Study <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg></span>
+              <span class="work-card__cta">
+                View Case Study
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                     stroke-width="2" stroke="currentColor" aria-hidden="true">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
+                </svg>
+              </span>
             </div>
           </article>
 
-          <!-- 5 — Landing Page CRO Sprint -->
-          <article class="work-card"
-            data-category="webdesign"
-            data-title="Landing Page CRO Sprint"
-            data-tag="CRO · Web Design"
-            data-summary="A focused 2-week CRO sprint on the primary paid traffic landing page. Heatmap analysis, A/B testing, copy rewrite, and structural redesign. Conversion rate more than doubled."
-            data-challenge="Paid search traffic was healthy but the landing page was bleeding leads. High bounce rate, weak headline, no clear CTA hierarchy, and form placement buried below the fold."
-            data-strategy="Hotjar heatmap and session recording analysis, user flow audit in GA4, above-fold redesign with PAS copywriting framework, CTA repositioning, social proof addition, and form simplification from 7 fields to 3."
-            data-result1="2.1x" data-label1="Conversion Lift"
-            data-result2="34%"  data-label2="Bounce Rate Drop"
-            data-result3="$28"  data-label3="CPL Reduction"
-            tabindex="0" role="button" aria-label="Open Landing Page CRO Sprint case study">
-            <div class="work-card__thumb" style="background:linear-gradient(135deg,#2D1A1A 0%,#1A1520 100%);">
-              <div class="work-card__thumb-placeholder">CRO</div>
+          <!-- ══ CARD 5 — Web Design Featured ══ -->
+          <article class="work-card work-card--featured reveal"
+                   data-category="webdesign"
+                   data-title="High-Converting Landing Page System"
+                   data-tag="Landing Pages · CRO"
+                   data-summary="Designed and built a suite of dedicated landing pages for specific paid search campaigns — each one tailored to the ad group's intent, with conversion-optimized layout, trust signals, and tracked CTAs."
+                   data-challenge="Campaign traffic was landing on the main website — a page designed for everyone, which means it was really designed for no one. Bounce rates from paid traffic were high, and the conversion rate didn't reflect the quality of the campaigns driving it."
+                   data-strategy="Built a dedicated landing page for each major campaign theme. Each page matched the ad's message, had a single conversion goal, built trust through reviews and credentials above the fold, and eliminated all navigation to reduce exit paths. A/B tested headline and CTA variants."
+                   data-result1="3.8x" data-label1="Conversion Rate Lift"
+                   data-result2="62%" data-label2="Bounce Rate Drop"
+                   data-result3="$41" data-label3="Avg CPL Achieved"
+                   tabindex="0" role="button"
+                   aria-label="Open High-Converting Landing Page System case study">
+            <div class="work-card__thumb thumb--webdesign">
+              <div class="thumb-code" aria-hidden="true">
+                /* Landing page — no nav, one goal */<br><br>
+                .hero &#123; text-align: center; &#125;<br>
+                .cta  &#123; position: sticky; &#125;<br>
+                .trust &#123; display: grid; &#125;<br><br>
+                &lt;!-- A/B variant B --&gt;<br>
+                &lt;h1&gt;Stop paying for clicks<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;that don't convert.&lt;/h1&gt;
+              </div>
               <span class="work-card__tag">Web Design</span>
             </div>
             <div class="work-card__body">
               <div class="work-card__meta">
-                <span class="work-card__channel">Hotjar · GA4 · A/B Test</span>
-                <span class="work-card__stat">2.1x CVR Lift</span>
+                <span class="work-card__channel">HTML · CSS · GTM · A/B Testing</span>
+                <span class="work-card__stat">3.8x Conversions</span>
               </div>
-              <h2 class="work-card__title">Landing Page CRO Sprint</h2>
-              <p class="work-card__desc">Two weeks of focused optimization — heatmaps, copy rewrite, structural redesign. Conversion rate doubled. Cost per lead dropped $28.</p>
+              <h2 class="work-card__title">Landing Page System</h2>
+              <p class="work-card__desc">
+                A suite of campaign-specific landing pages, each built around
+                one intent and one conversion goal. Designed, coded, and tested
+                until the numbers moved.
+              </p>
+            </div>
+            <div class="card-impact">
+              <div class="card-impact__item">
+                <span class="card-impact__num">3.8x</span>
+                <span class="card-impact__label">Conv. Rate</span>
+              </div>
+              <div class="card-impact__item">
+                <span class="card-impact__num">62%</span>
+                <span class="card-impact__label">Bounce Drop</span>
+              </div>
+              <div class="card-impact__item">
+                <span class="card-impact__num">$41</span>
+                <span class="card-impact__label">Avg CPL</span>
+              </div>
             </div>
             <div class="work-card__footer">
-              <span class="work-card__cta">View Case Study <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg></span>
+              <span class="work-card__cta">
+                View Case Study
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                     stroke-width="2" stroke="currentColor" aria-hidden="true">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
+                </svg>
+              </span>
             </div>
           </article>
 
-          <!-- 6 — Email Nurture Sequence -->
-          <article class="work-card"
-            data-category="marketing"
-            data-title="Email Nurture Sequence"
-            data-tag="Email · Automation"
-            data-summary="Built a 7-email automated nurture sequence for cold and warm leads who didn't convert on first contact. Personalized by lead source and behavior, with a measurable impact on booked appointments."
-            data-challenge="Leads who didn't convert immediately were being ignored. No follow-up system, no segmentation, and a list of thousands of contacts receiving zero communication after initial contact."
-            data-strategy="Lead source segmentation, 7-touch email sequence built with a problem-aware → solution-aware → decision framework, behavioral triggers for open/click actions, and A/B testing on subject lines and CTAs."
-            data-result1="42%"  data-label1="Avg Open Rate"
-            data-result2="18%"  data-label2="Click-Through Rate"
-            data-result3="290"  data-label3="Re-Engaged Leads"
-            tabindex="0" role="button" aria-label="Open Email Nurture Sequence case study">
-            <div class="work-card__thumb" style="background:linear-gradient(135deg,#1A2620 0%,#111B25 100%);">
-              <div class="work-card__thumb-placeholder">Email</div>
+          <!-- ══ CARD 6 — Marketing ══ -->
+          <article class="work-card reveal reveal-delay-2"
+                   data-category="marketing"
+                   data-title="GA4 + GTM Analytics Overhaul"
+                   data-tag="Analytics · Tracking"
+                   data-summary="Migrated from Universal Analytics to GA4, rebuilt the entire GTM container from scratch, and implemented a comprehensive event tracking strategy that gave full visibility into the customer journey for the first time."
+                   data-challenge="The business was running on Universal Analytics with broken event tracking and no meaningful conversion data. The migration to GA4 was overdue, and the existing GTM setup was a patchwork of outdated tags that fired inconsistently."
+                   data-strategy="Full GA4 property configuration from scratch — custom event taxonomy, conversion event mapping, audience definitions for remarketing, and a GTM rebuild with clean trigger logic, dataLayer pushes for form submissions and phone calls, and a custom dashboard for weekly reporting."
+                   data-result1="100%" data-label1="Conversion Visibility"
+                   data-result2="12" data-label2="Custom Events Tracked"
+                   data-result3="0" data-label3="Data Gaps Remaining"
+                   tabindex="0" role="button"
+                   aria-label="Open GA4 Analytics Overhaul case study">
+            <div class="work-card__thumb thumb--marketing">
+              <div class="thumb-viz" aria-hidden="true">
+                <div class="thumb-bar" style="height:88%"></div>
+                <div class="thumb-bar" style="height:60%"></div>
+                <div class="thumb-bar" style="height:75%"></div>
+                <div class="thumb-bar" style="height:45%"></div>
+                <div class="thumb-bar" style="height:92%;opacity:.35"></div>
+                <div class="thumb-bar" style="height:55%"></div>
+              </div>
               <span class="work-card__tag">Marketing</span>
             </div>
             <div class="work-card__body">
               <div class="work-card__meta">
-                <span class="work-card__channel">Email · Segmentation · A/B</span>
-                <span class="work-card__stat">42% Open Rate</span>
+                <span class="work-card__channel">GA4 · GTM · DataLayer · Reporting</span>
+                <span class="work-card__stat">Full Visibility</span>
               </div>
-              <h2 class="work-card__title">Email Nurture Sequence</h2>
-              <p class="work-card__desc">7-email automated sequence for cold leads. Segmented by source, personalized by behavior. Re-engaged 290 leads and drove a measurable lift in booked appointments.</p>
+              <h2 class="work-card__title">GA4 + GTM Analytics Overhaul</h2>
+              <p class="work-card__desc">
+                Migrated to GA4, rebuilt GTM from scratch, and implemented
+                12 custom conversion events. Went from flying blind to full
+                funnel visibility across every channel.
+              </p>
+            </div>
+            <div class="card-impact">
+              <div class="card-impact__item">
+                <span class="card-impact__num">12</span>
+                <span class="card-impact__label">Events</span>
+              </div>
+              <div class="card-impact__item">
+                <span class="card-impact__num">100%</span>
+                <span class="card-impact__label">Conv. Data</span>
+              </div>
+              <div class="card-impact__item">
+                <span class="card-impact__num">0</span>
+                <span class="card-impact__label">Data Gaps</span>
+              </div>
             </div>
             <div class="work-card__footer">
-              <span class="work-card__cta">View Case Study <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg></span>
+              <span class="work-card__cta">
+                View Case Study
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                     stroke-width="2" stroke="currentColor" aria-hidden="true">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
+                </svg>
+              </span>
             </div>
           </article>
 
-        </div>
-
-        <!-- Empty state -->
-        <div class="empty-state" id="empty-state" aria-live="polite">
-          <div class="empty-state__icon">🔍</div>
-          <div class="empty-state__title">No projects in this category yet.</div>
-          <p class="empty-state__desc">More case studies are in progress. Check back soon — or view all work.</p>
-          <button class="btn btn--ghost filter-btn" data-filter="all">View All Work</button>
-        </div>
-
-        <!-- ══════════════════════════════════
-             PROOF BAND
-        ══════════════════════════════════ -->
-        <div class="proof-band reveal">
-          <div class="proof-item">
-            <span class="proof-item__number">4.5</span>
-            <span class="proof-item__label">Years of sustained<br>results at one company</span>
-          </div>
-          <div class="proof-item">
-            <span class="proof-item__number">$380K+</span>
-            <span class="proof-item__label">Ad spend managed<br>with measurable ROI</span>
-          </div>
-          <div class="proof-item">
-            <span class="proof-item__number">100%</span>
-            <span class="proof-item__label">In-house — no agency,<br>no hand-offs, no gaps</span>
-          </div>
-        </div>
-
-        <!-- ══════════════════════════════════
-             HOW I WORK
-        ══════════════════════════════════ -->
-        <div class="process-section">
-          <div class="reveal">
-            <span class="label">The Process</span>
-            <h2 class="display-md" style="margin-top:var(--space-4);max-width:560px;">
-              How every project<br>gets done right.
-            </h2>
+          <!-- Empty state -->
+          <div class="empty-state" id="empty-state" aria-live="polite">
+            <p class="body-lg" style="color: var(--text-muted);">
+              No projects in this category yet.
+            </p>
           </div>
 
-          <div class="process-grid">
-            <div class="process-step reveal">
-              <div class="process-step__num">Step 01</div>
-              <div class="process-step__icon" aria-hidden="true">
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.8" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z"/></svg>
-              </div>
-              <div class="process-step__title">Audit &amp; Diagnose</div>
-              <p class="process-step__desc">Before touching anything, I audit what exists — campaigns, site performance, tracking setup, and competitive landscape. Problems identified before solutions proposed.</p>
-            </div>
-
-            <div class="process-step reveal reveal-delay-1">
-              <div class="process-step__num">Step 02</div>
-              <div class="process-step__icon" aria-hidden="true">
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.8" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12h3.75M9 15h3.75M9 18h3.75m3 .75H18a2.25 2.25 0 0 0 2.25-2.25V6.108c0-1.135-.845-2.098-1.976-2.192a48.424 48.424 0 0 0-1.123-.08m-5.801 0c-.065.21-.1.433-.1.664 0 .414.336.75.75.75h4.5a.75.75 0 0 0 .75-.75 2.25 2.25 0 0 0-.1-.664m-5.8 0A2.251 2.251 0 0 1 13.5 2.25H15c1.012 0 1.867.668 2.15 1.586m-5.8 0c-.376.023-.75.05-1.124.08C9.095 4.01 8.25 4.973 8.25 6.108V8.25m0 0H4.875c-.621 0-1.125.504-1.125 1.125v11.25c0 .621.504 1.125 1.125 1.125h9.75c.621 0 1.125-.504 1.125-1.125V9.375c0-.621-.504-1.125-1.125-1.125H8.25ZM6.75 12h.008v.008H6.75V12Zm0 3h.008v.008H6.75V15Zm0 3h.008v.008H6.75V18Z"/></svg>
-              </div>
-              <div class="process-step__title">Strategy &amp; Plan</div>
-              <p class="process-step__desc">A clear plan with defined KPIs, realistic timelines, and a full-funnel view. Every tactic connects back to a measurable business outcome — no activity for activity's sake.</p>
-            </div>
-
-            <div class="process-step reveal reveal-delay-2">
-              <div class="process-step__num">Step 03</div>
-              <div class="process-step__icon" aria-hidden="true">
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.8" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M11.42 15.17 17.25 21A2.652 2.652 0 0 0 21 17.25l-5.877-5.877M11.42 15.17l2.496-3.03c.317-.384.74-.626 1.208-.766M11.42 15.17l-4.655 5.653a2.548 2.548 0 1 1-3.586-3.586l5.654-4.654m5.65-4.65 1.05-1.05a2.535 2.535 0 1 1 3.585 3.585l-1.05 1.05"/></svg>
-              </div>
-              <div class="process-step__title">Build &amp; Launch</div>
-              <p class="process-step__desc">Campaigns configured, pages built, tracking verified. I don't hand off to a developer or wait for approvals — I build and ship, then measure from day one.</p>
-            </div>
-
-            <div class="process-step reveal reveal-delay-3">
-              <div class="process-step__num">Step 04</div>
-              <div class="process-step__icon" aria-hidden="true">
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.8" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M16.023 9.348h4.992v-.001M2.985 19.644v-4.992m0 0h4.992m-4.993 0 3.181 3.183a8.25 8.25 0 0 0 13.803-3.7M4.031 9.865a8.25 8.25 0 0 1 13.803-3.7l3.181 3.182m0-4.991v4.99"/></svg>
-              </div>
-              <div class="process-step__title">Measure &amp; Improve</div>
-              <p class="process-step__desc">Everything gets reviewed weekly. What's working gets scaled, what isn't gets cut or tested differently. The work isn't done at launch — it's done when the numbers say so.</p>
-            </div>
-          </div>
-        </div>
-
-        <!-- ══════════════════════════════════
-             CTA BAND
-        ══════════════════════════════════ -->
-        <div class="work-cta reveal">
-          <span class="label" style="color:rgba(242,165,59,0.70);">Next Step</span>
-          <h2 class="work-cta__title">Want results like these<br>on your team?</h2>
-          <p class="work-cta__body">
-            I'm actively looking for a full-time role or the right freelance project.
-            Tell me what you're working on and I'll tell you exactly how I'd approach it.
-          </p>
-          <div style="display:flex;gap:var(--space-4);justify-content:center;flex-wrap:wrap;">
-            <a href="contact.html" class="btn btn--primary">
-              Get in Touch
-              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
-            </a>
-            <a href="about.html" class="btn btn--ghost-light">
-              More About Me
-              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
-            </a>
-          </div>
-        </div>
-
+        </div><!-- /work-grid -->
       </div>
-    </div>
+    </section>
+
+    <!-- ════════════════════════════════════════════
+         CTA BAND
+    ════════════════════════════════════════════ -->
+    <section class="work-cta" aria-label="Call to action">
+      <div class="container">
+        <span class="label reveal" style="color: rgba(200,208,213,0.55);">
+          What's Next
+        </span>
+        <h2 class="display-lg reveal"
+            style="color: #EAE8E4; margin-top: var(--space-4); margin-bottom: var(--space-6);">
+          Your project<br>
+          <span style="color: var(--accent);">could be next.</span>
+        </h2>
+        <p class="reveal reveal-delay-1"
+           style="color: rgba(200,208,213,0.65); max-width: 460px;
+                  margin-inline: auto; margin-bottom: var(--space-10);
+                  font-size: var(--text-md); line-height: 1.7;">
+          Full-time role or freelance project — I'm open to both
+          and quick to respond.
+        </p>
+        <div style="display:flex; gap:var(--space-4); justify-content:center;
+                    flex-wrap:wrap;" class="reveal reveal-delay-2">
+          <a href="contact.html" class="btn btn--primary">
+            Let's Talk
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                 stroke-width="2" stroke="currentColor" aria-hidden="true">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
+            </svg>
+          </a>
+          <a href="about.html" class="btn btn--ghost-light">
+            About Me
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                 stroke-width="2" stroke="currentColor" aria-hidden="true">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
+            </svg>
+          </a>
+        </div>
+      </div>
+    </section>
+
   </main>
 
-  <!-- FOOTER -->
+  <!-- ════════════════════════════════════════════
+       FOOTER
+  ════════════════════════════════════════════ -->
   <footer class="site-footer" role="contentinfo">
     <div class="container">
       <div class="footer-inner">
         <div>
           <div class="footer-logo">
-            <img src="logo.jpg" alt="TJ Marek logo" class="footer-logo__mark" />
+            <img src="assets/logo.png" alt="TJ Marek logo" class="footer-logo__mark" />
             <span class="footer-logo__name">TJ Marek</span>
           </div>
           <p class="footer-tagline">Full-Funnel Digital Marketer &amp; Web Designer · Austin, TX</p>
@@ -626,7 +812,9 @@
     </div>
   </footer>
 
-  <!-- STICKY CONTACT BAR -->
+  <!-- ════════════════════════════════════════════
+       STICKY CONTACT BAR
+  ════════════════════════════════════════════ -->
   <aside class="contact-bar" role="complementary" aria-label="Quick contact">
     <div class="contact-bar__status">
       <span class="status-dot" aria-hidden="true"></span>
@@ -634,35 +822,57 @@
     </div>
     <div class="contact-bar__links">
       <a href="mailto:tj@tjmarek.me" class="contact-bar__link" aria-label="Email TJ Marek">
-        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.8" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 0 1-2.25 2.25h-15a2.25 2.25 0 0 1-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0 0 19.5 4.5h-15a2.25 2.25 0 0 0-2.25 2.25m19.5 0v.243a2.25 2.25 0 0 1-1.07 1.916l-7.5 4.615a2.25 2.25 0 0 1-2.36 0L3.32 8.91a2.25 2.25 0 0 1-1.07-1.916V6.75"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+             stroke-width="1.8" stroke="currentColor" aria-hidden="true">
+          <path stroke-linecap="round" stroke-linejoin="round"
+            d="M21.75 6.75v10.5a2.25 2.25 0 0 1-2.25 2.25h-15a2.25 2.25 0 0 1-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0 0 19.5 4.5h-15a2.25 2.25 0 0 0-2.25 2.25m19.5 0v.243a2.25 2.25 0 0 1-1.07 1.916l-7.5 4.615a2.25 2.25 0 0 1-2.36 0L3.32 8.91a2.25 2.25 0 0 1-1.07-1.916V6.75"/>
+        </svg>
         <span class="contact-bar__link-text">tj@tjmarek.me</span>
       </a>
       <span class="contact-bar__sep" aria-hidden="true"></span>
-      <a href="https://linkedin.com/in/tjmarek" target="_blank" rel="noopener noreferrer" class="contact-bar__link" aria-label="LinkedIn">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+      <a href="https://linkedin.com/in/tjmarek" target="_blank" rel="noopener noreferrer"
+         class="contact-bar__link" aria-label="LinkedIn">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+          <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+        </svg>
         <span class="contact-bar__link-text">LinkedIn</span>
       </a>
       <span class="contact-bar__sep" aria-hidden="true"></span>
       <a href="TJ-Marek-CV.pdf" download class="contact-bar__link" aria-label="Download CV">
-        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.8" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M3 16.5v2.25A2.25 2.25 0 0 0 5.25 21h13.5A2.25 2.25 0 0 0 21 18.75V16.5M16.5 12 12 16.5m0 0L7.5 12m4.5 4.5V3"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+             stroke-width="1.8" stroke="currentColor" aria-hidden="true">
+          <path stroke-linecap="round" stroke-linejoin="round"
+            d="M3 16.5v2.25A2.25 2.25 0 0 0 5.25 21h13.5A2.25 2.25 0 0 0 21 18.75V16.5M16.5 12 12 16.5m0 0L7.5 12m4.5 4.5V3"/>
+        </svg>
         <span class="contact-bar__link-text">Download CV</span>
       </a>
     </div>
   </aside>
 
-  <!-- CASE STUDY OVERLAY -->
-  <div class="overlay" id="case-study-overlay" role="dialog" aria-modal="true" aria-hidden="true" aria-label="Case study details">
+  <!-- ════════════════════════════════════════════
+       CASE STUDY OVERLAY
+  ════════════════════════════════════════════ -->
+  <div class="overlay" id="case-study-overlay" role="dialog" aria-modal="true"
+       aria-labelledby="overlay-title" aria-hidden="true">
     <div class="overlay__panel">
       <button class="overlay__close" id="overlay-close" aria-label="Close case study">
-        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18 18 6M6 6l12 12"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+             stroke-width="2" stroke="currentColor" aria-hidden="true">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M6 18 18 6M6 6l12 12"/>
+        </svg>
       </button>
-      <span class="label overlay__tag" id="overlay-tag"></span>
+      <div class="overlay__tag">
+        <span class="label" id="overlay-tag">Case Study</span>
+      </div>
       <h2 class="display-sm overlay__title" id="overlay-title"></h2>
-      <p class="overlay__summary" id="overlay-summary"></p>
+      <p class="overlay__summary"    id="overlay-summary"></p>
       <p class="overlay__section-title">The Challenge</p>
-      <p style="font-size:var(--text-base);color:var(--text-muted);line-height:1.75;margin-bottom:var(--space-4);" id="overlay-challenge"></p>
+      <p class="body-base" id="overlay-challenge"
+         style="color:var(--text-muted);line-height:1.75;"></p>
       <p class="overlay__section-title">The Strategy</p>
-      <p style="font-size:var(--text-base);color:var(--text-muted);line-height:1.75;" id="overlay-strategy"></p>
+      <p class="body-base" id="overlay-strategy"
+         style="color:var(--text-muted);line-height:1.75;"></p>
+      <p class="overlay__section-title">The Results</p>
       <div class="overlay__results">
         <div class="overlay__result-item">
           <span class="overlay__result-number" id="overlay-r1"></span>
@@ -682,7 +892,218 @@
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" defer></script>
-  <script src="main.js" defer></script>
+
+  <script>
+  (() => {
+    'use strict';
+    const $ = (s, c = document) => c.querySelector(s);
+    const $$ = (s, c = document) => [...c.querySelectorAll(s)];
+
+    /* ── Theme ── */
+    const html  = document.documentElement;
+    const saved = localStorage.getItem('tj-theme') || 'light';
+    html.setAttribute('data-theme', saved);
+    $('#theme-toggle')?.addEventListener('click', () => {
+      const next = html.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+      html.setAttribute('data-theme', next);
+      localStorage.setItem('tj-theme', next);
+    });
+
+    /* ── Scroll progress ── */
+    const pb = $('#scroll-progress');
+    window.addEventListener('scroll', () => {
+      if (pb) pb.style.width =
+        (window.scrollY / (document.body.scrollHeight - window.innerHeight) * 100) + '%';
+    }, { passive: true });
+
+    /* ── Sticky header ── */
+    window.addEventListener('scroll', () => {
+      $('#site-header')?.classList.toggle('scrolled', window.scrollY > 60);
+    }, { passive: true });
+
+    /* ── Mobile menu ── */
+    const menuBtn   = $('#menu-toggle');
+    const mobileNav = $('#mobile-nav');
+    menuBtn?.addEventListener('click', () => {
+      const open = mobileNav.classList.toggle('open');
+      menuBtn.classList.toggle('open', open);
+      menuBtn.setAttribute('aria-expanded', open);
+      document.body.style.overflow = open ? 'hidden' : '';
+    });
+
+    /* ── Scroll reveal ── */
+    const revObs = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) { e.target.classList.add('in-view'); revObs.unobserve(e.target); }
+      });
+    }, { threshold: 0.10 });
+    $$('.reveal').forEach(el => revObs.observe(el));
+
+    /* ── Hero letter split ── */
+    $$('.split-hover').forEach(el => {
+      setTimeout(() => {
+        el.querySelectorAll(':not(span)');
+        const nodes = [...el.childNodes];
+        nodes.forEach(node => {
+          if (node.nodeType === Node.TEXT_NODE && node.textContent.trim()) {
+            const wrap = document.createElement('span');
+            wrap.innerHTML = node.textContent.split('').map(ch =>
+              ch === ' '
+                ? '<span class="char" style="display:inline-block;width:.28em">&nbsp;</span>'
+                : `<span class="char">${ch}</span>`
+            ).join('');
+            node.replaceWith(wrap);
+          }
+        });
+      }, 400);
+    });
+
+    /* ── Magnetic nav ── */
+    $$('.mag-wrap').forEach(wrap => {
+      const link = wrap.querySelector('.nav-link');
+      if (!link) return;
+      wrap.addEventListener('mousemove', e => {
+        const r = wrap.getBoundingClientRect();
+        link.style.transform = `translate(${(e.clientX - r.left - r.width/2) * .28}px,${(e.clientY - r.top - r.height/2) * .28}px)`;
+      });
+      wrap.addEventListener('mouseleave', () => {
+        link.style.transition = 'transform 0.4s cubic-bezier(0.22,1,0.36,1)';
+        link.style.transform  = '';
+        setTimeout(() => link.style.transition = '', 400);
+      });
+    });
+
+    /* ══════════════════════════════════════════
+       FILTER SYSTEM
+    ══════════════════════════════════════════ */
+    const filterBtns  = $$('.filter-btn');
+    const cards       = $$('.work-card[data-category]');
+    const countEl     = $('#visible-count');
+    const emptyState  = $('#empty-state');
+    let   activeFilter = 'all';
+
+    // Read URL param on load (from homepage "See Marketing Work" link)
+    const urlParams = new URLSearchParams(window.location.search);
+    const initFilter = urlParams.get('filter');
+    if (initFilter) {
+      activeFilter = initFilter;
+      filterBtns.forEach(b => {
+        const isActive = b.dataset.filter === initFilter;
+        b.classList.toggle('active', isActive);
+        b.setAttribute('aria-pressed', isActive);
+      });
+    }
+
+    const applyFilter = (filter) => {
+      let visible = 0;
+      cards.forEach(card => {
+        const match = filter === 'all' || card.dataset.category === filter;
+        if (match) {
+          card.classList.remove('hidden');
+          card.classList.add('filtering-in');
+          card.addEventListener('animationend', () =>
+            card.classList.remove('filtering-in'), { once: true });
+          visible++;
+        } else {
+          card.classList.add('filtering-out');
+          card.addEventListener('animationend', () => {
+            card.classList.remove('filtering-out');
+            card.classList.add('hidden');
+          }, { once: true });
+        }
+      });
+      if (countEl) countEl.textContent = visible;
+      emptyState?.classList.toggle('show', visible === 0);
+    };
+
+    // Init filter
+    if (activeFilter !== 'all') applyFilter(activeFilter);
+
+    filterBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        const filter = btn.dataset.filter;
+        if (filter === activeFilter) return;
+        activeFilter = filter;
+        filterBtns.forEach(b => {
+          b.classList.toggle('active', b === btn);
+          b.setAttribute('aria-pressed', b === btn);
+        });
+        applyFilter(filter);
+      });
+    });
+
+    /* ══════════════════════════════════════════
+       CASE STUDY OVERLAY
+    ══════════════════════════════════════════ */
+    const overlay      = $('#case-study-overlay');
+    const overlayClose = $('#overlay-close');
+
+    const openOverlay = (card) => {
+      if (!overlay) return;
+      $('#overlay-tag').textContent      = card.dataset.tag      || 'Case Study';
+      $('#overlay-title').textContent    = card.dataset.title    || '';
+      $('#overlay-summary').textContent  = card.dataset.summary  || '';
+      $('#overlay-challenge').textContent = card.dataset.challenge || '';
+      $('#overlay-strategy').textContent  = card.dataset.strategy  || '';
+      $('#overlay-r1').textContent = card.dataset.result1 || '';
+      $('#overlay-l1').textContent = card.dataset.label1  || '';
+      $('#overlay-r2').textContent = card.dataset.result2 || '';
+      $('#overlay-l2').textContent = card.dataset.label2  || '';
+      $('#overlay-r3').textContent = card.dataset.result3 || '';
+      $('#overlay-l3').textContent = card.dataset.label3  || '';
+
+      overlay.classList.add('open');
+      overlay.setAttribute('aria-hidden', 'false');
+      document.body.style.overflow = 'hidden';
+      setTimeout(() => overlayClose?.focus(), 100);
+    };
+
+    const closeOverlay = () => {
+      overlay?.classList.remove('open');
+      overlay?.setAttribute('aria-hidden', 'true');
+      document.body.style.overflow = '';
+    };
+
+    cards.forEach(card => {
+      card.addEventListener('click', () => openOverlay(card));
+      card.addEventListener('keydown', e => {
+        if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); openOverlay(card); }
+      });
+    });
+
+    overlayClose?.addEventListener('click', closeOverlay);
+    overlay?.addEventListener('click', e => { if (e.target === overlay) closeOverlay(); });
+    document.addEventListener('keydown', e => { if (e.key === 'Escape') closeOverlay(); });
+
+    /* ── Page transition ── */
+    const pt = $('#page-transition');
+    if (pt) {
+      pt.style.transform = 'scaleY(1)';
+      pt.style.transformOrigin = 'top';
+      requestAnimationFrame(() => requestAnimationFrame(() => {
+        pt.style.transition = 'transform 0.5s cubic-bezier(0.22,1,0.36,1)';
+        pt.style.transform  = 'scaleY(0)';
+      }));
+    }
+    $$('a[href]').filter(a => {
+      const h = a.getAttribute('href');
+      return h && !h.startsWith('http') && !h.startsWith('mailto')
+             && !h.startsWith('#') && !a.hasAttribute('download') && !h.startsWith('tel');
+    }).forEach(link => {
+      link.addEventListener('click', e => {
+        const href = link.getAttribute('href');
+        if (!href || href === window.location.pathname.split('/').pop()) return;
+        e.preventDefault();
+        if (!pt) { window.location = href; return; }
+        pt.style.transition = 'transform 0.4s cubic-bezier(0.65,0,0.35,1)';
+        pt.style.transformOrigin = 'bottom';
+        pt.style.transform = 'scaleY(1)';
+        setTimeout(() => window.location = href, 420);
+      });
+    });
+
+  })();
+  </script>
 
 </body>
 </html>
