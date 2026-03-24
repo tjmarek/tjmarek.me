@@ -769,6 +769,15 @@ input, textarea, select {
   flex-shrink: 0;
 }
 
+/* Light mode: darken contact bar link icons + text */
+[data-theme="light"] .contact-bar__link {
+  color: rgba(26, 35, 41, 0.55);
+}
+
+[data-theme="light"] .contact-bar__sep {
+  background: rgba(26, 35, 41, 0.15);
+}
+
 /* ============================================================
    11. HERO SECTION
    ============================================================ */
