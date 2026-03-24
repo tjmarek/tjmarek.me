@@ -1162,23 +1162,23 @@
       });
     }
 
-    /* ── Hero headline letter split ── */
-    $$('.split-hover').forEach(el => {
-      setTimeout(() => {
-        const nodes = [...el.childNodes];
-        nodes.forEach(node => {
-          if (node.nodeType === Node.TEXT_NODE && node.textContent.trim()) {
-            const span = document.createElement('span');
-            span.innerHTML = node.textContent.split('').map(ch =>
-              ch === ' '
-                ? '<span class="char" style="display:inline-block;width:.28em">&nbsp;</span>'
-                : `<span class="char">${ch}</span>`
-            ).join('');
-            node.replaceWith(span);
-          }
-        });
-      }, 600);
-    });
+    // /* ── Hero headline letter split ── */
+    // $$('.split-hover').forEach(el => {
+    //   setTimeout(() => {
+    //     const nodes = [...el.childNodes];
+    //     nodes.forEach(node => {
+    //       if (node.nodeType === Node.TEXT_NODE && node.textContent.trim()) {
+    //         const span = document.createElement('span');
+    //         span.innerHTML = node.textContent.split('').map(ch =>
+    //           ch === ' '
+    //             ? '<span class="char" style="display:inline-block;width:.28em">&nbsp;</span>'
+    //             : `<span class="char">${ch}</span>`
+    //         ).join('');
+    //         node.replaceWith(span);
+    //       }
+    //     });
+    //   }, 600);
+    // });
 
     /* ── Magnetic nav ── */
     $$('.mag-wrap').forEach(wrap => {
