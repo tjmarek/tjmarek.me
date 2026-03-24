@@ -350,10 +350,15 @@
   /* ════════════════════════════════════════════
      10. SPLIT-TEXT HOVER — LETTER SHIMMER
   ════════════════════════════════════════════ */
-  const initSplitHover = () => {
-    if (isTouch() || prefersReducedMotion()) return;
+  // const initSplitHover = () => {
+  //   if (isTouch() || prefersReducedMotion()) return;
 
-    $$('.split-hover').forEach(el => {
+  //   $$('.split-hover').forEach(el => {
+  const initSplitHover = () => {
+  if (isTouch || prefersReducedMotion) return;
+  // Only run letter-split on the hero headline (index only)
+  const targets = $$('.split-hover').filter(el => el.closest('.hero'));
+  targets.forEach(el => {
       setTimeout(() => {
         const processNode = (node) => {
           if (node.nodeType === Node.TEXT_NODE) {
