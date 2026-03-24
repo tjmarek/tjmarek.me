@@ -301,7 +301,7 @@
     const phrases = [
       'I design the destination.',
       'I run the campaigns.',
-      'I fix the funnel.',
+      'I optimize the funnel.',
       'I deliver the ROI.',
       'I might need a nap...',
     ];
