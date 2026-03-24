@@ -1002,6 +1002,7 @@ input, textarea, select {
 .stat-item {
   padding: var(--space-6) var(--space-4);
   position: relative;
+  text-align: center;
 }
 
 .stat-item:not(:last-child)::after {
