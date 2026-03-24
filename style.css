@@ -2247,3 +2247,13 @@ input, textarea, select {
 .work-card::after {
   display: none !important;
 }
+
+@media (max-width: 640px) {
+  .status-text {
+    font-size: 10px;
+    letter-spacing: 0.08em;
+  }
+  .contact-bar__link-text {
+    display: none;
+  }
+}
