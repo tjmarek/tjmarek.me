@@ -2363,3 +2363,24 @@ input, textarea, select {
   from { opacity: 0; }
   to   { opacity: 1; }
 }
+
+/* Skip to main content — keyboard accessibility only */
+.skip-link {
+  position: absolute;
+  top: -100%;
+  left: var(--space-4);
+  z-index: 9999;
+  padding: var(--space-2) var(--space-5);
+  background: var(--accent);
+  color: var(--text-dark);
+  font-family: var(--font-display);
+  font-size: var(--text-sm);
+  font-weight: 700;
+  border-radius: 0 0 var(--radius-md) var(--radius-md);
+  text-decoration: none;
+  transition: top var(--dur-base) var(--ease-out);
+}
+
+.skip-link:focus {
+  top: 0;
+}
