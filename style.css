@@ -997,6 +997,9 @@ input, textarea, select {
   grid-template-columns: repeat(4, 1fr);
   gap: var(--space-4);
   text-align: center;
+  width: 100%;
+  align-items: center;
+  justify-items: center;
 }
 
 .stats-grid * {
@@ -1031,6 +1034,7 @@ input, textarea, select {
   margin-bottom: var(--space-2);
   position: relative;
   overflow: hidden;
+  width: 100%;
 }
 
 /* Shimmer on stat after count-up */
