@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en" data-theme="light">
 <head>
+  <!-- Hi recruiter. Yes, I built this. No, I didn't use a template. -->
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="description" content="Get in touch with TJ Marek — Full-Funnel Digital Marketer & Web Designer based in Austin, TX. Available for full-time roles and freelance projects." />
@@ -10,10 +11,11 @@
   <meta property="og:url" content="https://tjmarek.me/contact.html" />
   <meta property="og:type" content="website" />
   <title>Let's Talk — TJ Marek</title>
-  <link rel="icon" type="image/jpeg" href="logo.jpg" />
+  <link rel="icon" type="image/jpeg" href="assets/logo.png" />
   <link rel="stylesheet" href="style.css" />
   <style>
 
+    /* ── Page layout ── */
     .contact-page {
       min-height: 100svh;
       padding-top: clamp(110px, 14vw, 160px);
@@ -22,14 +24,14 @@
       overflow: hidden;
     }
 
-    /* Watermark */
+    /* Ambient watermark */
     .contact-page::before {
       content: 'HELLO';
       position: absolute;
-      left: -20px;
+      left: -30px;
       bottom: -40px;
       font-family: var(--font-display);
-      font-size: clamp(100px, 18vw, 260px);
+      font-size: clamp(100px, 20vw, 280px);
       font-weight: 800;
       color: transparent;
       -webkit-text-stroke: 1px var(--border);
@@ -51,7 +53,13 @@
       margin-top: var(--space-10);
     }
 
-    /* ── Left info ── */
+    /* ── Left info column ── */
+    .contact-info {}
+
+    .contact-info__heading {
+      margin-bottom: var(--space-6);
+    }
+
     .contact-info__body {
       font-size: var(--text-md);
       color: var(--text-muted);
@@ -84,6 +92,10 @@
       animation: pulse-green 2s ease-in-out infinite;
     }
 
+    .availability-card__text {
+      flex: 1;
+    }
+
     .availability-card__title {
       font-family: var(--font-display);
       font-size: var(--text-base);
@@ -98,7 +110,7 @@
       font-weight: 500;
     }
 
-    /* Direct links */
+    /* Direct contact links */
     .direct-links {
       display: flex;
       flex-direction: column;
@@ -134,7 +146,9 @@
       color: var(--accent);
     }
 
-    .direct-link__label { flex: 1; }
+    .direct-link__label {
+      flex: 1;
+    }
 
     .direct-link__arrow {
       width: 16px;
@@ -142,7 +156,6 @@
       opacity: 0;
       transition: opacity var(--dur-base), transform var(--dur-base) var(--ease-spring);
       transform: translateX(-4px);
-      flex-shrink: 0;
     }
 
     .direct-link:hover .direct-link__arrow {
@@ -150,7 +163,7 @@
       transform: translateX(0);
     }
 
-    /* Response badge */
+    /* Response time badge */
     .response-badge {
       display: inline-flex;
       align-items: center;
@@ -165,15 +178,32 @@
       letter-spacing: 0.04em;
     }
 
-    .response-badge svg { width: 14px; height: 14px; }
+    .response-badge svg {
+      width: 14px;
+      height: 14px;
+    }
 
-    /* ── Right form card ── */
+    /* ── Right — Form column ── */
     .contact-form-wrap {
       background: var(--bg-card);
       border: 1px solid var(--border);
       border-radius: var(--radius-xl);
       padding: clamp(var(--space-8), 5vw, var(--space-12));
       position: relative;
+      overflow: hidden;
+    }
+
+    /* Subtle amber glow top-right corner */
+    .contact-form-wrap::before {
+      content: '';
+      position: absolute;
+      top: -60px;
+      right: -60px;
+      width: 200px;
+      height: 200px;
+      border-radius: var(--radius-full);
+      background: radial-gradient(circle, rgba(242,165,59,0.10) 0%, transparent 70%);
+      pointer-events: none;
     }
 
     /* Path selector */
@@ -195,7 +225,9 @@
       position: relative;
     }
 
-    .path-btn:hover { border-color: rgba(242,165,59,0.50); }
+    .path-btn:hover {
+      border-color: rgba(242,165,59,0.50);
+    }
 
     .path-btn.active {
       border-color: var(--accent);
@@ -203,7 +235,7 @@
     }
 
     .path-btn__emoji {
-      font-size: 1.2rem;
+      font-size: 1.25rem;
       display: block;
       margin-bottom: var(--space-2);
     }
@@ -249,9 +281,13 @@
       transform: scale(1);
     }
 
-    .path-btn__check svg { width: 12px; height: 12px; color: #1A2329; }
+    .path-btn__check svg {
+      width: 12px;
+      height: 12px;
+      color: var(--text-dark);
+    }
 
-    /* Form fields */
+    /* Form */
     .contact-form {
       display: flex;
       flex-direction: column;
@@ -309,7 +345,9 @@
     }
 
     .form-input::placeholder,
-    .form-textarea::placeholder { color: var(--text-light); }
+    .form-textarea::placeholder {
+      color: var(--text-light);
+    }
 
     .form-textarea {
       resize: vertical;
@@ -326,7 +364,7 @@
       cursor: pointer;
     }
 
-    /* Char counter */
+    /* Character counter */
     .char-counter {
       font-size: var(--text-xs);
       color: var(--text-light);
@@ -337,32 +375,41 @@
 
     .char-counter.warn { color: var(--accent); }
 
-    /* Submit button */
+    /* Submit button full-width */
     .btn--submit {
       width: 100%;
       justify-content: center;
       padding: var(--space-5) var(--space-6);
       font-size: var(--text-base);
+      position: relative;
+      overflow: hidden;
     }
 
+    /* Loading state */
     .btn--submit.loading {
       pointer-events: none;
       opacity: 0.75;
     }
 
-    /* Form error */
-    #form-error {
-      display: none;
-      color: #e05252;
-      font-size: var(--text-sm);
-      font-weight: 500;
-      padding: var(--space-3) var(--space-4);
-      background: rgba(224,82,82,0.08);
-      border-radius: var(--radius-md);
-      border: 1px solid rgba(224,82,82,0.25);
+    .btn--submit.loading::after {
+      content: '';
+      position: absolute;
+      right: var(--space-6);
+      top: 50%;
+      transform: translateY(-50%);
+      width: 16px;
+      height: 16px;
+      border: 2px solid rgba(26,35,41,0.25);
+      border-top-color: var(--text-dark);
+      border-radius: var(--radius-full);
+      animation: spin 0.6s linear infinite;
     }
 
-    /* Success state */
+    @keyframes spin {
+      to { transform: translateY(-50%) rotate(360deg); }
+    }
+
+    /* ── Form success state ── */
     .form-success {
       display: none;
       flex-direction: column;
@@ -372,7 +419,9 @@
       gap: var(--space-5);
     }
 
-    .form-success.show { display: flex; }
+    .form-success.show {
+      display: flex;
+    }
 
     .success-ring {
       width: 72px;
@@ -389,8 +438,8 @@
 
     @keyframes success-pop {
       0%   { transform: scale(0) rotate(-10deg); opacity: 0; }
-      60%  { transform: scale(1.1) rotate(3deg);  opacity: 1; }
-      100% { transform: scale(1) rotate(0);       opacity: 1; }
+      60%  { transform: scale(1.1) rotate(3deg); opacity: 1; }
+      100% { transform: scale(1) rotate(0); opacity: 1; }
     }
 
     .success-ring svg { width: 32px; height: 32px; }
@@ -410,7 +459,7 @@
       max-width: 320px;
     }
 
-    /* ── Trust strip ── */
+    /* ── FAQ / Trust strip ── */
     .trust-strip {
       margin-top: clamp(var(--space-16), 7vw, var(--space-24));
       padding-top: clamp(var(--space-12), 5vw, var(--space-20));
@@ -460,8 +509,8 @@
 
     /* ── Responsive ── */
     @media (max-width: 1024px) {
-      .contact-top  { grid-template-columns: 1fr; }
-      .trust-grid   { grid-template-columns: repeat(2, 1fr); }
+      .contact-top { grid-template-columns: 1fr; }
+      .trust-grid  { grid-template-columns: repeat(2, 1fr); }
     }
 
     @media (max-width: 768px) {
@@ -472,29 +521,40 @@
 
   </style>
 </head>
+
 <body>
 
   <div id="scroll-progress" aria-hidden="true"></div>
   <div class="page-transition" id="page-transition" aria-hidden="true"></div>
 
-  <!-- HEADER -->
+  <!-- ════════════════════════════════════════════
+       HEADER
+  ════════════════════════════════════════════ -->
   <header class="site-header" id="site-header">
     <div class="container">
       <div class="header-inner">
         <a href="index.html" class="site-logo" aria-label="TJ Marek — Home">
-          <img src="logo.jpg" alt="TJ Marek logo" class="site-logo__mark" />
+          <img src="assets/logo.png" alt="TJ Marek logo mark" class="site-logo__mark" />
           <span class="site-logo__name">TJ Marek</span>
         </a>
         <nav class="site-nav" aria-label="Primary navigation">
-          <div class="mag-wrap"><a href="index.html"   class="nav-link">Home</a></div>
-          <div class="mag-wrap"><a href="about.html"   class="nav-link">About</a></div>
-          <div class="mag-wrap"><a href="work.html"    class="nav-link">Work</a></div>
+          <div class="mag-wrap"><a href="index.html"  class="nav-link">Home</a></div>
+          <div class="mag-wrap"><a href="about.html"  class="nav-link">About</a></div>
+          <div class="mag-wrap"><a href="work.html"   class="nav-link">Work</a></div>
           <div class="mag-wrap"><a href="contact.html" class="nav-link nav-link--cta active">Let's Talk</a></div>
         </nav>
         <div class="header-actions">
           <button class="theme-toggle" id="theme-toggle" aria-label="Toggle dark mode">
-            <svg class="icon-sun" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.8" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.36-6.36-.71.71M6.34 17.66l-.71.71M17.66 17.66l.71.71M6.34 6.34l-.71-.71M12 7a5 5 0 1 0 0 10A5 5 0 0 0 12 7z"/></svg>
-            <svg class="icon-moon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.8" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+            <svg class="icon-sun" xmlns="http://www.w3.org/2000/svg" fill="none"
+                 viewBox="0 0 24 24" stroke-width="1.8" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round"
+                d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.36-6.36-.71.71M6.34 17.66l-.71.71M17.66 17.66l.71.71M6.34 6.34l-.71-.71M12 7a5 5 0 1 0 0 10A5 5 0 0 0 12 7z"/>
+            </svg>
+            <svg class="icon-moon" xmlns="http://www.w3.org/2000/svg" fill="none"
+                 viewBox="0 0 24 24" stroke-width="1.8" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round"
+                d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+            </svg>
           </button>
           <button class="menu-toggle" id="menu-toggle" aria-label="Open menu" aria-expanded="false">
             <span></span><span></span><span></span>
@@ -505,9 +565,9 @@
   </header>
 
   <nav class="mobile-nav" id="mobile-nav" aria-label="Mobile navigation">
-    <a href="index.html"   class="nav-link">Home</a>
-    <a href="about.html"   class="nav-link">About</a>
-    <a href="work.html"    class="nav-link">Work</a>
+    <a href="index.html"  class="nav-link">Home</a>
+    <a href="about.html"  class="nav-link">About</a>
+    <a href="work.html"   class="nav-link">Work</a>
     <a href="contact.html" class="nav-link active">Let's Talk</a>
   </nav>
 
@@ -515,74 +575,97 @@
     <section class="contact-page" aria-label="Contact TJ Marek">
       <div class="container">
 
-        <!-- ══════════════════════════════════
-             PAGE HEADING
-        ══════════════════════════════════ -->
+        <!-- Page heading -->
         <div class="reveal">
           <span class="label">Let's Talk</span>
         </div>
-        <h1 class="display-xl reveal" style="margin-top:var(--space-4);max-width:700px;">
+        <h1 class="display-xl split-hover reveal"
+            style="margin-top: var(--space-4); max-width: 700px;"
+            aria-label="Let's make something great.">
           Let's make<br>
-          <span style="color:var(--accent);">something great.</span>
+          <span style="color: var(--accent);">something great.</span>
         </h1>
 
-        <!-- ══════════════════════════════════
-             CONTACT TOP GRID
-        ══════════════════════════════════ -->
+        <!-- Top grid -->
         <div class="contact-top">
 
-          <!-- LEFT — info -->
+          <!-- ── LEFT INFO ── -->
           <div class="contact-info">
 
             <p class="contact-info__body reveal">
-              Whether you're hiring for a full-time marketing role or need a skilled
-              web designer for a project — I want to hear about it. Fill out the form
-              or reach out directly. Either way, I respond fast.
+              Whether you're hiring for a full-time marketing role or need a
+              skilled web designer for a project — I want to hear about it.
+              Fill out the form or reach out directly. Either way, I respond fast.
             </p>
 
             <!-- Availability -->
             <div class="availability-card reveal">
               <div class="availability-card__dot" aria-hidden="true"></div>
-              <div>
+              <div class="availability-card__text">
                 <div class="availability-card__title">Available Now</div>
-                <div class="availability-card__sub">Open to full-time roles &amp; freelance projects · Austin, TX</div>
+                <div class="availability-card__sub">
+                  Open to full-time roles &amp; freelance projects · Austin, TX
+                </div>
               </div>
             </div>
 
             <!-- Direct links -->
             <div class="direct-links reveal reveal-delay-1">
-
               <a href="mailto:tj@tjmarek.me" class="direct-link" aria-label="Email TJ Marek">
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.8" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 0 1-2.25 2.25h-15a2.25 2.25 0 0 1-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0 0 19.5 4.5h-15a2.25 2.25 0 0 0-2.25 2.25m19.5 0v.243a2.25 2.25 0 0 1-1.07 1.916l-7.5 4.615a2.25 2.25 0 0 1-2.36 0L3.32 8.91a2.25 2.25 0 0 1-1.07-1.916V6.75"/></svg>
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                     stroke-width="1.8" stroke="currentColor" aria-hidden="true">
+                  <path stroke-linecap="round" stroke-linejoin="round"
+                    d="M21.75 6.75v10.5a2.25 2.25 0 0 1-2.25 2.25h-15a2.25 2.25 0 0 1-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0 0 19.5 4.5h-15a2.25 2.25 0 0 0-2.25 2.25m19.5 0v.243a2.25 2.25 0 0 1-1.07 1.916l-7.5 4.615a2.25 2.25 0 0 1-2.36 0L3.32 8.91a2.25 2.25 0 0 1-1.07-1.916V6.75"/>
+                </svg>
                 <span class="direct-link__label">tj@tjmarek.me</span>
-                <svg class="direct-link__arrow" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
+                <svg class="direct-link__arrow" xmlns="http://www.w3.org/2000/svg"
+                     fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
+                </svg>
               </a>
 
-              <a href="https://linkedin.com/in/tjmarek" target="_blank" rel="noopener noreferrer" class="direct-link" aria-label="TJ Marek on LinkedIn">
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+              <a href="https://linkedin.com/in/tjmarek" target="_blank" rel="noopener noreferrer"
+                 class="direct-link" aria-label="TJ Marek on LinkedIn">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"
+                     fill="currentColor" aria-hidden="true">
+                  <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+                </svg>
                 <span class="direct-link__label">linkedin.com/in/tjmarek</span>
-                <svg class="direct-link__arrow" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
+                <svg class="direct-link__arrow" xmlns="http://www.w3.org/2000/svg"
+                     fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
+                </svg>
               </a>
 
               <a href="TJ-Marek-CV.pdf" download class="direct-link" aria-label="Download CV">
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.8" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M3 16.5v2.25A2.25 2.25 0 0 0 5.25 21h13.5A2.25 2.25 0 0 0 21 18.75V16.5M16.5 12 12 16.5m0 0L7.5 12m4.5 4.5V3"/></svg>
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                     stroke-width="1.8" stroke="currentColor" aria-hidden="true">
+                  <path stroke-linecap="round" stroke-linejoin="round"
+                    d="M3 16.5v2.25A2.25 2.25 0 0 0 5.25 21h13.5A2.25 2.25 0 0 0 21 18.75V16.5M16.5 12 12 16.5m0 0L7.5 12m4.5 4.5V3"/>
+                </svg>
                 <span class="direct-link__label">Download My CV</span>
-                <svg class="direct-link__arrow" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
+                <svg class="direct-link__arrow" xmlns="http://www.w3.org/2000/svg"
+                     fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
+                </svg>
               </a>
-
             </div>
 
             <!-- Response time -->
             <div class="reveal reveal-delay-2">
               <div class="response-badge">
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"/></svg>
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                     stroke-width="2" stroke="currentColor" aria-hidden="true">
+                  <path stroke-linecap="round" stroke-linejoin="round"
+                    d="M12 6v6h4.5m4.5 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"/>
+                </svg>
                 Typically responds within 24 hours
               </div>
             </div>
 
           </div>
 
-          <!-- RIGHT — form -->
+          <!-- ── RIGHT FORM ── -->
           <div class="contact-form-wrap reveal reveal-delay-1" id="form-wrap">
 
             <!-- Path selector -->
@@ -592,7 +675,10 @@
                 <span class="path-btn__type">Full-Time</span>
                 <span class="path-btn__label">I'm hiring a marketer</span>
                 <span class="path-btn__check" aria-hidden="true">
-                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="m4.5 12.75 6 6 9-13.5"/></svg>
+                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                       stroke-width="2.5" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="m4.5 12.75 6 6 9-13.5"/>
+                  </svg>
                 </span>
               </button>
               <button class="path-btn" data-path="freelance" aria-pressed="false">
@@ -600,15 +686,17 @@
                 <span class="path-btn__type">Freelance</span>
                 <span class="path-btn__label">I need a project done</span>
                 <span class="path-btn__check" aria-hidden="true">
-                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="m4.5 12.75 6 6 9-13.5"/></svg>
+                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                       stroke-width="2.5" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="m4.5 12.75 6 6 9-13.5"/>
+                  </svg>
                 </span>
               </button>
             </div>
 
-            <!-- The form -->
+            <!-- Form -->
             <form class="contact-form" id="contact-form" novalidate
-                  name="contact" data-netlify="true">
-              <input type="hidden" name="form-name" value="contact" />
+                  aria-label="Contact form">
 
               <div class="form-row">
                 <div class="form-group">
@@ -629,17 +717,17 @@
                 </div>
               </div>
 
+              <!-- Context field — changes based on path -->
               <div class="form-group">
                 <label class="form-label" for="field-context" id="context-label">
                   Company / Role <span class="required" aria-hidden="true">*</span>
                 </label>
                 <input type="text" id="field-context" name="context"
-                       class="form-input"
-                       placeholder="Company name & role you're hiring for"
+                       class="form-input" placeholder="Company name & role you're hiring for"
                        required />
               </div>
 
-              <!-- Budget — freelance only, hidden by default -->
+              <!-- Budget/Timeline — shown for freelance -->
               <div class="form-group" id="budget-group" style="display:none;">
                 <label class="form-label" for="field-budget">Project Budget</label>
                 <select id="field-budget" name="budget" class="form-select">
@@ -661,17 +749,30 @@
                           class="form-textarea"
                           placeholder="Tell me about the role or project — the more context the better."
                           required maxlength="1000"></textarea>
-                <div class="char-counter" id="char-counter" aria-live="polite">0 / 1000</div>
+                <div class="char-counter" id="char-counter" aria-live="polite">
+                  0 / 1000
+                </div>
               </div>
 
-              <div id="form-error" role="alert" aria-live="assertive"></div>
+              <!-- Form error message -->
+              <div id="form-error" role="alert" aria-live="assertive"
+                   style="display:none; color: #e05252; font-size: var(--text-sm);
+                          font-weight: 500; padding: var(--space-3) var(--space-4);
+                          background: rgba(224,82,82,0.08); border-radius: var(--radius-md);
+                          border: 1px solid rgba(224,82,82,0.25);">
+              </div>
 
               <button type="submit" class="btn btn--primary btn--submit" id="submit-btn">
                 Send Message
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M6 12 3.269 3.125A59.769 59.769 0 0 1 21.485 12 59.768 59.768 0 0 1 3.27 20.875L5.999 12Zm0 0h7.5"/></svg>
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                     stroke-width="2" stroke="currentColor" aria-hidden="true">
+                  <path stroke-linecap="round" stroke-linejoin="round"
+                    d="M6 12 3.269 3.125A59.769 59.769 0 0 1 21.485 12 59.768 59.768 0 0 1 3.27 20.875L5.999 12Zm0 0h7.5"/>
+                </svg>
               </button>
 
-              <p style="font-size:var(--text-xs);color:var(--text-light);text-align:center;line-height:1.5;">
+              <p style="font-size: var(--text-xs); color: var(--text-light);
+                        text-align: center; line-height: 1.5;">
                 No spam. No newsletters. Just a real reply from me.
               </p>
 
@@ -680,7 +781,11 @@
             <!-- Success state -->
             <div class="form-success" id="form-success" aria-live="polite">
               <div class="success-ring" aria-hidden="true">
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="m4.5 12.75 6 6 9-13.5"/></svg>
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                     stroke-width="2" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round"
+                    d="m4.5 12.75 6 6 9-13.5"/>
+                </svg>
               </div>
               <h2 class="success-title">Message sent.</h2>
               <p class="success-body">
@@ -689,58 +794,85 @@
               </p>
               <a href="work.html" class="btn btn--ghost">
                 View My Work
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                     stroke-width="2" stroke="currentColor" aria-hidden="true">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
+                </svg>
               </a>
             </div>
 
-          </div>
-        </div>
+          </div><!-- /form-wrap -->
+        </div><!-- /contact-top -->
 
-        <!-- ══════════════════════════════════
-             TRUST STRIP
-        ══════════════════════════════════ -->
+        <!-- ── TRUST STRIP ── -->
         <div class="trust-strip">
           <span class="label reveal">Why Work With Me</span>
           <div class="trust-grid">
 
             <div class="trust-item reveal">
               <div class="trust-item__icon" aria-hidden="true">
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.8" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M3.75 3v11.25A2.25 2.25 0 0 0 6 16.5h2.25M3.75 3h-1.5m1.5 0h16.5m0 0h1.5m-1.5 0v11.25A2.25 2.25 0 0 1 18 16.5h-2.25m-7.5 0h7.5m-7.5 0-1 3m8.5-3 1 3m0 0 .5 1.5m-.5-1.5h-9.5m0 0-.5 1.5"/></svg>
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                     stroke-width="1.8" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round"
+                    d="M3.75 3v11.25A2.25 2.25 0 0 0 6 16.5h2.25M3.75 3h-1.5m1.5 0h16.5m0 0h1.5m-1.5 0v11.25A2.25 2.25 0 0 1 18 16.5h-2.25m-7.5 0h7.5m-7.5 0-1 3m8.5-3 1 3m0 0 .5 1.5m-.5-1.5h-9.5m0 0-.5 1.5"/>
+                </svg>
               </div>
               <div class="trust-item__title">I Own the Full Picture</div>
-              <p class="trust-item__desc">Strategy, campaigns, tracking, and the website they land on — all handled by one person who understands how each piece affects the others.</p>
+              <p class="trust-item__desc">
+                Strategy, campaigns, tracking, and the website they land on —
+                all handled by one person who understands how each piece
+                affects the others.
+              </p>
             </div>
 
             <div class="trust-item reveal reveal-delay-1">
               <div class="trust-item__icon" aria-hidden="true">
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.8" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M7.5 14.25v2.25m3-4.5v4.5m3-6.75v6.75m3-9v9M6 20.25h12A2.25 2.25 0 0 0 20.25 18V6A2.25 2.25 0 0 0 18 3.75H6A2.25 2.25 0 0 0 3.75 6v12A2.25 2.25 0 0 0 6 20.25Z"/></svg>
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                     stroke-width="1.8" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round"
+                    d="M7.5 14.25v2.25m3-4.5v4.5m3-6.75v6.75m3-9v9M6 20.25h12A2.25 2.25 0 0 0 20.25 18V6A2.25 2.25 0 0 0 18 3.75H6A2.25 2.25 0 0 0 3.75 6v12A2.25 2.25 0 0 0 6 20.25Z"/>
+                </svg>
               </div>
               <div class="trust-item__title">Everything Is Measured</div>
-              <p class="trust-item__desc">I don't make moves I can't measure. Every campaign, page, and email is tracked, reported, and optimized based on what the data actually says.</p>
+              <p class="trust-item__desc">
+                I don't make moves I can't measure. Every campaign, page, and
+                email is tracked, reported, and optimized based on what
+                the data actually says.
+              </p>
             </div>
 
             <div class="trust-item reveal reveal-delay-2">
               <div class="trust-item__icon" aria-hidden="true">
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.8" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75 11.25 15 15 9.75M21 12c0 1.268-.63 2.39-1.593 3.068a3.745 3.745 0 0 1-1.043 3.296 3.745 3.745 0 0 1-3.296 1.043A3.745 3.745 0 0 1 12 21c-1.268 0-2.39-.63-3.068-1.593a3.746 3.746 0 0 1-3.296-1.043 3.745 3.745 0 0 1-1.043-3.296A3.745 3.745 0 0 1 3 12c0-1.268.63-2.39 1.593-3.068a3.745 3.745 0 0 1 1.043-3.296 3.746 3.746 0 0 1 3.296-1.043A3.746 3.746 0 0 1 12 3c1.268 0 2.39.63 3.068 1.593a3.746 3.746 0 0 1 3.296 1.043 3.746 3.746 0 0 1 1.043 3.296A3.745 3.745 0 0 1 21 12Z"/></svg>
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                     stroke-width="1.8" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round"
+                    d="M9 12.75 11.25 15 15 9.75M21 12c0 1.268-.63 2.39-1.593 3.068a3.745 3.745 0 0 1-1.043 3.296 3.745 3.745 0 0 1-3.296 1.043A3.745 3.745 0 0 1 12 21c-1.268 0-2.39-.63-3.068-1.593a3.746 3.746 0 0 1-3.296-1.043 3.745 3.745 0 0 1-1.043-3.296A3.745 3.745 0 0 1 3 12c0-1.268.63-2.39 1.593-3.068a3.745 3.745 0 0 1 1.043-3.296 3.746 3.746 0 0 1 3.296-1.043A3.746 3.746 0 0 1 12 3c1.268 0 2.39.63 3.068 1.593a3.746 3.746 0 0 1 3.296 1.043 3.746 3.746 0 0 1 1.043 3.296A3.745 3.745 0 0 1 21 12Z"/>
+                </svg>
               </div>
               <div class="trust-item__title">4.5 Years of Proof</div>
-              <p class="trust-item__desc">Not a portfolio of work done years ago. This is 4.5 years of sustained results at one company — campaigns actively running, optimized, and growing right now.</p>
+              <p class="trust-item__desc">
+                Not a portfolio of client work done years ago. This is 4.5 years
+                of sustained results at one company — campaigns actively running,
+                optimized, and growing right now.
+              </p>
             </div>
 
           </div>
         </div>
 
-      </div>
+      </div><!-- /container -->
     </section>
   </main>
 
-  <!-- FOOTER -->
+  <!-- ════════════════════════════════════════════
+       FOOTER
+  ════════════════════════════════════════════ -->
   <footer class="site-footer" role="contentinfo">
     <div class="container">
       <div class="footer-inner">
         <div>
           <div class="footer-logo">
-            <img src="logo.jpg" alt="TJ Marek logo" class="footer-logo__mark" />
+            <img src="assets/logo.png" alt="TJ Marek logo" class="footer-logo__mark" />
             <span class="footer-logo__name">TJ Marek</span>
           </div>
           <p class="footer-tagline">Full-Funnel Digital Marketer &amp; Web Designer · Austin, TX</p>
@@ -770,17 +902,28 @@
     </div>
     <div class="contact-bar__links">
       <a href="mailto:tj@tjmarek.me" class="contact-bar__link" aria-label="Email TJ Marek">
-        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.8" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 0 1-2.25 2.25h-15a2.25 2.25 0 0 1-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0 0 19.5 4.5h-15a2.25 2.25 0 0 0-2.25 2.25m19.5 0v.243a2.25 2.25 0 0 1-1.07 1.916l-7.5 4.615a2.25 2.25 0 0 1-2.36 0L3.32 8.91a2.25 2.25 0 0 1-1.07-1.916V6.75"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+             stroke-width="1.8" stroke="currentColor" aria-hidden="true">
+          <path stroke-linecap="round" stroke-linejoin="round"
+            d="M21.75 6.75v10.5a2.25 2.25 0 0 1-2.25 2.25h-15a2.25 2.25 0 0 1-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0 0 19.5 4.5h-15a2.25 2.25 0 0 0-2.25 2.25m19.5 0v.243a2.25 2.25 0 0 1-1.07 1.916l-7.5 4.615a2.25 2.25 0 0 1-2.36 0L3.32 8.91a2.25 2.25 0 0 1-1.07-1.916V6.75"/>
+        </svg>
         <span class="contact-bar__link-text">tj@tjmarek.me</span>
       </a>
       <span class="contact-bar__sep" aria-hidden="true"></span>
-      <a href="https://linkedin.com/in/tjmarek" target="_blank" rel="noopener noreferrer" class="contact-bar__link" aria-label="LinkedIn">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+      <a href="https://linkedin.com/in/tjmarek" target="_blank" rel="noopener noreferrer"
+         class="contact-bar__link" aria-label="LinkedIn">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+          <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+        </svg>
         <span class="contact-bar__link-text">LinkedIn</span>
       </a>
       <span class="contact-bar__sep" aria-hidden="true"></span>
       <a href="TJ-Marek-CV.pdf" download class="contact-bar__link" aria-label="Download CV">
-        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.8" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M3 16.5v2.25A2.25 2.25 0 0 0 5.25 21h13.5A2.25 2.25 0 0 0 21 18.75V16.5M16.5 12 12 16.5m0 0L7.5 12m4.5 4.5V3"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+             stroke-width="1.8" stroke="currentColor" aria-hidden="true">
+          <path stroke-linecap="round" stroke-linejoin="round"
+            d="M3 16.5v2.25A2.25 2.25 0 0 0 5.25 21h13.5A2.25 2.25 0 0 0 21 18.75V16.5M16.5 12 12 16.5m0 0L7.5 12m4.5 4.5V3"/>
+        </svg>
         <span class="contact-bar__link-text">Download CV</span>
       </a>
     </div>
@@ -788,7 +931,235 @@
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" defer></script>
-  <script src="main.js" defer></script>
+
+  <script>
+  (() => {
+    'use strict';
+    const $ = (s, c = document) => c.querySelector(s);
+    const $$ = (s, c = document) => [...c.querySelectorAll(s)];
+
+    /* ── Theme ── */
+    const html  = document.documentElement;
+    html.setAttribute('data-theme', localStorage.getItem('tj-theme') || 'light');
+    $('#theme-toggle')?.addEventListener('click', () => {
+      const next = html.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+      html.setAttribute('data-theme', next);
+      localStorage.setItem('tj-theme', next);
+    });
+
+    /* ── Scroll progress ── */
+    const pb = $('#scroll-progress');
+    window.addEventListener('scroll', () => {
+      if (pb) pb.style.width =
+        (window.scrollY / (document.body.scrollHeight - window.innerHeight) * 100) + '%';
+    }, { passive: true });
+
+    /* ── Sticky header ── */
+    window.addEventListener('scroll', () => {
+      $('#site-header')?.classList.toggle('scrolled', window.scrollY > 60);
+    }, { passive: true });
+
+    /* ── Mobile menu ── */
+    const menuBtn   = $('#menu-toggle');
+    const mobileNav = $('#mobile-nav');
+    menuBtn?.addEventListener('click', () => {
+      const open = mobileNav.classList.toggle('open');
+      menuBtn.classList.toggle('open', open);
+      menuBtn.setAttribute('aria-expanded', open);
+      document.body.style.overflow = open ? 'hidden' : '';
+    });
+
+    /* ── Scroll reveal ── */
+    const ro = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) { e.target.classList.add('in-view'); ro.unobserve(e.target); }
+      });
+    }, { threshold: 0.10 });
+    $$('.reveal').forEach(el => ro.observe(el));
+
+    /* ── Letter split ── */
+    $$('.split-hover').forEach(el => {
+      setTimeout(() => {
+        [...el.childNodes].forEach(node => {
+          if (node.nodeType === Node.TEXT_NODE && node.textContent.trim()) {
+            const wrap = document.createElement('span');
+            wrap.innerHTML = node.textContent.split('').map(ch =>
+              ch === ' '
+                ? '<span class="char" style="display:inline-block;width:.28em">&nbsp;</span>'
+                : `<span class="char">${ch}</span>`
+            ).join('');
+            node.replaceWith(wrap);
+          }
+        });
+      }, 400);
+    });
+
+    /* ── Magnetic nav ── */
+    $$('.mag-wrap').forEach(wrap => {
+      const link = wrap.querySelector('.nav-link');
+      if (!link) return;
+      wrap.addEventListener('mousemove', e => {
+        const r = wrap.getBoundingClientRect();
+        link.style.transform =
+          `translate(${(e.clientX-r.left-r.width/2)*.28}px,${(e.clientY-r.top-r.height/2)*.28}px)`;
+      });
+      wrap.addEventListener('mouseleave', () => {
+        link.style.transition = 'transform 0.4s cubic-bezier(0.22,1,0.36,1)';
+        link.style.transform  = '';
+        setTimeout(() => link.style.transition = '', 400);
+      });
+    });
+
+    /* ══════════════════════════════════════════
+       PATH SELECTOR
+    ══════════════════════════════════════════ */
+    const pathBtns    = $$('.path-btn');
+    const contextLabel = $('#context-label');
+    const contextInput = $('#field-context');
+    const budgetGroup  = $('#budget-group');
+
+    const pathConfig = {
+      hiring: {
+        label:       'Company / Role',
+        placeholder: 'Company name & role you\'re hiring for',
+        showBudget:  false,
+      },
+      freelance: {
+        label:       'Project Overview',
+        placeholder: 'Briefly describe your project',
+        showBudget:  true,
+      },
+    };
+
+    pathBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        const path = btn.dataset.path;
+        pathBtns.forEach(b => {
+          b.classList.toggle('active', b === btn);
+          b.setAttribute('aria-pressed', b === btn);
+        });
+        const cfg = pathConfig[path];
+        if (contextLabel) contextLabel.childNodes[0].textContent = cfg.label + ' ';
+        if (contextInput) contextInput.placeholder = cfg.placeholder;
+        if (budgetGroup)  budgetGroup.style.display = cfg.showBudget ? 'flex' : 'none';
+      });
+    });
+
+    /* ── Character counter ── */
+    const textarea   = $('#field-message');
+    const charCounter = $('#char-counter');
+    textarea?.addEventListener('input', () => {
+      const len = textarea.value.length;
+      if (charCounter) {
+        charCounter.textContent = `${len} / 1000`;
+        charCounter.classList.toggle('warn', len > 850);
+      }
+    });
+
+    /* ══════════════════════════════════════════
+       FORM SUBMISSION
+       Using Netlify Forms (works out of the box
+       when deployed to Netlify — zero config needed)
+    ══════════════════════════════════════════ */
+    const form       = $('#contact-form');
+    const submitBtn  = $('#submit-btn');
+    const formError  = $('#form-error');
+    const formSuccess = $('#form-success');
+
+    // Add Netlify form attributes
+    form?.setAttribute('data-netlify', 'true');
+    form?.setAttribute('name', 'contact');
+    // Hidden input for Netlify
+    const hiddenInput = document.createElement('input');
+    hiddenInput.type  = 'hidden';
+    hiddenInput.name  = 'form-name';
+    hiddenInput.value = 'contact';
+    form?.prepend(hiddenInput);
+
+    const showError = (msg) => {
+      if (!formError) return;
+      formError.textContent = msg;
+      formError.style.display = 'block';
+      setTimeout(() => formError.style.display = 'none', 5000);
+    };
+
+    const validateEmail = (v) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v);
+
+    form?.addEventListener('submit', async (e) => {
+      e.preventDefault();
+
+      // Client-side validation
+      const name    = $('#field-name')?.value.trim();
+      const email   = $('#field-email')?.value.trim();
+      const context = $('#field-context')?.value.trim();
+      const message = $('#field-message')?.value.trim();
+
+      if (!name)              return showError('Please enter your name.');
+      if (!validateEmail(email)) return showError('Please enter a valid email address.');
+      if (!context)           return showError('Please fill in the company / project field.');
+      if (!message)           return showError('Please write a message — even a short one.');
+
+      // Loading state
+      submitBtn.classList.add('loading');
+      submitBtn.textContent = 'Sending…';
+
+      try {
+        const formData = new FormData(form);
+        const res = await fetch('/', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+          body: new URLSearchParams(formData).toString(),
+        });
+
+        if (res.ok) {
+          form.style.display = 'none';
+          formSuccess.classList.add('show');
+          // Scroll to success
+          formSuccess.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        } else {
+          throw new Error('Submission failed');
+        }
+      } catch {
+        showError('Something went wrong. Please email me directly at tj@tjmarek.me');
+        submitBtn.classList.remove('loading');
+        submitBtn.innerHTML = `Send Message
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+               stroke-width="2" stroke="currentColor" aria-hidden="true">
+            <path stroke-linecap="round" stroke-linejoin="round"
+              d="M6 12 3.269 3.125A59.769 59.769 0 0 1 21.485 12 59.768 59.768 0 0 1 3.27 20.875L5.999 12Zm0 0h7.5"/>
+          </svg>`;
+      }
+    });
+
+    /* ── Page transition ── */
+    const pt = $('#page-transition');
+    if (pt) {
+      pt.style.transform = 'scaleY(1)';
+      pt.style.transformOrigin = 'top';
+      requestAnimationFrame(() => requestAnimationFrame(() => {
+        pt.style.transition = 'transform 0.5s cubic-bezier(0.22,1,0.36,1)';
+        pt.style.transform  = 'scaleY(0)';
+      }));
+    }
+    $$('a[href]').filter(a => {
+      const h = a.getAttribute('href');
+      return h && !h.startsWith('http') && !h.startsWith('mailto')
+             && !h.startsWith('#') && !a.hasAttribute('download') && !h.startsWith('tel');
+    }).forEach(link => {
+      link.addEventListener('click', e => {
+        const href = link.getAttribute('href');
+        if (!href || href === window.location.pathname.split('/').pop()) return;
+        e.preventDefault();
+        if (!pt) { window.location = href; return; }
+        pt.style.transition = 'transform 0.4s cubic-bezier(0.65,0,0.35,1)';
+        pt.style.transformOrigin = 'bottom';
+        pt.style.transform = 'scaleY(1)';
+        setTimeout(() => window.location = href, 420);
+      });
+    });
+
+  })();
+  </script>
 
 </body>
 </html>
