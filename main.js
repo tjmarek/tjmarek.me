@@ -299,11 +299,10 @@
     }
 
     const phrases = [
-      'I design the destination.',
-      'I run the campaigns.',
-      'I fix the funnel.',
-      'I deliver the ROI.',
-      'I probably need a nap...',
+      'Full-Funnel Digital Marketer & Web Designer.',
+      'I run the ads. I build the page. I track everything.',
+      'Google Ads → Landing Page → Conversion. Done right.',
+      'Based in Austin, TX. Open to full-time roles.',
     ];
 
     let phraseIdx = 0;
