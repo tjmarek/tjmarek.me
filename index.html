@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html lang="en" data-theme="light">
 <head>
-  <!-- Hi recruiter. Yes, I built this. No, I didn't use a template. -->
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="description" content="TJ Marek — Full-Funnel Digital Marketer & Web Designer based in Austin, TX. Google Ads, Lead Generation, SEO, CRO, and Web Design." />
@@ -10,201 +9,55 @@
   <meta property="og:description" content="Strategy. Campaigns. The website they land on. All built by TJ Marek." />
   <meta property="og:url" content="https://tjmarek.me" />
   <meta property="og:type" content="website" />
-  <meta name="twitter:card" content="summary_large_image" />
   <title>TJ Marek — Full-Funnel Digital Marketer & Web Designer</title>
-  <link rel="icon" type="image/png" href="assets/logo.png" />
+  <link rel="icon" type="image/jpeg" href="logo.jpg" />
   <link rel="stylesheet" href="style.css" />
-  <style>
-    /* ── Page-specific overrides ── */
-    .hero { padding-bottom: 120px; }
-
-    /* Featured work section */
-    .featured-work {
-      padding-block: clamp(var(--space-16), 8vw, var(--space-32));
-      background: var(--bg-secondary);
-    }
-
-    .section-header {
-      display: flex;
-      align-items: flex-end;
-      justify-content: space-between;
-      gap: var(--space-6);
-      margin-bottom: var(--space-10);
-      flex-wrap: wrap;
-    }
-
-    .section-header__left { max-width: 560px; }
-
-    /* Marquee ticker positioned inside hero above contact bar */
-    .ticker-wrap {
-      bottom: 48px;
-    }
-
-    /* Numbers bar spacing override */
-    .stat-item:nth-child(3)::after,
-    .stat-item:nth-child(4)::after { display: none; }
-
-    /* What I Do divider */
-    .what-i-do__grid {
-      border: 1px solid var(--border);
-    }
-
-    .what-i-do__panel:first-child {
-      border-right: 1px solid var(--border);
-    }
-
-    @media (max-width: 1024px) {
-      .what-i-do__panel:first-child {
-        border-right: none;
-        border-bottom: 1px solid var(--border);
-      }
-    }
-
-    /* About snippet image frame */
-    .about-snippet__frame {
-      position: relative;
-    }
-
-    .about-snippet__frame::after {
-      content: '';
-      position: absolute;
-      bottom: -16px;
-      right: -16px;
-      width: 60%;
-      height: 60%;
-      border: 2px solid var(--accent);
-      border-radius: var(--radius-xl);
-      z-index: -1;
-      opacity: 0.35;
-    }
-
-    /* CTA section */
-    .cta-band {
-      padding-block: clamp(var(--space-16), 7vw, var(--space-24));
-      background: var(--footer-bg);
-      text-align: center;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .cta-band::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background: radial-gradient(ellipse at 50% 120%, rgba(242,165,59,0.12) 0%, transparent 65%);
-      pointer-events: none;
-    }
-
-    .cta-band__eyebrow {
-      margin-bottom: var(--space-4);
-    }
-
-    .cta-band__heading {
-      color: #EAE8E4;
-      margin-bottom: var(--space-6);
-    }
-
-    .cta-band__sub {
-      color: rgba(200,208,213,0.65);
-      max-width: 500px;
-      margin-inline: auto;
-      margin-bottom: var(--space-10);
-      font-size: var(--text-md);
-      line-height: 1.7;
-    }
-
-    .cta-band__buttons {
-      display: flex;
-      gap: var(--space-4);
-      justify-content: center;
-      flex-wrap: wrap;
-    }
-
-    /* Magnetic nav wrapper */
-    .mag-wrap {
-      display: inline-block;
-      position: relative;
-    }
-  </style>
 </head>
-
 <body>
 
-  <!-- ── SCROLL PROGRESS ── -->
   <div id="scroll-progress" aria-hidden="true"></div>
-
-  <!-- ── PAGE TRANSITION OVERLAY ── -->
   <div class="page-transition" id="page-transition" aria-hidden="true"></div>
 
-  <!-- ════════════════════════════════════════════
-       HEADER
-  ════════════════════════════════════════════ -->
+  <!-- HEADER -->
   <header class="site-header" id="site-header">
     <div class="container">
       <div class="header-inner">
-
-        <!-- Logo -->
         <a href="index.html" class="site-logo" aria-label="TJ Marek — Home">
-          <img src="assets/logo.png" alt="TJ Marek logo mark" class="site-logo__mark" />
+          <img src="logo.jpg" alt="TJ Marek logo" class="site-logo__mark" />
           <span class="site-logo__name">TJ Marek</span>
         </a>
-
-        <!-- Desktop Nav -->
         <nav class="site-nav" aria-label="Primary navigation">
-          <div class="mag-wrap">
-            <a href="index.html" class="nav-link active">Home</a>
-          </div>
-          <div class="mag-wrap">
-            <a href="about.html" class="nav-link">About</a>
-          </div>
-          <div class="mag-wrap">
-            <a href="work.html" class="nav-link">Work</a>
-          </div>
-          <div class="mag-wrap">
-            <a href="contact.html" class="nav-link nav-link--cta">Let's Talk</a>
-          </div>
+          <div class="mag-wrap"><a href="index.html"   class="nav-link active">Home</a></div>
+          <div class="mag-wrap"><a href="about.html"   class="nav-link">About</a></div>
+          <div class="mag-wrap"><a href="work.html"    class="nav-link">Work</a></div>
+          <div class="mag-wrap"><a href="contact.html" class="nav-link nav-link--cta">Let's Talk</a></div>
         </nav>
-
-        <!-- Header Actions -->
         <div class="header-actions">
           <button class="theme-toggle" id="theme-toggle" aria-label="Toggle dark mode">
-            <svg class="icon-sun" xmlns="http://www.w3.org/2000/svg" fill="none"
-                 viewBox="0 0 24 24" stroke-width="1.8" stroke="currentColor" aria-hidden="true">
-              <path stroke-linecap="round" stroke-linejoin="round"
-                d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.36-6.36-.71.71M6.34 17.66l-.71.71M17.66 17.66l.71.71M6.34 6.34l-.71-.71M12 7a5 5 0 1 0 0 10A5 5 0 0 0 12 7z"/>
-            </svg>
-            <svg class="icon-moon" xmlns="http://www.w3.org/2000/svg" fill="none"
-                 viewBox="0 0 24 24" stroke-width="1.8" stroke="currentColor" aria-hidden="true">
-              <path stroke-linecap="round" stroke-linejoin="round"
-                d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
-            </svg>
+            <svg class="icon-sun" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.8" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.36-6.36-.71.71M6.34 17.66l-.71.71M17.66 17.66l.71.71M6.34 6.34l-.71-.71M12 7a5 5 0 1 0 0 10A5 5 0 0 0 12 7z"/></svg>
+            <svg class="icon-moon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.8" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
           </button>
-
-          <!-- Mobile menu toggle -->
           <button class="menu-toggle" id="menu-toggle" aria-label="Open menu" aria-expanded="false">
             <span></span><span></span><span></span>
           </button>
         </div>
-
       </div>
     </div>
   </header>
 
-  <!-- Mobile Nav Drawer -->
   <nav class="mobile-nav" id="mobile-nav" aria-label="Mobile navigation">
-    <a href="index.html" class="nav-link active">Home</a>
-    <a href="about.html" class="nav-link">About</a>
-    <a href="work.html" class="nav-link">Work</a>
+    <a href="index.html"   class="nav-link active">Home</a>
+    <a href="about.html"   class="nav-link">About</a>
+    <a href="work.html"    class="nav-link">Work</a>
     <a href="contact.html" class="nav-link">Let's Talk</a>
   </nav>
 
-  <!-- ════════════════════════════════════════════
-       HERO
-  ════════════════════════════════════════════ -->
   <main>
-    <section class="hero" aria-label="Hero introduction">
 
-      <!-- Amber dust particles -->
+    <!-- ═══════════════════════════════════
+         HERO
+    ═══════════════════════════════════ -->
+    <section class="hero" aria-label="Hero">
       <div class="hero-dust" aria-hidden="true">
         <span class="dust d1"></span><span class="dust d2"></span>
         <span class="dust d3"></span><span class="dust d4"></span>
@@ -218,72 +71,44 @@
       </div>
 
       <div class="container">
-<div class="hero__inner">
+        <div class="hero__inner">
 
-  <!-- Label -->
-  <div class="hero__label">
-    <span class="label">Austin, TX &nbsp;·&nbsp; Available for Work</span>
-  </div>
+          <div class="hero__label">
+            <span class="label">Austin, TX &nbsp;·&nbsp; Available for Work</span>
+          </div>
 
-  <!-- Headline -->
-  <h1 class="hero__headline display-xl" id="hero-headline"
-      aria-label="Your next marketer already built this website.">
-    <span class="hero__headline-line">
-      <span class="hero__headline-inner">Your next marketer</span>
-    </span>
-    <span class="hero__headline-line">
-      <span class="hero__headline-inner" style="animation-delay:0.1s;">already built this</span>
-    </span>
-    <span class="hero__headline-line">
-      <span class="hero__headline-inner" style="animation-delay:0.2s; color: var(--accent);">website.</span>
-    </span>
-  </h1>
+          <h1 class="hero__headline display-xl"
+              aria-label="Your next marketer already built this website.">
+            <span class="hero__headline-line">
+              <span class="hero__headline-inner">Your next marketer</span>
+            </span>
+            <span class="hero__headline-line">
+              <span class="hero__headline-inner" style="animation-delay:0.12s;">already built this</span>
+            </span>
+            <span class="hero__headline-line">
+              <span class="hero__headline-inner" style="animation-delay:0.24s;color:var(--accent);">website.</span>
+            </span>
+          </h1>
 
-  <!-- Typewriter subtitle -->
-  <p class="hero__subtitle" id="hero-subtitle" aria-live="polite"></p>
+          <p class="hero__subtitle" id="hero-subtitle" aria-live="polite"></p>
 
-  <!-- Body paragraph — new addition -->
-  <p class="hero__body">
-    I run Google Ads, build lead funnels, and design the pages
-    they land on — all measured, all optimized, all owned by
-    one person. 4.5 years of sustained results in Austin, TX.
-  </p>
+          <div class="hero__ctas">
+            <a href="work.html" class="btn btn--primary">
+              View My Work
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
+            </a>
+            <a href="contact.html" class="btn btn--ghost">
+              Open to Roles
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
+            </a>
+          </div>
 
-  <!-- CTAs -->
-  <div class="hero__ctas">
-    <a href="work.html" class="btn btn--primary">
-      View My Work
-      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-           stroke-width="2" stroke="currentColor" aria-hidden="true">
-        <path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
-      </svg>
-    </a>
-    <a href="contact.html" class="btn btn--ghost">
-      Open to Roles
-      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-           stroke-width="2" stroke="currentColor" aria-hidden="true">
-        <path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
-      </svg>
-    </a>
-  </div>
-
-</div>
+        </div>
       </div>
 
-      <!-- Skill ticker marquee -->
+      <!-- Skill ticker -->
       <div class="ticker-wrap" aria-hidden="true">
         <div class="ticker-track" id="ticker-track">
-          <!-- Items duplicated in JS for infinite loop -->
-          <span class="ticker-item">Google Ads<span class="ticker-dot"></span></span>
-          <span class="ticker-item">Lead Generation<span class="ticker-dot"></span></span>
-          <span class="ticker-item">Full-Funnel Strategy<span class="ticker-dot"></span></span>
-          <span class="ticker-item">SEO<span class="ticker-dot"></span></span>
-          <span class="ticker-item">Web Design<span class="ticker-dot"></span></span>
-          <span class="ticker-item">GA4 &amp; GTM<span class="ticker-dot"></span></span>
-          <span class="ticker-item">Conversion Rate Optimization<span class="ticker-dot"></span></span>
-          <span class="ticker-item">Paid Media<span class="ticker-dot"></span></span>
-          <span class="ticker-item">Landing Page Design<span class="ticker-dot"></span></span>
-          <span class="ticker-item">Marketing Automation<span class="ticker-dot"></span></span>
           <span class="ticker-item">Google Ads<span class="ticker-dot"></span></span>
           <span class="ticker-item">Lead Generation<span class="ticker-dot"></span></span>
           <span class="ticker-item">Full-Funnel Strategy<span class="ticker-dot"></span></span>
@@ -296,102 +121,78 @@
           <span class="ticker-item">Marketing Automation<span class="ticker-dot"></span></span>
         </div>
       </div>
-
     </section>
 
-    <!-- ════════════════════════════════════════════
-         NUMBERS BAR
-    ════════════════════════════════════════════ -->
+    <!-- ═══════════════════════════════════
+         STATS BAR
+    ═══════════════════════════════════ -->
     <section class="stats-bar" aria-label="Key results">
       <div class="container">
         <div class="stats-grid">
-
           <div class="stat-item reveal">
-            <span class="stat-number" data-target="6.2" data-decimals="1" data-suffix="x" id="stat-0">0x</span>
+            <span class="stat-number"
+                  data-target="6.2" data-decimals="1" data-suffix="x">0x</span>
             <span class="stat-label">Average ROAS</span>
           </div>
-
           <div class="stat-item reveal reveal-delay-1">
-            <span class="stat-number" data-target="3400" data-suffix="+" id="stat-1">0+</span>
+            <span class="stat-number"
+                  data-target="3400" data-suffix="+">0+</span>
             <span class="stat-label">Leads Generated</span>
           </div>
-
           <div class="stat-item reveal reveal-delay-2">
-            <span class="stat-number" data-target="47" data-suffix="%" id="stat-2">0%</span>
+            <span class="stat-number"
+                  data-target="47" data-suffix="%">0%</span>
             <span class="stat-label">Lower CPA Achieved</span>
           </div>
-
           <div class="stat-item reveal reveal-delay-3">
-            <span class="stat-number" data-target="380" data-prefix="$" data-suffix="K+" id="stat-3">$0K+</span>
+            <span class="stat-number"
+                  data-target="380" data-prefix="$" data-suffix="K+">$0K+</span>
             <span class="stat-label">Ad Spend Managed</span>
           </div>
-
         </div>
       </div>
     </section>
 
-    <!-- ════════════════════════════════════════════
+    <!-- ═══════════════════════════════════
          WHAT I DO
-    ════════════════════════════════════════════ -->
-    <section class="what-i-do section" aria-label="What I do">
+    ═══════════════════════════════════ -->
+    <section class="section" aria-label="What I do">
       <div class="container">
 
         <div class="reveal">
           <span class="label">Expertise</span>
-          <h2 class="display-md" style="margin-top: var(--space-4); max-width: 560px;">
+          <h2 class="display-md" style="margin-top:var(--space-4);max-width:560px;">
             Two disciplines.<br>One person who actually does both.
           </h2>
         </div>
 
         <div class="what-i-do__grid">
 
-          <!-- Marketing -->
           <div class="what-i-do__panel reveal">
             <div class="what-i-do__icon" aria-hidden="true">
-              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                   stroke-width="1.8" stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round"
-                  d="M3 13.125C3 12.504 3.504 12 4.125 12h2.25c.621 0 1.125.504 1.125 1.125v6.75C7.5 20.496 6.996 21 6.375 21h-2.25A1.125 1.125 0 0 1 3 19.875v-6.75ZM9.75 8.625c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125v11.25c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 0 1-1.125-1.125V8.625ZM16.5 4.125c0-.621.504-1.125 1.125-1.125h2.25C20.496 3 21 3.504 21 4.125v15.75c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 0 1-1.125-1.125V4.125Z"/>
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.8" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M3 13.125C3 12.504 3.504 12 4.125 12h2.25c.621 0 1.125.504 1.125 1.125v6.75C7.5 20.496 6.996 21 6.375 21h-2.25A1.125 1.125 0 0 1 3 19.875v-6.75ZM9.75 8.625c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125v11.25c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 0 1-1.125-1.125V8.625ZM16.5 4.125c0-.621.504-1.125 1.125-1.125h2.25C20.496 3 21 3.504 21 4.125v15.75c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 0 1-1.125-1.125V4.125Z"/>
               </svg>
             </div>
             <h3 class="what-i-do__title">Marketing Brain</h3>
-            <p class="what-i-do__desc">
-              Full-funnel strategy from first impression to signed contract.
-              I run Google Ads campaigns, build lead generation systems, optimize
-              for conversion, and track every dollar with GA4 and GTM. Data-driven
-              decisions, not guesswork.
-            </p>
+            <p class="what-i-do__desc">Full-funnel strategy from first impression to signed contract. I run Google Ads campaigns, build lead generation systems, optimize for conversion, and track every dollar with GA4 and GTM.</p>
             <a href="work.html?filter=marketing" class="btn btn--ghost">
               See Marketing Work
-              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                   stroke-width="2" stroke="currentColor" aria-hidden="true">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
-              </svg>
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
             </a>
           </div>
 
-          <!-- Web Design -->
           <div class="what-i-do__panel reveal reveal-delay-2">
             <div class="what-i-do__icon" aria-hidden="true">
-              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                   stroke-width="1.8" stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round"
-                  d="M6.75 7.5 3 12l3.75 4.5m10.5 0L21 12l-3.75-4.5M14.25 4.5l-4.5 15"/>
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.8" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M6.75 7.5 3 12l3.75 4.5m10.5 0L21 12l-3.75-4.5M14.25 4.5l-4.5 15"/>
               </svg>
             </div>
             <h3 class="what-i-do__title">Web Design Craft</h3>
-            <p class="what-i-do__desc">
-              Websites that earn trust before a single word is read.
-              I design and build from scratch — no templates, no page builders —
-              with clean code, fast load times, and experiences that convert.
-              You're looking at one right now.
-            </p>
+            <p class="what-i-do__desc">Websites that earn trust before a single word is read. I design and build from scratch — no templates, no page builders — with clean code, fast load times, and experiences that convert.</p>
             <a href="work.html?filter=webdesign" class="btn btn--ghost">
               See Web Design Work
-              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                   stroke-width="2" stroke="currentColor" aria-hidden="true">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
-              </svg>
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
             </a>
           </div>
 
@@ -399,49 +200,46 @@
       </div>
     </section>
 
-    <!-- ════════════════════════════════════════════
+    <!-- ═══════════════════════════════════
          FEATURED WORK
-    ════════════════════════════════════════════ -->
-    <section class="featured-work" aria-label="Featured work">
+    ═══════════════════════════════════ -->
+    <section style="padding-block:clamp(var(--space-16),8vw,var(--space-32));background:var(--bg-secondary);" aria-label="Featured work">
       <div class="container">
 
-        <div class="section-header">
-          <div class="section-header__left reveal">
+        <div style="display:flex;align-items:flex-end;justify-content:space-between;gap:var(--space-6);margin-bottom:var(--space-10);flex-wrap:wrap;">
+          <div class="reveal">
             <span class="label">Selected Work</span>
-            <h2 class="display-md" style="margin-top: var(--space-4);">
+            <h2 class="display-md" style="margin-top:var(--space-4);">
               Results that speak<br>for themselves.
             </h2>
           </div>
           <a href="work.html" class="btn btn--ghost reveal">
             See All Work
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                 stroke-width="2" stroke="currentColor" aria-hidden="true">
-              <path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
-            </svg>
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
           </a>
         </div>
 
-        <!-- Currently strip -->
-        <div class="reveal" style="margin-bottom: var(--space-8);">
+        <div class="reveal" style="margin-bottom:var(--space-8);">
           <div class="currently-block">
             <span class="currently-dot" aria-hidden="true"></span>
             <span>Currently: <strong>Digital Marketing Lead</strong> &nbsp;·&nbsp; Austin, TX &nbsp;·&nbsp; Open to Full-Time Roles</span>
           </div>
         </div>
 
-        <div class="work-grid">
+        <div class="work-grid" id="work-grid">
 
-          <!-- Card 1 — Marketing -->
-          <article class="work-card reveal" data-category="marketing"
-                   data-title="Google Ads Lead Engine"
-                   data-tag="Paid Search"
-                   data-summary="Rebuilt the Google Ads account from the ground up — restructured campaigns, rewrote all ad copy, implemented conversion tracking via GTM, and launched a new landing page. Reduced wasted spend while dramatically increasing lead quality."
-                   data-challenge="The existing account was a decade of accumulated bad structure — broad match keywords bleeding budget, no negative lists, zero conversion tracking. Cost per lead was unsustainable."
-                   data-strategy="Full account audit, keyword sculpting, new campaign hierarchy (SKAG-inspired), copy A/B testing, and a dedicated landing page built specifically for the Google Ads traffic — not the homepage."
-                   data-result1="6.2x" data-label1="ROAS"
-                   data-result2="47%" data-label2="CPA Reduction"
-                   data-result3="312%" data-label3="Lead Volume Increase"
-                   aria-label="View Google Ads Lead Engine case study">
+          <!-- Card 1 -->
+          <article class="work-card reveal"
+            data-category="marketing"
+            data-title="Google Ads Lead Engine"
+            data-tag="Paid Search · CRO"
+            data-summary="Rebuilt a neglected Google Ads account from zero — new campaign architecture, copy, landing page, and conversion tracking. Turned wasted budget into a consistent, measurable lead pipeline."
+            data-challenge="The existing account was years of accumulated bad structure. Broad match keywords burning budget, zero negative keyword lists, no conversion tracking, and a homepage as the landing page."
+            data-strategy="Full account audit and rebuild — keyword sculpting, tight ad groups, new copy tested in 3-way rotation, a dedicated landing page built for the paid traffic, and GTM-based conversion tracking for every form submission and phone call."
+            data-result1="6.2x" data-label1="ROAS"
+            data-result2="47%"  data-label2="CPA Reduction"
+            data-result3="312%" data-label3="Lead Volume Lift"
+            tabindex="0" role="button" aria-label="Open Google Ads Lead Engine case study">
             <div class="work-card__thumb">
               <div class="work-card__thumb-placeholder">Ads</div>
               <span class="work-card__tag">Marketing</span>
@@ -452,35 +250,29 @@
                 <span class="work-card__stat">6.2x ROAS</span>
               </div>
               <h3 class="work-card__title">Google Ads Lead Engine</h3>
-              <p class="work-card__desc">
-                Rebuilt an underperforming account from scratch — new structure,
-                copy, tracking, and landing page. Turned wasted spend into a
-                consistent lead pipeline.
-              </p>
+              <p class="work-card__desc">Rebuilt an underperforming account from scratch. New structure, copy, tracking, and landing page. Turned wasted spend into a consistent lead pipeline.</p>
             </div>
             <div class="work-card__footer">
               <span class="work-card__cta">
                 View Case Study
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                     stroke-width="2" stroke="currentColor" aria-hidden="true">
-                  <path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
-                </svg>
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
               </span>
             </div>
           </article>
 
-          <!-- Card 2 — Web Design -->
-          <article class="work-card reveal reveal-delay-1" data-category="webdesign"
-                   data-title="Specialty Contractor Web Redesign"
-                   data-tag="Web Design"
-                   data-summary="Designed and built a full website redesign for a specialty contracting company — from wireframe to deployed. Focused on trust signals, mobile performance, and conversion rate from organic and paid traffic."
-                   data-challenge="The previous site was outdated, slow on mobile, and not designed to convert. Visitors were landing and leaving. It wasn't doing the job."
-                   data-strategy="Clean visual redesign, mobile-first build, service page restructure with clear CTAs, structured data markup, and page speed optimization. Built entirely from scratch — no WordPress, no page builder."
-                   data-result1="58%" data-label1="Bounce Rate Drop"
-                   data-result2="91" data-label2="Lighthouse Score"
-                   data-result3="2.4x" data-label3="Form Conversion Lift"
-                   aria-label="View Specialty Contractor Web Redesign case study">
-            <div class="work-card__thumb">
+          <!-- Card 2 -->
+          <article class="work-card reveal reveal-delay-1"
+            data-category="webdesign"
+            data-title="Specialty Contractor Web Redesign"
+            data-tag="Web Design · Development"
+            data-summary="Full website redesign for a specialty contracting company — designed from scratch, built from scratch. Mobile-first, fast, and built around one goal: converting visitors into leads."
+            data-challenge="The existing site was slow, visually outdated, and not converting. Mobile experience was broken. Visitors coming from paid ads were landing on a page that undermined the campaign's credibility."
+            data-strategy="Clean visual redesign from wireframes up, mobile-first HTML/CSS/JS build with zero page builder dependencies, service page restructure with clear CTAs, structured data markup, and Core Web Vitals optimization."
+            data-result1="91"   data-label1="Lighthouse Score"
+            data-result2="58%"  data-label2="Bounce Rate Drop"
+            data-result3="2.4x" data-label3="Form Conversion Lift"
+            tabindex="0" role="button" aria-label="Open Contractor Web Redesign case study">
+            <div class="work-card__thumb" style="background:linear-gradient(135deg,#1D2D36 0%,#0F1923 100%);">
               <div class="work-card__thumb-placeholder">Web</div>
               <span class="work-card__tag">Web Design</span>
             </div>
@@ -489,34 +281,29 @@
                 <span class="work-card__channel">HTML · CSS · JS</span>
                 <span class="work-card__stat">91 Lighthouse</span>
               </div>
-              <h3 class="work-card__title">Specialty Contractor Web Redesign</h3>
-              <p class="work-card__desc">
-                Full redesign built from scratch — mobile-first, fast, and built
-                to convert. Bounce rate dropped 58% within 30 days of launch.
-              </p>
+              <h3 class="work-card__title">Contractor Website Redesign</h3>
+              <p class="work-card__desc">Full redesign built from scratch — mobile-first, hand-coded, and optimized for both performance and conversion. Bounce rate dropped 58% within 30 days.</p>
             </div>
             <div class="work-card__footer">
               <span class="work-card__cta">
                 View Case Study
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                     stroke-width="2" stroke="currentColor" aria-hidden="true">
-                  <path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
-                </svg>
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
               </span>
             </div>
           </article>
 
-          <!-- Card 3 — Marketing -->
-          <article class="work-card reveal reveal-delay-2" data-category="marketing"
-                   data-title="Full-Funnel Lead System"
-                   data-tag="Lead Gen"
-                   data-summary="Designed and implemented a complete lead funnel — from top-of-funnel awareness content through to nurture sequences and CRM integration. Every stage tracked, every drop-off identified and addressed."
-                   data-challenge="Leads were coming in sporadically with no consistent nurture process. Sales follow-up was inconsistent and timing was off. A lot of potential revenue was leaking out of the funnel."
-                   data-strategy="Mapped the full customer journey, built automated email sequences, implemented lead scoring, and created stage-specific content for each funnel phase. Integrated with CRM for full visibility."
-                   data-result1="3,400+" data-label1="Leads Generated"
-                   data-result2="38%" data-label2="Lead-to-Appt Rate"
-                   data-result3="4.5yr" data-label3="Sustained Results"
-                   aria-label="View Full-Funnel Lead System case study">
+          <!-- Card 3 -->
+          <article class="work-card reveal reveal-delay-2"
+            data-category="marketing"
+            data-title="Full-Funnel Lead System"
+            data-tag="Lead Gen · Automation"
+            data-summary="Designed and built a complete lead generation and nurture system from the ground up — from top-of-funnel awareness to booked appointments. Every stage tracked, every drop-off identified and fixed."
+            data-challenge="Leads were coming in but going nowhere. No consistent nurture process, no lead scoring, no visibility into where the funnel was leaking."
+            data-strategy="Full customer journey mapping, automated email sequences for each funnel stage, lead scoring implementation, CRM integration for full pipeline visibility, and stage-specific content for TOFU, MOFU, and BOFU."
+            data-result1="3,400+" data-label1="Total Leads"
+            data-result2="38%"    data-label2="Lead-to-Appt Rate"
+            data-result3="4.5yr"  data-label3="Sustained ROI"
+            tabindex="0" role="button" aria-label="Open Full-Funnel Lead System case study">
             <div class="work-card__thumb">
               <div class="work-card__thumb-placeholder">Funnel</div>
               <span class="work-card__tag">Marketing</span>
@@ -527,19 +314,12 @@
                 <span class="work-card__stat">3,400+ Leads</span>
               </div>
               <h3 class="work-card__title">Full-Funnel Lead System</h3>
-              <p class="work-card__desc">
-                Built and maintained a complete lead generation and nurture system
-                over 4.5 years — generating thousands of qualified leads with
-                measurable, sustained ROI.
-              </p>
+              <p class="work-card__desc">A complete lead pipeline built and maintained over 4.5 years — from awareness to appointment. Thousands of leads. Consistent ROI. Zero guesswork.</p>
             </div>
             <div class="work-card__footer">
               <span class="work-card__cta">
                 View Case Study
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                     stroke-width="2" stroke="currentColor" aria-hidden="true">
-                  <path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
-                </svg>
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
               </span>
             </div>
           </article>
@@ -548,84 +328,68 @@
       </div>
     </section>
 
-    <!-- ════════════════════════════════════════════
+    <!-- ═══════════════════════════════════
          ABOUT SNIPPET
-    ════════════════════════════════════════════ -->
-    <section class="about-snippet section" aria-label="About TJ Marek">
+    ═══════════════════════════════════ -->
+    <section class="section" aria-label="About TJ Marek">
       <div class="container">
         <div class="about-snippet__grid">
 
-          <!-- Text -->
           <div>
             <span class="label reveal">About Me</span>
-            <h2 class="display-md reveal" style="margin-top: var(--space-4); margin-bottom: var(--space-6);">
-              I'm a marketer who<br>builds things.
+            <h2 class="display-md reveal" style="margin-top:var(--space-4);margin-bottom:var(--space-6);">
+              I'm a marketer<br>who builds things.
             </h2>
-            <p class="body-lg reveal reveal-delay-1" style="color: var(--text-muted); margin-bottom: var(--space-6);">
-              Born and raised in Austin, TX. I've spent the last 4.5 years as a
-              one-person marketing department — building, running, and optimizing
-              everything from Google Ads campaigns to the websites they send
-              traffic to. No handoffs. No silos. Just results.
+            <p class="body-lg reveal reveal-delay-1" style="color:var(--text-muted);margin-bottom:var(--space-6);">
+              Born and raised in Austin, TX. I've spent the last 4.5 years as a one-person marketing department — building, running, and optimizing everything from Google Ads campaigns to the websites they send traffic to.
             </p>
-            <p class="body-base reveal reveal-delay-2" style="color: var(--text-muted); margin-bottom: var(--space-8);">
-              I hold a Full-Stack Web Development certificate from UT Austin and
-              certifications in Google Ads, Analytics, and more. I know how the
-              platforms work and I know how to build the experiences that make
-              them perform.
+            <p class="body-base reveal reveal-delay-2" style="color:var(--text-muted);margin-bottom:var(--space-8);">
+              I hold a Full-Stack Web Development certificate from UT Austin and certifications in Google Ads, Analytics, and more. I know how the platforms work and I know how to build the experiences that make them perform.
             </p>
-            <div class="reveal reveal-delay-3">
+            <div class="reveal reveal-delay-3" style="display:flex;gap:var(--space-4);flex-wrap:wrap;">
               <a href="about.html" class="btn btn--primary">
                 More About Me
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                     stroke-width="2" stroke="currentColor" aria-hidden="true">
-                  <path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
-                </svg>
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
+              </a>
+              <a href="TJ-Marek-CV.pdf" download class="btn btn--ghost">
+                Download CV
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M3 16.5v2.25A2.25 2.25 0 0 0 5.25 21h13.5A2.25 2.25 0 0 0 21 18.75V16.5M16.5 12 12 16.5m0 0L7.5 12m4.5 4.5V3"/></svg>
               </a>
             </div>
           </div>
 
-          <!-- Image -->
-          <div class="about-snippet__frame reveal reveal-delay-1">
-            <img src="headshot-2.jpg"
-                 alt="TJ Marek — Digital Marketer & Web Designer based in Austin TX"
-                 class="about-snippet__img-el"
-                 style="border-radius: var(--radius-xl); width: 100%; max-width: 380px; margin-left: auto;" />
+          <div class="reveal reveal-delay-2">
+            <div class="about-snippet__frame">
+              <img src="headshot-2.jpg"
+                   alt="TJ Marek — Digital Marketer & Web Designer, Austin TX"
+                   loading="lazy" />
+            </div>
           </div>
 
         </div>
       </div>
     </section>
 
-    <!-- ════════════════════════════════════════════
+    <!-- ═══════════════════════════════════
          CTA BAND
-    ════════════════════════════════════════════ -->
-    <section class="cta-band" aria-label="Call to action">
-      <div class="container">
-        <div class="cta-band__eyebrow reveal">
-          <span class="label" style="color: rgba(200,208,213,0.55);">Ready When You Are</span>
-        </div>
-        <h2 class="display-lg cta-band__heading reveal">
-          Let's build something<br>
-          <span style="color: var(--accent);">that actually works.</span>
+    ═══════════════════════════════════ -->
+    <section style="padding-block:clamp(var(--space-16),7vw,var(--space-24));background:var(--footer-bg);" aria-label="Call to action">
+      <div class="container" style="text-align:center;">
+        <span class="label" style="color:rgba(242,165,59,0.70);">Ready When You Are</span>
+        <h2 class="display-md reveal" style="margin-top:var(--space-4);margin-bottom:var(--space-4);color:#EAE8E4;">
+          Let's build something<br>worth measuring.
         </h2>
-        <p class="cta-band__sub reveal reveal-delay-1">
-          Whether you're hiring for a full-time role or need a marketer
-          and web designer for a project — I'd love to hear about it.
+        <p class="reveal reveal-delay-1" style="color:rgba(200,208,213,0.60);font-size:var(--text-md);margin-bottom:var(--space-10);max-width:480px;margin-inline:auto;line-height:1.7;">
+          Full-time role or freelance project — I respond within 24 hours and I come ready to contribute from day one.
         </p>
-        <div class="cta-band__buttons reveal reveal-delay-2">
+        <div class="reveal reveal-delay-2" style="display:flex;gap:var(--space-4);justify-content:center;flex-wrap:wrap;">
           <a href="contact.html" class="btn btn--primary">
-            Let's Talk
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                 stroke-width="2" stroke="currentColor" aria-hidden="true">
-              <path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
-            </svg>
+            Get in Touch
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
           </a>
           <a href="work.html" class="btn btn--ghost-light">
             View All Work
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                 stroke-width="2" stroke="currentColor" aria-hidden="true">
-              <path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
-            </svg>
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
           </a>
         </div>
       </div>
@@ -633,16 +397,13 @@
 
   </main>
 
-  <!-- ════════════════════════════════════════════
-       FOOTER
-  ════════════════════════════════════════════ -->
+  <!-- FOOTER -->
   <footer class="site-footer" role="contentinfo">
     <div class="container">
       <div class="footer-inner">
-
         <div>
           <div class="footer-logo">
-            <img src="assets/logo.png" alt="TJ Marek logo" class="footer-logo__mark" />
+            <img src="logo.jpg" alt="TJ Marek logo" class="footer-logo__mark" />
             <span class="footer-logo__name">TJ Marek</span>
           </div>
           <p class="footer-tagline">Full-Funnel Digital Marketer &amp; Web Designer · Austin, TX</p>
@@ -650,423 +411,77 @@
             <span>Designed &amp; coded by TJ Marek</span> · No templates. No shortcuts.
           </p>
         </div>
-
         <nav class="footer-nav" aria-label="Footer navigation">
           <a href="index.html">Home</a>
           <a href="about.html">About</a>
           <a href="work.html">Work</a>
           <a href="contact.html">Let's Talk</a>
         </nav>
-
       </div>
-
       <div class="footer-copy">
         <span>© 2026 TJ Marek. All rights reserved.</span>
         <span>tjmarek.me</span>
       </div>
-
     </div>
   </footer>
 
-  <!-- ════════════════════════════════════════════
-       STICKY CONTACT BAR
-  ════════════════════════════════════════════ -->
+  <!-- STICKY CONTACT BAR -->
   <aside class="contact-bar" role="complementary" aria-label="Quick contact">
-
     <div class="contact-bar__status">
       <span class="status-dot" aria-hidden="true"></span>
       <span class="status-text">Open to New Opportunities</span>
     </div>
-
     <div class="contact-bar__links">
-      <a href="mailto:tj@tjmarek.me" class="contact-bar__link" aria-label="Send email to TJ Marek">
-        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-             stroke-width="1.8" stroke="currentColor" aria-hidden="true">
-          <path stroke-linecap="round" stroke-linejoin="round"
-            d="M21.75 6.75v10.5a2.25 2.25 0 0 1-2.25 2.25h-15a2.25 2.25 0 0 1-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0 0 19.5 4.5h-15a2.25 2.25 0 0 0-2.25 2.25m19.5 0v.243a2.25 2.25 0 0 1-1.07 1.916l-7.5 4.615a2.25 2.25 0 0 1-2.36 0L3.32 8.91a2.25 2.25 0 0 1-1.07-1.916V6.75"/>
-        </svg>
+      <a href="mailto:tj@tjmarek.me" class="contact-bar__link" aria-label="Email TJ Marek">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.8" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 0 1-2.25 2.25h-15a2.25 2.25 0 0 1-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0 0 19.5 4.5h-15a2.25 2.25 0 0 0-2.25 2.25m19.5 0v.243a2.25 2.25 0 0 1-1.07 1.916l-7.5 4.615a2.25 2.25 0 0 1-2.36 0L3.32 8.91a2.25 2.25 0 0 1-1.07-1.916V6.75"/></svg>
         <span class="contact-bar__link-text">tj@tjmarek.me</span>
       </a>
-
       <span class="contact-bar__sep" aria-hidden="true"></span>
-
-      <a href="https://linkedin.com/in/tjmarek" target="_blank" rel="noopener noreferrer"
-         class="contact-bar__link" aria-label="TJ Marek on LinkedIn">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-          <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
-        </svg>
+      <a href="https://linkedin.com/in/tjmarek" target="_blank" rel="noopener noreferrer" class="contact-bar__link" aria-label="LinkedIn">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
         <span class="contact-bar__link-text">LinkedIn</span>
       </a>
-
       <span class="contact-bar__sep" aria-hidden="true"></span>
-
-      <a href="TJ-Marek-CV.pdf" download class="contact-bar__link" aria-label="Download TJ Marek's CV">
-        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-             stroke-width="1.8" stroke="currentColor" aria-hidden="true">
-          <path stroke-linecap="round" stroke-linejoin="round"
-            d="M3 16.5v2.25A2.25 2.25 0 0 0 5.25 21h13.5A2.25 2.25 0 0 0 21 18.75V16.5M16.5 12 12 16.5m0 0L7.5 12m4.5 4.5V3"/>
-        </svg>
+      <a href="TJ-Marek-CV.pdf" download class="contact-bar__link" aria-label="Download CV">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.8" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M3 16.5v2.25A2.25 2.25 0 0 0 5.25 21h13.5A2.25 2.25 0 0 0 21 18.75V16.5M16.5 12 12 16.5m0 0L7.5 12m4.5 4.5V3"/></svg>
         <span class="contact-bar__link-text">Download CV</span>
       </a>
     </div>
-
   </aside>
 
-  <!-- ════════════════════════════════════════════
-       CASE STUDY OVERLAY
-  ════════════════════════════════════════════ -->
-  <div class="overlay" id="case-study-overlay" role="dialog" aria-modal="true"
-       aria-labelledby="overlay-title" aria-hidden="true">
+  <!-- Case study overlay -->
+  <div class="overlay" id="case-study-overlay" role="dialog" aria-modal="true" aria-hidden="true" aria-label="Case study">
     <div class="overlay__panel">
-
       <button class="overlay__close" id="overlay-close" aria-label="Close case study">
-        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-             stroke-width="2" stroke="currentColor" aria-hidden="true">
-          <path stroke-linecap="round" stroke-linejoin="round" d="M6 18 18 6M6 6l12 12"/>
-        </svg>
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18 18 6M6 6l12 12"/></svg>
       </button>
-
-      <div class="overlay__tag">
-        <span class="label" id="overlay-tag">Case Study</span>
-      </div>
-
-      <h2 class="display-sm overlay__title" id="overlay-title">Project Title</h2>
-      <p class="overlay__summary" id="overlay-summary">Summary goes here.</p>
-
+      <span class="label overlay__tag" id="overlay-tag"></span>
+      <h2 class="display-sm overlay__title" id="overlay-title"></h2>
+      <p class="overlay__summary" id="overlay-summary"></p>
       <p class="overlay__section-title">The Challenge</p>
-      <p class="body-base" id="overlay-challenge" style="color: var(--text-muted); line-height: 1.75;"></p>
-
+      <p style="font-size:var(--text-base);color:var(--text-muted);line-height:1.75;" id="overlay-challenge"></p>
       <p class="overlay__section-title">The Strategy</p>
-      <p class="body-base" id="overlay-strategy" style="color: var(--text-muted); line-height: 1.75;"></p>
-
-      <p class="overlay__section-title">The Results</p>
+      <p style="font-size:var(--text-base);color:var(--text-muted);line-height:1.75;" id="overlay-strategy"></p>
       <div class="overlay__results">
         <div class="overlay__result-item">
           <span class="overlay__result-number" id="overlay-r1"></span>
-          <span class="overlay__result-label" id="overlay-l1"></span>
+          <span class="overlay__result-label"  id="overlay-l1"></span>
         </div>
         <div class="overlay__result-item">
           <span class="overlay__result-number" id="overlay-r2"></span>
-          <span class="overlay__result-label" id="overlay-l2"></span>
+          <span class="overlay__result-label"  id="overlay-l2"></span>
         </div>
         <div class="overlay__result-item">
           <span class="overlay__result-number" id="overlay-r3"></span>
-          <span class="overlay__result-label" id="overlay-l3"></span>
+          <span class="overlay__result-label"  id="overlay-l3"></span>
         </div>
       </div>
-
     </div>
   </div>
 
-  <!-- ════════════════════════════════════════════
-       SCRIPTS
-  ════════════════════════════════════════════ -->
-
-  <!-- GSAP -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" defer></script>
-
-  <script>
-  (() => {
-    'use strict';
-
-    /* ── Helpers ── */
-    const $ = (s, c = document) => c.querySelector(s);
-    const $$ = (s, c = document) => [...c.querySelectorAll(s)];
-
-    /* ══════════════════════════════════════════
-       1. THEME TOGGLE
-    ══════════════════════════════════════════ */
-    const html        = document.documentElement;
-    const themeToggle = $('#theme-toggle');
-    const saved       = localStorage.getItem('tj-theme') || 'light';
-    html.setAttribute('data-theme', saved);
-
-    themeToggle?.addEventListener('click', () => {
-      const next = html.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
-      html.setAttribute('data-theme', next);
-      localStorage.setItem('tj-theme', next);
-    });
-
-    /* ══════════════════════════════════════════
-       2. SCROLL PROGRESS BAR
-    ══════════════════════════════════════════ */
-    const progressBar = $('#scroll-progress');
-    window.addEventListener('scroll', () => {
-      const scrolled = window.scrollY;
-      const total    = document.body.scrollHeight - window.innerHeight;
-      if (progressBar) progressBar.style.width = (scrolled / total * 100) + '%';
-    }, { passive: true });
-
-    /* ══════════════════════════════════════════
-       3. STICKY HEADER — scrolled state
-    ══════════════════════════════════════════ */
-    const header = $('#site-header');
-    window.addEventListener('scroll', () => {
-      header?.classList.toggle('scrolled', window.scrollY > 60);
-    }, { passive: true });
-
-    /* ══════════════════════════════════════════
-       4. MOBILE MENU
-    ══════════════════════════════════════════ */
-    const menuBtn  = $('#menu-toggle');
-    const mobileNav = $('#mobile-nav');
-
-    menuBtn?.addEventListener('click', () => {
-      const isOpen = mobileNav.classList.toggle('open');
-      menuBtn.classList.toggle('open', isOpen);
-      menuBtn.setAttribute('aria-expanded', isOpen);
-      document.body.style.overflow = isOpen ? 'hidden' : '';
-    });
-
-    /* ══════════════════════════════════════════
-       5. TYPEWRITER SUBTITLE
-    ══════════════════════════════════════════ */
-    const subtitleEl = $('#hero-subtitle');
-    const subtitleText = "I'm TJ Marek — a full-funnel digital marketer and web designer based in Austin, TX. I build the strategy, run the campaigns, and design the experience.";
-
-    if (subtitleEl) {
-      let i = 0;
-      const cursor = document.createElement('span');
-      cursor.className = 'typewriter-cursor';
-      cursor.setAttribute('aria-hidden', 'true');
-
-      // Delay start until headline reveal clears
-      setTimeout(() => {
-        subtitleEl.appendChild(cursor);
-        const type = () => {
-          if (i < subtitleText.length) {
-            subtitleEl.insertBefore(document.createTextNode(subtitleText[i]), cursor);
-            i++;
-            setTimeout(type, i < 30 ? 38 : 22);
-          } else {
-            // Remove cursor blink after finish
-            setTimeout(() => cursor.style.opacity = '0', 2400);
-          }
-        };
-        type();
-      }, 1100);
-    }
-
-    /* ══════════════════════════════════════════
-       6. HERO HEADLINE — LETTER SPLIT HOVER
-    ══════════════════════════════════════════ */
-    $$('.hero__headline-inner').forEach(line => {
-      // Wait for animation to complete before splitting
-      setTimeout(() => {
-        const text = line.textContent;
-        line.innerHTML = text.split('').map(ch =>
-          ch === ' '
-            ? '<span class="char" style="display:inline-block;width:.28em" aria-hidden="true">&nbsp;</span>'
-            : `<span class="char" aria-hidden="true">${ch}</span>`
-        ).join('');
-      }, 1200);
-    });
-
-    /* ══════════════════════════════════════════
-       7. SCROLL REVEAL (Intersection Observer)
-    ══════════════════════════════════════════ */
-    const revealEls = $$('.reveal');
-    const revealObs = new IntersectionObserver((entries) => {
-      entries.forEach(e => {
-        if (e.isIntersecting) {
-          e.target.classList.add('in-view');
-          revealObs.unobserve(e.target);
-        }
-      });
-    }, { threshold: 0.12 });
-
-    revealEls.forEach(el => revealObs.observe(el));
-
-    /* ══════════════════════════════════════════
-       8. STAT COUNTER COUNT-UP
-    ══════════════════════════════════════════ */
-    const statEls = $$('.stat-number[data-target]');
-    const statObs = new IntersectionObserver((entries) => {
-      entries.forEach(e => {
-        if (!e.isIntersecting) return;
-        const el       = e.target;
-        const target   = parseFloat(el.dataset.target);
-        const decimals = parseInt(el.dataset.decimals || '0');
-        const prefix   = el.dataset.prefix || '';
-        const suffix   = el.dataset.suffix || '';
-        const dur      = 1800;
-        const start    = performance.now();
-
-        const tick = (now) => {
-          const elapsed  = now - start;
-          const progress = Math.min(elapsed / dur, 1);
-          // Ease out cubic
-          const eased = 1 - Math.pow(1 - progress, 3);
-          const val = (target * eased).toFixed(decimals);
-          el.textContent = prefix + val + suffix;
-
-          if (progress < 1) {
-            requestAnimationFrame(tick);
-          } else {
-            el.textContent = prefix + target.toFixed(decimals) + suffix;
-            // Shimmer
-            el.classList.add('shimmer');
-            setTimeout(() => el.classList.remove('shimmer'), 700);
-          }
-        };
-
-        requestAnimationFrame(tick);
-        statObs.unobserve(el);
-      });
-    }, { threshold: 0.5 });
-
-    statEls.forEach(el => statObs.observe(el));
-
-    /* ══════════════════════════════════════════
-       9. MAGNETIC NAV LINKS
-    ══════════════════════════════════════════ */
-    $$('.mag-wrap').forEach(wrap => {
-      const link = wrap.querySelector('.nav-link');
-      if (!link) return;
-
-      wrap.addEventListener('mousemove', (e) => {
-        const rect   = wrap.getBoundingClientRect();
-        const x      = e.clientX - rect.left - rect.width  / 2;
-        const y      = e.clientY - rect.top  - rect.height / 2;
-        link.style.transform = `translate(${x * 0.28}px, ${y * 0.28}px)`;
-      });
-
-      wrap.addEventListener('mouseleave', () => {
-        link.style.transform = 'translate(0,0)';
-        link.style.transition = 'transform 0.4s cubic-bezier(0.22,1,0.36,1)';
-        setTimeout(() => link.style.transition = '', 400);
-      });
-    });
-
-    /* ══════════════════════════════════════════
-       10. CASE STUDY OVERLAY
-    ══════════════════════════════════════════ */
-    const overlay     = $('#case-study-overlay');
-    const overlayClose = $('#overlay-close');
-
-    const openOverlay = (card) => {
-      if (!overlay) return;
-      $('#overlay-tag', overlay).textContent   = card.dataset.tag      || 'Case Study';
-      $('#overlay-title', overlay).textContent = card.dataset.title    || '';
-      $('#overlay-summary', overlay).textContent   = card.dataset.summary   || '';
-      $('#overlay-challenge', overlay).textContent = card.dataset.challenge || '';
-      $('#overlay-strategy', overlay).textContent  = card.dataset.strategy  || '';
-      $('#overlay-r1', overlay).textContent = card.dataset.result1 || '';
-      $('#overlay-l1', overlay).textContent = card.dataset.label1  || '';
-      $('#overlay-r2', overlay).textContent = card.dataset.result2 || '';
-      $('#overlay-l2', overlay).textContent = card.dataset.label2  || '';
-      $('#overlay-r3', overlay).textContent = card.dataset.result3 || '';
-      $('#overlay-l3', overlay).textContent = card.dataset.label3  || '';
-
-      overlay.classList.add('open');
-      overlay.setAttribute('aria-hidden', 'false');
-      document.body.style.overflow = 'hidden';
-
-      // Focus trap
-      setTimeout(() => overlayClose?.focus(), 100);
-    };
-
-    const closeOverlay = () => {
-      overlay?.classList.remove('open');
-      overlay?.setAttribute('aria-hidden', 'true');
-      document.body.style.overflow = '';
-    };
-
-    $$('.work-card').forEach(card => {
-      card.addEventListener('click', () => openOverlay(card));
-      card.addEventListener('keydown', e => {
-        if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); openOverlay(card); }
-      });
-      card.setAttribute('tabindex', '0');
-      card.setAttribute('role', 'button');
-    });
-
-    overlayClose?.addEventListener('click', closeOverlay);
-
-    overlay?.addEventListener('click', (e) => {
-      if (e.target === overlay) closeOverlay();
-    });
-
-    document.addEventListener('keydown', (e) => {
-      if (e.key === 'Escape') closeOverlay();
-    });
-
-    /* ══════════════════════════════════════════
-       11. PAGE TRANSITION (outbound links)
-    ══════════════════════════════════════════ */
-    const transitionEl = $('#page-transition');
-    const internalLinks = $$('a[href]').filter(a => {
-      const href = a.getAttribute('href');
-      return href && !href.startsWith('http') && !href.startsWith('mailto')
-             && !href.startsWith('#') && !a.hasAttribute('download')
-             && !href.startsWith('tel');
-    });
-
-    internalLinks.forEach(link => {
-      link.addEventListener('click', (e) => {
-        const href = link.getAttribute('href');
-        if (!href || href === window.location.pathname.split('/').pop()) return;
-        e.preventDefault();
-
-        if (!transitionEl) { window.location = href; return; }
-
-        transitionEl.style.transition = 'transform 0.4s cubic-bezier(0.65,0,0.35,1)';
-        transitionEl.style.transformOrigin = 'bottom';
-        transitionEl.style.transform = 'scaleY(1)';
-
-        setTimeout(() => { window.location = href; }, 420);
-      });
-    });
-
-    // Entry wipe
-    if (transitionEl) {
-      transitionEl.style.transform = 'scaleY(1)';
-      transitionEl.style.transformOrigin = 'top';
-      requestAnimationFrame(() => {
-        requestAnimationFrame(() => {
-          transitionEl.style.transition = 'transform 0.5s cubic-bezier(0.22,1,0.36,1)';
-          transitionEl.style.transform = 'scaleY(0)';
-        });
-      });
-    }
-
-    /* ══════════════════════════════════════════
-       12. GSAP SCROLL PARALLAX (hero dust)
-          Loads after GSAP is available
-    ══════════════════════════════════════════ */
-    window.addEventListener('load', () => {
-      if (typeof gsap === 'undefined') return;
-      gsap.registerPlugin(ScrollTrigger);
-
-      // Hero parallax depth
-      gsap.to('.hero-dust', {
-        yPercent: -25,
-        ease: 'none',
-        scrollTrigger: {
-          trigger: '.hero',
-          start: 'top top',
-          end: 'bottom top',
-          scrub: true,
-        }
-      });
-
-      // Stagger stat items on scroll
-      gsap.from('.stat-item', {
-        y: 40,
-        opacity: 0,
-        stagger: 0.12,
-        duration: 0.8,
-        ease: 'power3.out',
-        scrollTrigger: {
-          trigger: '.stats-bar',
-          start: 'top 80%',
-        }
-      });
-    });
-
-  })();
-  </script>
+  <script src="main.js" defer></script>
 
 </body>
 </html>
