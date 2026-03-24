@@ -842,22 +842,7 @@
     }
 
     /* ══════════════════════════════════════════
-       6. HERO HEADLINE — LETTER SPLIT HOVER
-    ══════════════════════════════════════════ */
-    $$('.hero__headline-inner').forEach(line => {
-      // Wait for animation to complete before splitting
-      setTimeout(() => {
-        const text = line.textContent;
-        line.innerHTML = text.split('').map(ch =>
-          ch === ' '
-            ? '<span class="char" style="display:inline-block;width:.28em" aria-hidden="true">&nbsp;</span>'
-            : `<span class="char" aria-hidden="true">${ch}</span>`
-        ).join('');
-      }, 1200);
-    });
-
-    /* ══════════════════════════════════════════
-       7. SCROLL REVEAL (Intersection Observer)
+       6. SCROLL REVEAL (Intersection Observer)
     ══════════════════════════════════════════ */
     const revealEls = $$('.reveal');
     const revealObs = new IntersectionObserver((entries) => {
@@ -872,7 +857,7 @@
     revealEls.forEach(el => revealObs.observe(el));
 
     /* ══════════════════════════════════════════
-       8. STAT COUNTER COUNT-UP
+       7. STAT COUNTER COUNT-UP
     ══════════════════════════════════════════ */
     const statEls = $$('.stat-number[data-target]');
     const statObs = new IntersectionObserver((entries) => {
@@ -912,7 +897,7 @@
     statEls.forEach(el => statObs.observe(el));
 
     /* ══════════════════════════════════════════
-       9. MAGNETIC NAV LINKS
+       8. MAGNETIC NAV LINKS
     ══════════════════════════════════════════ */
     $$('.mag-wrap').forEach(wrap => {
       const link = wrap.querySelector('.nav-link');
@@ -933,7 +918,7 @@
     });
 
     /* ══════════════════════════════════════════
-       10. CASE STUDY OVERLAY
+       9. CASE STUDY OVERLAY
     ══════════════════════════════════════════ */
     const overlay     = $('#case-study-overlay');
     const overlayClose = $('#overlay-close');
@@ -986,7 +971,7 @@
     });
 
     /* ══════════════════════════════════════════
-       11. PAGE TRANSITION (outbound links)
+       10. PAGE TRANSITION (outbound links)
     ══════════════════════════════════════════ */
     const transitionEl = $('#page-transition');
     const internalLinks = $$('a[href]').filter(a => {
@@ -1025,7 +1010,7 @@
     }
 
     /* ══════════════════════════════════════════
-       12. GSAP SCROLL PARALLAX (hero dust)
+       11. GSAP SCROLL PARALLAX (hero dust)
           Loads after GSAP is available
     ══════════════════════════════════════════ */
     window.addEventListener('load', () => {
