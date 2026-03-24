@@ -999,6 +999,10 @@ input, textarea, select {
   text-align: center;
 }
 
+.stats-grid * {
+  text-align: center;
+}
+
 .stat-item {
   padding: var(--space-6) var(--space-4);
   position: relative;
