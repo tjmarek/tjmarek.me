@@ -2236,3 +2236,14 @@ input, textarea, select {
   background-origin: border-box;
   background-clip: padding-box, border-box;
 }
+
+/* Remove amber corner glow from what-i-do panels */
+.what-i-do__panel::before {
+  display: none;
+}
+
+/* Remove any pseudo-element decoration on work cards */
+.work-card::before,
+.work-card::after {
+  display: none !important;
+}
