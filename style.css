@@ -292,7 +292,7 @@ input, textarea, select {
 /* Display headlines */
 .display-xl {
   font-family: var(--font-display);
-  font-size: clamp(var(--text-4xl), 8vw, var(--text-6xl));
+  font-size: clamp(var(--text-3xl), 6vw, var(--text-5xl));
   font-weight: 800;
   line-height: 1.02;
   letter-spacing: -0.03em;
@@ -793,12 +793,13 @@ input, textarea, select {
    ============================================================ */
 .hero {
   position: relative;
-  min-height: 100svh;
+  height: 100svh;
+  min-height: 600px;
   display: flex;
   flex-direction: column;
   justify-content: center;
   padding-top: 100px;
-  padding-bottom: 80px;
+  padding-bottom: calc(48px + 56px);
   overflow: hidden;
 }
 
@@ -931,7 +932,7 @@ input, textarea, select {
 /* Skill ticker */
 .ticker-wrap {
   position: absolute;
-  bottom: 60px;
+  bottom: 48px;
   left: 0;
   right: 0;
   overflow: hidden;
@@ -945,7 +946,7 @@ input, textarea, select {
 .ticker-track {
   display: flex;
   width: max-content;
-  animation: ticker-scroll 30s linear infinite;
+  animation: ticker-scroll 55s linear infinite;
 }
 
 .ticker-track:hover {
