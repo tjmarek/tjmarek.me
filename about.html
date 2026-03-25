@@ -138,14 +138,15 @@
       text-align: center;
     }
 
-    .philosophy::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background: radial-gradient(ellipse at 50% 110%,
-        rgba(242,165,59,0.10) 0%, transparent 65%);
-      pointer-events: none;
-    }
+   .philosophy::before {
+    content: '';
+    display: block;
+    height: 1px;
+    width: 60%;
+    margin: 0 auto;
+    background: linear-gradient(90deg, transparent, rgba(242,165,59,0.25), transparent);
+    margin-bottom: clamp(var(--space-10), 5vw, var(--space-16));
+  }
 
     .philosophy__quote {
       font-family: var(--font-display);
