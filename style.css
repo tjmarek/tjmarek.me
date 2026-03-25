@@ -2415,6 +2415,7 @@ input, textarea, select {
   background: var(--bg-secondary);
   position: relative;
   overflow: hidden;
+  padding-top: clamp(var(--space-8), 4vw, var(--space-12));
 }
 
 /* Subtle dot pattern background */
