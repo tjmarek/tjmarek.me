@@ -702,7 +702,7 @@ input, textarea, select {
 }
 
 [data-theme="dark"] .contact-bar {
-  background: #0D1518;
+  background: #0D1E2E;
   border-top: 1px solid rgba(255,255,255,0.06);
 }
 
@@ -799,15 +799,20 @@ input, textarea, select {
   flex-direction: column;
   justify-content: center;
   padding-top: 100px;
-  padding-bottom: calc(48px + 56px);
+  /* padding-bottom: calc(48px + 56px); */
+  padding-bottom: 0;
   overflow: hidden;
 }
 
 /* Dust particle animation (preserved from original) */
 .hero-dust {
   position: absolute;
-  inset: 0;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 104px;
   z-index: 0;
+  overflow: hidden;
   pointer-events: none;
   overflow: hidden;
 }
@@ -895,8 +900,12 @@ input, textarea, select {
 
 /* Typewriter subtitle */
 .hero__subtitle {
-  font-size: clamp(var(--text-base), 2vw, var(--text-md));
-  color: var(--text-muted);
+  font-family: var(--font-display);
+  font-size: clamp(var(--text-sm), 2vw, var(--text-base));
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text-dark);
   max-width: 600px;
   line-height: 1.7;
   margin-bottom: var(--space-10);
@@ -988,6 +997,7 @@ input, textarea, select {
    12. STATS / NUMBERS BAR
    ============================================================ */
 .stats-bar {
+  margin-top: 0;
   padding-block: clamp(var(--space-12), 6vw, var(--space-20));
   background-color: var(--footer-bg);
   overflow: hidden;
@@ -2047,7 +2057,7 @@ input, textarea, select {
   background-color: var(--footer-bg);
   color: var(--footer-text);
   padding-block: clamp(var(--space-10), 5vw, var(--space-16));
-  padding-bottom: calc(48px + clamp(var(--space-10), 5vw, var(--space-16)));
+  padding-bottom: calc(48px + var(--space-10));
 }
 
 .footer-inner {
