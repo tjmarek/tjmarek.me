@@ -496,6 +496,11 @@
   const initCursor = () => {
     if (isTouch() || prefersReducedMotion()) return;
 
+    const initCursor = () => {
+  if (isTouch || prefersReducedMotion) return;
+  // add this:
+  if (window.innerWidth < 1024) return;
+
     const cursor = document.createElement('div');
     cursor.id    = 'cursor-follower';
     cursor.setAttribute('aria-hidden', 'true');
