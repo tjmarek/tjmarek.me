@@ -77,7 +77,7 @@
     const html      = document.documentElement;
     const toggleBtn = $('#theme-toggle');
     const stored    = localStorage.getItem('tj-theme');
-    const preferred = window.matchMedia('(prefers-color-scheme: dark)').matches
+    const preferred = window.matchMedia('(prefers-color-scheme: light)').matches
       ? 'dark' : 'light';
     const theme = stored || preferred;
 
