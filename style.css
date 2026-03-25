@@ -799,7 +799,6 @@ input, textarea, select {
   flex-direction: column;
   justify-content: center;
   padding-top: 100px;
-  /* padding-bottom: calc(48px + 56px); */
   padding-bottom: 0;
   overflow: hidden;
 }
@@ -941,7 +940,7 @@ input, textarea, select {
 /* Skill ticker */
 .ticker-wrap {
   position: absolute;
-  bottom: 48px;
+  /* bottom: 48px; */
   left: 0;
   right: 0;
   overflow: hidden;
@@ -2292,7 +2291,7 @@ input, textarea, select {
 
   .footer-copy { flex-direction: column; gap: var(--space-2); text-align: center; }
 
-  .ticker-wrap { bottom: 48px; }
+  /* .ticker-wrap { bottom: 48px; } */
 
   .contact-bar__link-text { display: none; }
   .contact-bar__sep { display: none; }
