@@ -2299,6 +2299,14 @@ input, textarea, select {
   .contact-bar__link { padding: var(--space-2); }
 }
 
+@media (max-width: 768px) {
+  .work-hero::before,
+  .about-page-hero::before,
+  .contact-section::before {
+    display: none;
+  }
+}
+
 /* ============================================================
    27. RESPONSIVE — SMALL MOBILE (max 480px)
    ============================================================ */
