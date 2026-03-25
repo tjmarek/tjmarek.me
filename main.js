@@ -1056,6 +1056,59 @@
     });
   };
 
+  // 24. WEB DESIGN PREVIEW OVERLAY
+const initWdOverlay = () => {
+  const overlay   = document.getElementById('wd-overlay');
+  const closeBtn  = document.getElementById('wd-overlay-close');
+  const closeBtmBtn = overlay?.querySelector('.wd-overlay__close-bottom');
+  const cards     = document.querySelectorAll('.wd-card[data-wd-title]');
+  if (!overlay || !cards.length) return;
+
+  const titleEl   = document.getElementById('wd-overlay-title');
+  const descEl    = document.getElementById('wd-overlay-desc');
+  const resultEl  = document.getElementById('wd-overlay-result');
+  const imgEl     = document.getElementById('wd-overlay-screenshot');
+  const liveTop   = document.getElementById('wd-overlay-live-top');
+  const liveBtm   = document.getElementById('wd-overlay-live-bottom');
+
+  const open = (card) => {
+    titleEl.textContent  = card.dataset.wdTitle;
+    descEl.textContent   = card.dataset.wdDesc;
+    resultEl.textContent = card.dataset.wdResult;
+    imgEl.src            = card.dataset.wdScreenshot;
+    imgEl.alt            = card.dataset.wdTitle + ' full page screenshot';
+    liveTop.href         = card.dataset.wdLive;
+    liveBtm.href         = card.dataset.wdLive;
+    // Reset scroll
+    overlay.querySelector('.wd-overlay__screenshot-wrap').scrollTop = 0;
+    overlay.classList.add('open');
+    overlay.setAttribute('aria-hidden', 'false');
+    document.body.style.overflow = 'hidden';
+    setTimeout(() => closeBtn?.focus(), 80);
+  };
+
+  const close = () => {
+    overlay.classList.remove('open');
+    overlay.setAttribute('aria-hidden', 'true');
+    document.body.style.overflow = '';
+  };
+
+  cards.forEach(card => {
+    on(card, 'click', () => open(card));
+    on(card, 'keydown', e => {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        open(card);
+      }
+    });
+  });
+
+  on(closeBtn,    'click', close);
+  on(closeBtmBtn, 'click', close);
+  on(overlay, 'click', e => { if (e.target === overlay) close(); });
+  on(document, 'keydown', e => { if (e.key === 'Escape') close(); });
+};
+
 
   /* ════════════════════════════════════════════
      BOOT — run everything
@@ -1083,6 +1136,7 @@
     initContactForm();
     initMusicWidget();
     initA11y();
+    initWdOverlay();
   });
 
 })();
