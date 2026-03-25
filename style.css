@@ -1874,23 +1874,6 @@ input, textarea, select {
   overflow: hidden;
 }
 
-/* Ambient background text */
-.contact-ambient {
-  position: absolute;
-  bottom: -60px;
-  right: -40px;
-  font-family: var(--font-display);
-  font-size: clamp(100px, 18vw, 220px);
-  font-weight: 800;
-  color: transparent;
-  -webkit-text-stroke: 1px var(--border-strong);
-  letter-spacing: -0.04em;
-  line-height: 1;
-  pointer-events: none;
-  user-select: none;
-  z-index: 0;
-}
-
 .contact-grid {
   display: grid;
   grid-template-columns: 1fr 1.2fr;
