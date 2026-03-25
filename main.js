@@ -356,7 +356,7 @@
 
   //   $$('.split-hover').forEach(el => {
   const initSplitHover = () => {
-  if (isTouch || prefersReducedMotion) return;
+if (isTouch() || prefersReducedMotion()) return;
   // Only run letter-split on the hero headline (index only)
   const targets = $$('.split-hover').filter(el => el.closest('.hero'));
   targets.forEach(el => {
@@ -493,57 +493,43 @@
   /* ════════════════════════════════════════════
      14. CUSTOM CURSOR — FOLLOWER
   ════════════════════════════════════════════ */
-  const initCursor = () => {
-    if (isTouch() || prefersReducedMotion()) return;
+const initCursor = () => {
+  if (isTouch() || prefersReducedMotion() || window.innerWidth < 1024) return;
 
-    const initCursor = () => {
-  if (isTouch || prefersReducedMotion) return;
-  // add this:
-  if (window.innerWidth < 1024) return;
+  const cursor = document.createElement('div');
+  cursor.id    = 'cursor-follower';
+  cursor.setAttribute('aria-hidden', 'true');
+  cursor.innerHTML = '<div class="cursor-dot"></div><div class="cursor-ring"></div>';
+  document.body.appendChild(cursor);
 
-    const cursor = document.createElement('div');
-    cursor.id    = 'cursor-follower';
-    cursor.setAttribute('aria-hidden', 'true');
-    cursor.innerHTML = '<div class="cursor-dot"></div><div class="cursor-ring"></div>';
-    document.body.appendChild(cursor);
+  const dot  = cursor.querySelector('.cursor-dot');
+  const ring = cursor.querySelector('.cursor-ring');
 
-    const dot  = cursor.querySelector('.cursor-dot');
-    const ring = cursor.querySelector('.cursor-ring');
+  let mouseX = -100, mouseY = -100;
+  let ringX  = -100, ringY  = -100;
 
-    let mouseX = -100, mouseY = -100;
-    let ringX  = -100, ringY  = -100;
+  on(document, 'mousemove', (e) => {
+    mouseX = e.clientX;
+    mouseY = e.clientY;
+    dot.style.transform = `translate(${mouseX}px, ${mouseY}px)`;
+  });
 
-    on(document, 'mousemove', (e) => {
-      mouseX = e.clientX;
-      mouseY = e.clientY;
-      dot.style.transform  = `translate(${mouseX}px, ${mouseY}px)`;
-    });
-
-    // Lagged ring follow
-    const animateRing = () => {
-      ringX = lerp(ringX, mouseX, 0.12);
-      ringY = lerp(ringY, mouseY, 0.12);
-      ring.style.transform = `translate(${ringX}px, ${ringY}px)`;
-      requestAnimationFrame(animateRing);
-    };
-    animateRing();
-
-    // States — grow on hoverable, shrink on click
-    const hoverEls = 'a, button, .work-card, .filter-btn, .path-btn, .skill-chip, .cred-card';
-    on(document, 'mouseover', (e) => {
-      if (e.target.closest(hoverEls)) cursor.classList.add('cursor--hover');
-    });
-    on(document, 'mouseout', (e) => {
-      if (e.target.closest(hoverEls)) cursor.classList.remove('cursor--hover');
-    });
-    on(document, 'mousedown', () => cursor.classList.add('cursor--click'));
-    on(document, 'mouseup',   () => cursor.classList.remove('cursor--click'));
-
-    // Hide when leaving window
-    on(document, 'mouseleave', () => cursor.classList.add('cursor--hidden'));
-    on(document, 'mouseenter', () => cursor.classList.remove('cursor--hidden'));
+  const animateRing = () => {
+    ringX = lerp(ringX, mouseX, 0.12);
+    ringY = lerp(ringY, mouseY, 0.12);
+    ring.style.transform = `translate(${ringX}px, ${ringY}px)`;
+    requestAnimationFrame(animateRing);
   };
+  animateRing();
 
+  const hoverEls = 'a, button, .work-card, .filter-btn, .path-btn, .skill-chip, .cred-card';
+  on(document, 'mouseover',  (e) => { if (e.target.closest(hoverEls)) cursor.classList.add('cursor--hover'); });
+  on(document, 'mouseout',   (e) => { if (e.target.closest(hoverEls)) cursor.classList.remove('cursor--hover'); });
+  on(document, 'mousedown',  () => cursor.classList.add('cursor--click'));
+  on(document, 'mouseup',    () => cursor.classList.remove('cursor--click'));
+  on(document, 'mouseleave', () => cursor.classList.add('cursor--hidden'));
+  on(document, 'mouseenter', () => cursor.classList.remove('cursor--hidden'));
+};
 
   /* ════════════════════════════════════════════
      15. TIMELINE REVEAL
@@ -1144,4 +1130,4 @@ const initWdOverlay = () => {
     initWdOverlay();
   });
 
-// })();
+})();
